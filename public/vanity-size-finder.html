@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanity Size Finder – VanStro Global Supply</title>
+  <style>
+    /* Reset & luxury architectural styling - Zero external CDN, 100% self-contained */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #F9F8F6;
+      color: #1C1A17;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 32px 20px 80px 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* Top branding & language bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #E7E5E0;
+    }
+    .brand-wordmark {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #1C1A17;
+      font-weight: 500;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      border: 1px solid #D5D1C7;
+      background: #FFFFFF;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #73706B;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+    .lang-btn.active {
+      background: #1C1A17;
+      color: #FFFFFF;
+    }
+    .lang-btn:focus-visible {
+      outline: 2px solid #9B7A4F;
+      outline-offset: -1px;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 32px;
+    }
+    .category-kicker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9B7A4F;
+      margin-bottom: 6px;
+      display: block;
+      font-weight: 600;
+    }
+    h2.page-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: #1C1A17;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    p.page-desc {
+      color: #73706B;
+      font-size: 15px;
+      max-width: 680px;
+      line-height: 1.55;
+    }
+
+    /* Main Configuration Card */
+    .finder-form {
+      border: 1px solid #E7E5E0;
+      background: #FFFFFF;
+      padding: 32px 32px 28px 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      border-radius: 3px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
+    }
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    label.field-label, span.field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #1C1A17;
+      margin-bottom: 4px;
+    }
+    .field-hint {
+      display: block;
+      font-size: 12.5px;
+      color: #73706B;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      max-width: 220px;
+      padding: 10px 14px;
+      font-size: 14.5px;
+      border: 1px solid #D5D1C7;
+      background: #FAFAFA;
+      color: #1C1A17;
+      font-family: inherit;
+      border-radius: 2px;
+      transition: all 0.15s ease;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: #1C1A17;
+      box-shadow: 0 0 0 1px #1C1A17;
+    }
+
+    /* Radio button pills / segmented buttons */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      color: #333333;
+      cursor: pointer;
+      user-select: none;
+    }
+    .radio-label input[type="radio"] {
+      accent-color: #1C1A17;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    /* Submit button */
+    .form-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 8px;
+      padding-top: 20px;
+      border-top: 1px solid #F0EFEA;
+    }
+    .btn-submit {
+      background: #1C1A17;
+      color: #FFFFFF;
+      border: 1px solid #1C1A17;
+      padding: 12px 28px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.15s ease;
+    }
+    .btn-submit:hover {
+      background: #333333;
+    }
+    .btn-submit:focus-visible {
+      outline: 2px solid #9B7A4F;
+      outline-offset: 2px;
+    }
+
+    /* Error Message */
+    .error-msg {
+      background: #FFF5F5;
+      border: 1px solid #FED7D7;
+      color: #C53030;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      margin-bottom: 24px;
+      border-radius: 2px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* ==================================================
+       Results section - Architectural Luxury Redesign
+       ================================================== */
+    .results-container {
+      margin-top: 40px;
+    }
+    .results-header-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #1C1A17;
+    }
+    .results-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: #1C1A17;
+      letter-spacing: -0.01em;
+    }
+    .results-meta-count {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #9B7A4F;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .vanity-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .vanity-card {
+      background: #FFFFFF;
+      border: 1px solid #E7E5E0;
+      border-radius: 3px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.015);
+      transition: border-color 0.2s ease;
+    }
+    .vanity-card:hover {
+      border-color: #B8B3A8;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .card-title-group {
+      flex: 1;
+    }
+    .model-code-kicker {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      color: #9B7A4F;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+      display: block;
+    }
+    .item-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      font-weight: 500;
+      color: #1C1A17;
+      line-height: 1.3;
+    }
+    .spare-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      padding: 4px 10px;
+      background: #F4F2EE;
+      color: #55524C;
+      border: 1px solid #E5E1D8;
+      border-radius: 2px;
+      white-space: nowrap;
+      letter-spacing: 0.06em;
+    }
+    .spare-badge.flush {
+      background: #EDF4EE;
+      color: #244A29;
+      border-color: #D3E4D5;
+      font-weight: 600;
+    }
+
+    /* Specifications bar within card */
+    .card-details-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #F2EFE9;
+      font-size: 13.5px;
+    }
+    .specs-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      color: #555555;
+    }
+    .spec-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .spec-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8C8880;
+    }
+    .spec-val {
+      font-weight: 500;
+      color: #1C1A17;
+    }
+
+    /* Price tags */
+    .price-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .price-chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      font-size: 13px;
+    }
+    .price-chip .p-type {
+      color: #73706B;
+      font-size: 12px;
+    }
+    .price-chip .p-val {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 600;
+      color: #1C1A17;
+      font-size: 14px;
+    }
+
+    /* Action link button */
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1C1A17;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #1C1A17;
+      border-radius: 2px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .product-link:hover {
+      background: #1C1A17;
+      color: #FFFFFF;
+    }
+
+    /* Front clearance callout */
+    .leaves-callout {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: #F8F7F4;
+      border-left: 3px solid #C4C0B6;
+      font-size: 12.5px;
+      color: #55524C;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* Alert hints (VEP2230, Measure again, No results) */
+    .alert-hint {
+      background: #FFFFFF;
+      border: 1px solid #E7E5E0;
+      border-left: 3px solid #9B7A4F;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #222222;
+      border-radius: 2px;
+      line-height: 1.5;
+    }
+    .alert-hint a {
+      color: #1C1A17;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .alert-hint.caution {
+      background: #FFFDF7;
+      border-color: #F6E2B0;
+      border-left: 3px solid #D97706;
+      color: #854D0E;
+    }
+
+    /* Fixed Notes */
+    .fixed-notes {
+      margin-top: 32px;
+      padding: 20px 24px;
+      background: #F4F2EE;
+      border: 1px solid #E8E5DF;
+      border-radius: 2px;
+      color: #5C5852;
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+    .fixed-notes p:first-child {
+      margin-bottom: 8px;
+    }
+
+    /* ==================================================
+       FAQ Section - Architectural 2-Column Luxury Grid
+       ================================================== */
+    .faq-section {
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid #E7E5E0;
+    }
+    .faq-header-group {
+      margin-bottom: 28px;
+    }
+    .faq-header-group h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: #1C1A17;
+      letter-spacing: -0.01em;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .faq-card {
+      background: #FFFFFF;
+      border: 1px solid #E7E5E0;
+      border-radius: 3px;
+      padding: 22px 24px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.015);
+      transition: border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .faq-card:hover {
+      border-color: #B8B3A8;
+    }
+    .faq-index {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: #9B7A4F;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .faq-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1C1A17;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .faq-card p {
+      color: #555555;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 14px 60px 14px;
+      }
+      .finder-form {
+        padding: 20px 18px;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .card-details-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .price-group {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .product-link {
+        width: 100%;
+        justify-content: center;
+      }
+      input[type="text"] {
+        max-width: 100%;
+      }
+      .btn-submit {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Bar with Brand & EN / FR switch -->
+    <div class="top-bar">
+      <span class="brand-wordmark">VANSTRO</span>
+      <div class="lang-switcher" role="group" aria-label="Language selection">
+        <button type="button" class="lang-btn active" id="btn-en" onclick="setLanguage('en')">EN</button>
+        <button type="button" class="lang-btn" id="btn-fr" onclick="setLanguage('fr')">FR</button>
+      </div>
+    </div>
+
+    <!-- Page Title & Header -->
+    <header class="page-header">
+      <span class="category-kicker">Architectural Millwork Fitting Guide</span>
+      <h2 class="page-title" id="txt-page-title">Find a vanity that fits your space</h2>
+      <p class="page-desc" id="txt-page-desc">Enter the width of your space to see every VanStro vanity that fits, with its exact size and price. No sign-up, and nothing you enter is saved.</p>
+    </header>
+
+    <!-- Error message slot -->
+    <div id="error-box" class="error-msg" style="display: none;" role="alert"></div>
+
+    <!-- Configuration Form -->
+    <form class="finder-form" id="finder-form" onsubmit="handleFormSubmit(event)">
+      <div class="form-grid">
+        <!-- 1. Space width & 2. Units -->
+        <div class="form-group">
+          <label for="input-width" class="field-label" id="txt-label-width">Space width</label>
+          <span class="field-hint" id="txt-hint-width">Measure wall to wall, or from the wall to the tub or shower.</span>
+          <div class="input-row">
+            <input type="text" id="input-width" required inputmode="decimal" placeholder="e.g. 36" oninput="handleInputChange()">
+            <div class="radio-group" style="margin-top: 0;">
+              <label class="radio-label">
+                <input type="radio" name="units" value="in" checked onchange="handleUnitChange('in')">
+                <span id="txt-unit-in">in</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="units" value="cm" onchange="handleUnitChange('cm')">
+                <span id="txt-unit-cm">cm</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Space in front -->
+        <div class="form-group">
+          <label for="input-front" class="field-label" id="txt-label-front">Space in front (optional)</label>
+          <span class="field-hint" id="txt-hint-front">From the back wall to whatever is in front of the vanity, such as a door, the opposite wall or the edge of the tub.</span>
+          <input type="text" id="input-front" inputmode="decimal" placeholder="" oninput="handleInputChange()">
+        </div>
+
+        <!-- 3. Sides -->
+        <div class="form-group form-group-full">
+          <span class="field-label" id="txt-label-sides">Sides</span>
+          <div class="radio-group" role="radiogroup" aria-labelledby="txt-label-sides">
+            <label class="radio-label">
+              <input type="radio" name="sides" value="both_walls" checked onchange="handleInputChange()">
+              <span id="txt-side-both-walls">Walls on both sides</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="sides" value="one_open" onchange="handleInputChange()">
+              <span id="txt-side-one-open">Wall on one side, open on the other</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="sides" value="both_open" onchange="handleInputChange()">
+              <span id="txt-side-both-open">Open on both sides</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 5. Configuration -->
+        <div class="form-group">
+          <span class="field-label" id="txt-label-config">Configuration</span>
+          <div class="radio-group" role="radiogroup" aria-labelledby="txt-label-config">
+            <label class="radio-label">
+              <input type="radio" name="configuration" value="cabinet" onchange="handleInputChange()">
+              <span id="txt-config-cabinet">Vanity Cabinet</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="configuration" value="cabinet_top" onchange="handleInputChange()">
+              <span id="txt-config-cabinet-top">Vanity Cabinet + Top</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="configuration" value="both" checked onchange="handleInputChange()">
+              <span id="txt-config-both">Show both</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 6. Colour -->
+        <div class="form-group">
+          <span class="field-label" id="txt-label-colour">Colour</span>
+          <div class="radio-group" role="radiogroup" aria-labelledby="txt-label-colour">
+            <label class="radio-label">
+              <input type="radio" name="colour" value="white" onchange="handleInputChange()">
+              <span id="txt-colour-white">White</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="colour" value="light_grey" onchange="handleInputChange()">
+              <span id="txt-colour-grey">Light Grey</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="colour" value="both" checked onchange="handleInputChange()">
+              <span id="txt-colour-both">Show both</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 7. Submit button -->
+        <div class="form-footer">
+          <button type="submit" class="btn-submit" id="btn-submit">Show vanities that fit</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Results Area with aria-live="polite" -->
+    <section class="results-container" id="results-area" aria-live="polite"></section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq-section">
+      <div class="faq-header-group">
+        <span class="category-kicker">Knowledge Base</span>
+        <h2 id="txt-faq-title">Vanity size questions</h2>
+      </div>
+      <div class="faq-grid" id="faq-items"></div>
+    </section>
+  </div>
+
+  <script>
+    /* ==================================================
+       Section 3: Product Data Array
+       ================================================== */
+    const PRODUCTS = [
+      { id: 'VS24', nameEn: 'Vanity Cabinet VS24', nameFr: 'Meuble-lavabo VS24', w: 24, h: 34, d: 21, priceCab: 195, priceTop: 350, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-vs24-384/' },
+      { id: 'VS27', nameEn: 'Vanity Cabinet VS27', nameFr: 'Meuble-lavabo VS27', w: 27, h: 34, d: 21, priceCab: 210, priceTop: 370, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-vs27-404/' },
+      { id: 'VS30', nameEn: 'Vanity Cabinet VS30', nameFr: 'Meuble-lavabo VS30', w: 30, h: 34, d: 21, priceCab: 220, priceTop: 400, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-vs30-405/' },
+      { id: 'V3021STDR', nameEn: '30" Vanity Cabinet – Single Door, Drawers Right (V3021STDR)', nameFr: 'Meuble-lavabo V3021STDR', w: 30, h: 34, d: 21, priceCab: 350, priceTop: 530, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v3021stdr-398/' },
+      { id: 'V3021STDL', nameEn: '30" Vanity Cabinet – Single Door, Drawers Left (V3021STDL)', nameFr: 'Meuble-lavabo V3021STDL', w: 30, h: 34, d: 21, priceCab: 350, priceTop: 530, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v3021stdl-400/' },
+      { id: 'V3021TDR', nameEn: '30" Vanity Cabinet – Two Doors, Drawers Right (V3021TDR)', nameFr: 'Meuble-lavabo V3021TDR', w: 30, h: 34, d: 21, priceCab: 360, priceTop: 535, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v3021tdr-414/' },
+      { id: 'V3021TDL', nameEn: '30" Vanity Cabinet – Two Doors, Drawers Left (V3021TDL)', nameFr: 'Meuble-lavabo V3021TDL', w: 30, h: 34, d: 21, priceCab: 360, priceTop: 535, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v3021tdl-415/' },
+      { id: 'VS36', nameEn: 'Vanity Cabinet VS36', nameFr: 'Meuble-lavabo VS36', w: 36, h: 34, d: 21, priceCab: 255, priceTop: 510, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-vs36-406/' },
+      { id: 'V3621TDR', nameEn: 'Vanity Cabinet V3621TDR', nameFr: 'Meuble-lavabo V3621TDR', w: 36, h: 34, d: 21, priceCab: 400, priceTop: 655, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v3621tdr-413/' },
+      { id: 'V3621TDL', nameEn: 'Vanity Cabinet V3621TDL', nameFr: 'Meuble-lavabo V3621TDL', w: 36, h: 34, d: 21, priceCab: 400, priceTop: 655, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v3621tdl-412/' },
+      { id: 'V4221', nameEn: 'Vanity Cabinet V4221', nameFr: 'Meuble-lavabo V4221', w: 42, h: 34, d: 21, priceCab: 730, priceTop: 975, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v4221-401/' },
+      { id: 'V4821', nameEn: 'Vanity Cabinet V4821', nameFr: 'Meuble-lavabo V4821', w: 48, h: 34, d: 21, priceCab: 790, priceTop: 1075, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v4821-402/' },
+      { id: 'V663522', nameEn: 'Vanity Cabinet V663522', nameFr: 'Meuble-lavabo V663522', w: 66, h: 35, d: 22, priceCab: 925, priceTop: 1495, urlEn: 'https://www.vanstro.ca/products/vanity-cabinet-v663522-403/' }
+    ];
+
+    const ACCESSORY_VEP2230 = {
+      id: 'VEP2230',
+      nameEn: 'Vanity End Panel VEP2230',
+      nameFr: 'Panneau d’extrémité de meuble-lavabo VEP2230',
+      w: 22, h: 30, d: 0.75,
+      price: 57.54,
+      urlEn: 'https://www.vanstro.ca/products/vanity-end-panel-vep2230-380/'
+    };
+
+    /* ==================================================
+       Section 6 & 7: UI Copy Dictionary
+       ================================================== */
+    const I18N = {
+      en: {
+        pageTitle: 'Find a vanity that fits your space',
+        pageDesc: 'Enter the width of your space to see every VanStro vanity that fits, with its exact size and price. No sign-up, and nothing you enter is saved.',
+        labelWidth: 'Space width',
+        hintWidth: 'Measure wall to wall, or from the wall to the tub or shower.',
+        unitIn: 'in',
+        unitCm: 'cm',
+        labelSides: 'Sides',
+        sideBothWalls: 'Walls on both sides',
+        sideOneOpen: 'Wall on one side, open on the other',
+        sideBothOpen: 'Open on both sides',
+        labelFront: 'Space in front (optional)',
+        hintFront: 'From the back wall to whatever is in front of the vanity, such as a door, the opposite wall or the edge of the tub.',
+        labelConfig: 'Configuration',
+        configCabinet: 'Vanity Cabinet',
+        configCabinetTop: 'Vanity Cabinet + Top',
+        configBoth: 'Show both',
+        labelColour: 'Colour',
+        colourWhite: 'White',
+        colourGrey: 'Light Grey',
+        colourBoth: 'Show both',
+        btnSubmit: 'Show vanities that fit',
+        viewProduct: 'View product',
+        toSpare: 'to spare',
+        measureAgain: 'Measure again at the back and the front of the space; walls are not always square.',
+        fixedNote1: 'Prices are national prices in Canadian dollars, the same at every dealer. When the vanity is in stock at your dealer, pickup is usually ready the same day or the next day after you order.',
+        fixedNote2: 'Before you order, mark where the drain and water lines come through the wall; the sink should line up with them.',
+        errorIn: 'Enter a width between 1" and 200".',
+        errorCm: 'Enter a width between 3 cm and 508 cm.',
+        noResults: 'The narrowest VanStro vanity is 24" wide. Contact us if you have a question about your space.',
+        contactLinkText: 'Contact us',
+        contactUrl: 'https://www.vanstro.ca/contact/',
+        faqTitle: 'Vanity size questions',
+        faqs: [
+          { q: '1. What is the standard width of a bathroom vanity?', a: 'Common single-sink widths are 24", 30", 36" and 48". VanStro vanities come in 24", 27", 30", 36", 42", 48" and 66".' },
+          { q: '2. How tall are VanStro vanities?', a: 'They are 34" high, in the comfort-height range. The 66" model is 35" high.' },
+          { q: '3. How deep are VanStro vanities?', a: 'They are 21" deep. The 66" model is 22" deep.' },
+          { q: '4. What is the smallest VanStro vanity?', a: 'VS24, at 24" wide, 34" high and 21" deep.' },
+          { q: '5. Does a VanStro vanity come with a countertop?', a: 'Every model is sold as cabinet only or with a top. Choose the configuration on the product page.' },
+          { q: '6. What colours are available?', a: 'White and Light Grey, at the same price.' },
+          { q: '7. Which 30" vanity should I choose?', a: 'VS30, or one of the 30" models with drawers on the left or right and one or two doors (V3021STDR, V3021STDL, V3021TDR, V3021TDL). Choose the drawer side that suits your room, then check the drain and water line positions in the installation instructions on the product page.' },
+          { q: '8. What if one side of the vanity is exposed?', a: 'A vanity end panel (VEP2230, 22" × 30") can cover the exposed side.' },
+          { q: '9. What are the cabinets made of?', a: 'The box is ¾" plywood with melamine on both sides. Doors are ¾" MDF Shaker doors with a PVC matte soft-touch finish.' },
+          { q: '10. How fast can I pick up a vanity?', a: 'When it is in stock at your dealer, pickup is usually ready the same day or the next day after you order.' }
+        ]
+      },
+      fr: {
+        pageTitle: 'Trouvez un meuble-lavabo qui convient à votre espace',
+        pageDesc: 'Indiquez la largeur de votre espace pour voir tous les meubles-lavabos VanStro qui conviennent, avec leurs dimensions exactes et leur prix. Sans inscription, et rien de ce que vous entrez n\'est enregistré.',
+        labelWidth: 'Largeur de l\'espace',
+        hintWidth: 'Mesurez d\'un mur à l\'autre, ou du mur jusqu\'à la baignoire ou à la douche.',
+        unitIn: 'po',
+        unitCm: 'cm',
+        labelSides: 'Côtés',
+        sideBothWalls: 'Murs des deux côtés',
+        sideOneOpen: 'Mur d\'un côté, ouvert de l\'autre',
+        sideBothOpen: 'Ouvert des deux côtés',
+        labelFront: 'Espace à l\'avant (facultatif)',
+        hintFront: 'Du mur arrière jusqu\'à ce qui se trouve devant le meuble, par exemple une porte, le mur opposé ou le bord de la baignoire.',
+        labelConfig: 'Configuration',
+        configCabinet: 'Meuble-lavabo',
+        configCabinetTop: 'Meuble-lavabo avec comptoir',
+        configBoth: 'Afficher les deux',
+        labelColour: 'Couleur',
+        colourWhite: 'Blanc',
+        colourGrey: 'Gris pâle',
+        colourBoth: 'Afficher les deux',
+        btnSubmit: 'Afficher les meubles qui conviennent',
+        viewProduct: 'Voir le produit',
+        toSpare: 'de jeu',
+        measureAgain: 'Mesurez de nouveau à l\'arrière et à l\'avant de l\'espace; les murs ne sont pas toujours d\'équerre.',
+        fixedNote1: 'Les prix sont des prix nationaux en dollars canadiens, les mêmes chez tous les concessionnaires. Lorsque le meuble est en stock chez votre concessionnaire, le ramassage est habituellement prêt le jour même ou le lendemain de la commande.',
+        fixedNote2: 'Avant de commander, repérez l\'endroit où le drain et les conduites d\'eau sortent du mur; le lavabo doit être aligné sur eux.',
+        errorIn: 'Entrez une largeur entre 1 po et 200 po.',
+        errorCm: 'Entrez une largeur entre 3 cm et 508 cm.',
+        noResults: 'Le meuble-lavabo VanStro le plus étroit mesure 24 po de largeur. Communiquez avec nous si vous avez une question sur votre espace.',
+        contactLinkText: 'Communiquez avec nous',
+        contactUrl: 'https://www.vanstro.ca/fr/contact/',
+        faqTitle: 'Questions sur les dimensions',
+        faqs: [
+          { q: '1. Quelle est la largeur standard d\'un meuble-lavabo?', a: 'Les largeurs courantes pour un lavabo simple sont 24, 30, 36 et 48 po. Les meubles-lavabos VanStro existent en 24, 27, 30, 36, 42, 48 et 66 po.' },
+          { q: '2. Quelle est la hauteur des meubles-lavabos VanStro?', a: 'Ils mesurent 34 po de hauteur, dans la plage dite « hauteur confort ». Le modèle de 66 po mesure 35 po.' },
+          { q: '3. Quelle est la profondeur des meubles-lavabos VanStro?', a: 'Ils ont 21 po de profondeur. Le modèle de 66 po a 22 po.' },
+          { q: '4. Quel est le plus petit meuble-lavabo VanStro?', a: 'Le VS24 : 24 po de largeur, 34 po de hauteur et 21 po de profondeur.' },
+          { q: '5. Le meuble-lavabo est-il vendu avec un comptoir?', a: 'Chaque modèle est offert en meuble seul ou avec comptoir. Choisissez la configuration sur la page du produit.' },
+          { q: '6. Quelles couleurs sont offertes?', a: 'Blanc et Gris pâle, au même prix.' },
+          { q: '7. Quel meuble de 30 po choisir?', a: 'Le VS30, ou l\'un des modèles de 30 po avec tiroirs à gauche ou à droite et une ou deux portes (V3021STDR, V3021STDL, V3021TDR, V3021TDL). Choisissez le côté des tiroirs qui convient à votre pièce, puis vérifiez l\'emplacement du drain et des conduites d\'eau dans les instructions d\'installation de la page du produit.' },
+          { q: '8. Et si un côté du meuble reste apparent?', a: 'Un panneau de finition (VEP2230, 22 × 30 po) peut le couvrir.' },
+          { q: '9. En quoi sont faits les meubles?', a: 'Le caisson est en contreplaqué de ¾ po avec mélamine des deux côtés. Les portes Shaker sont en MDF de ¾ po avec fini PVC mat doux au toucher.' },
+          { q: '10. En combien de temps puis-je ramasser un meuble-lavabo?', a: 'Lorsqu\'il est en stock chez votre concessionnaire, le ramassage est habituellement prêt le jour même ou le lendemain de la commande.' }
+        ]
+      }
+    };
+
+    /* ==================================================
+       Section 5: Pure Calculation Functions
+       ================================================== */
+    function getProductUrl(urlEn, lang) {
+      if (lang === 'fr') {
+        return urlEn.replace('https://www.vanstro.ca/', 'https://www.vanstro.ca/fr/');
+      }
+      return urlEn;
+    }
+
+    function formatPrice(amount, lang) {
+      const isInt = Number.isInteger(amount);
+      if (lang === 'fr') {
+        let str = isInt ? amount.toString() : amount.toFixed(2);
+        let parts = str.split('.');
+        let intPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        if (parts.length > 1) {
+          return `${intPart},${parts[1]} $`;
+        }
+        return `${intPart} $`;
+      } else {
+        let str = isInt ? amount.toString() : amount.toFixed(2);
+        let parts = str.split('.');
+        let intPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        if (parts.length > 1) {
+          return `$${intPart}.${parts[1]}`;
+        }
+        return `$${intPart}`;
+      }
+    }
+
+    function formatInchesFraction(valInches) {
+      const eighths = Math.round(valInches * 8);
+      const intPart = Math.floor(eighths / 8);
+      const rem = eighths % 8;
+      const fractions = ['', '⅛', '¼', '⅜', '½', '⅝', '¾', '⅞'];
+      const frac = fractions[rem];
+
+      if (intPart === 0 && rem === 0) return '0';
+      if (intPart === 0) return frac;
+      if (rem === 0) return String(intPart);
+      return `${intPart}${frac}`;
+    }
+
+    function formatLength(valInches, unit, lang, withUnitSymbol = true) {
+      if (unit === 'cm') {
+        const cmVal = (valInches * 2.54).toFixed(1);
+        if (!withUnitSymbol) return cmVal;
+        return `${cmVal} cm`;
+      } else {
+        const frac = formatInchesFraction(valInches);
+        if (!withUnitSymbol) return frac;
+        return lang === 'fr' ? `${frac} po` : `${frac}"`;
+      }
+    }
+
+    function formatDimension(w, h, d, unit, lang) {
+      if (unit === 'cm') {
+        return `${(w * 2.54).toFixed(1)} × ${(h * 2.54).toFixed(1)} × ${(d * 2.54).toFixed(1)} cm`;
+      } else {
+        const unitWord = lang === 'fr' ? 'po' : 'in';
+        return `${w} × ${h} × ${d} ${unitWord}`;
+      }
+    }
+
+    function calculateVanities({
+      spaceWidthInput,
+      unit = 'in',
+      sides = 'both_walls',
+      spaceInFrontInput = '',
+      configuration = 'both',
+      colour = 'both',
+      lang = 'en'
+    }) {
+      const rawW = typeof spaceWidthInput === 'number' ? spaceWidthInput : parseFloat(spaceWidthInput);
+
+      // Validation
+      const minW = unit === 'in' ? 1 : 3;
+      const maxW = unit === 'in' ? 200 : 508;
+
+      if (isNaN(rawW) || rawW < minW || rawW > maxW) {
+        let errorMsg = '';
+        if (unit === 'in') {
+          errorMsg = lang === 'fr' ? I18N.fr.errorIn : I18N.en.errorIn;
+        } else {
+          errorMsg = lang === 'fr' ? I18N.fr.errorCm : I18N.en.errorCm;
+        }
+        return {
+          isValid: false,
+          errorMsg,
+          results: []
+        };
+      }
+
+      // Convert to inches for calculation
+      const spaceWidthInches = unit === 'in' ? rawW : rawW / 2.54;
+
+      // Check if any vanity fits (narrowest is 24")
+      if (spaceWidthInches < 24 - 0.0001) {
+        return {
+          isValid: true,
+          hasResults: false,
+          spaceWidthFormatted: formatLength(spaceWidthInches, unit, lang),
+          noResultsMsg: lang === 'fr' ? I18N.fr.noResults : I18N.en.noResults,
+          contactUrl: lang === 'fr' ? I18N.fr.contactUrl : I18N.en.contactUrl,
+          contactLinkText: lang === 'fr' ? I18N.fr.contactLinkText : I18N.en.contactLinkText,
+          results: []
+        };
+      }
+
+      // Filter and sort: wide to narrow. Group identical widths in product table order.
+      const matching = PRODUCTS.filter(p => p.w <= spaceWidthInches + 0.0001);
+      matching.sort((a, b) => {
+        if (b.w !== a.w) {
+          return b.w - a.w;
+        }
+        return PRODUCTS.indexOf(a) - PRODUCTS.indexOf(b);
+      });
+
+      // Front depth calculation
+      const rawFront = spaceInFrontInput !== '' && spaceInFrontInput !== null && !isNaN(parseFloat(spaceInFrontInput))
+        ? parseFloat(spaceInFrontInput)
+        : null;
+      const frontInches = rawFront !== null && rawFront > 0
+        ? (unit === 'in' ? rawFront : rawFront / 2.54)
+        : null;
+
+      let hasExactZeroSpare = false;
+
+      const results = matching.map(p => {
+        const spareInches = Math.max(0, spaceWidthInches - p.w);
+        if (Math.abs(spareInches) < 0.001) {
+          hasExactZeroSpare = true;
+        }
+
+        let leavesText = null;
+        if (frontInches !== null) {
+          const clearanceInches = Math.max(0, frontInches - p.d);
+          const formattedClearance = formatLength(clearanceInches, unit, lang);
+          leavesText = lang === 'fr'
+            ? `Il reste ${formattedClearance} devant le meuble.`
+            : `Leaves ${formattedClearance} in front of the vanity.`;
+        }
+
+        return {
+          model: p.id,
+          name: lang === 'fr' ? p.nameFr : p.nameEn,
+          w: p.w,
+          h: p.h,
+          d: p.d,
+          dimensionsFormatted: formatDimension(p.w, p.h, p.d, unit, lang),
+          spareFormatted: formatLength(spareInches, unit, lang),
+          spareRaw: spareInches,
+          priceCab: p.priceCab,
+          priceTop: p.priceTop,
+          priceCabFormatted: formatPrice(p.priceCab, lang),
+          priceTopFormatted: formatPrice(p.priceTop, lang),
+          url: getProductUrl(p.urlEn, lang),
+          leavesText
+        };
+      });
+
+      // Side panel hint
+      let sidePanelHint = null;
+      const vepPriceFormatted = formatPrice(ACCESSORY_VEP2230.price, lang);
+      const vepUrl = getProductUrl(ACCESSORY_VEP2230.urlEn, lang);
+      if (sides === 'one_open') {
+        sidePanelHint = {
+          count: 1,
+          text: lang === 'fr'
+            ? `Un côté restera apparent. Un panneau de finition (VEP2230, ${vepPriceFormatted}) peut le couvrir.`
+            : `One side will be exposed. A vanity end panel (VEP2230, ${vepPriceFormatted}) can cover it.`,
+          url: vepUrl
+        };
+      } else if (sides === 'both_open') {
+        sidePanelHint = {
+          count: 2,
+          text: lang === 'fr'
+            ? `Les deux côtés resteront apparents. Deux panneaux de finition (VEP2230, ${vepPriceFormatted} chacun) peuvent les couvrir.`
+            : `Both sides will be exposed. Two vanity end panels (VEP2230, ${vepPriceFormatted} each) can cover them.`,
+          url: vepUrl
+        };
+      }
+
+      // Measure again hint
+      let measureAgainHint = null;
+      if (sides === 'both_walls' && hasExactZeroSpare) {
+        measureAgainHint = lang === 'fr' ? I18N.fr.measureAgain : I18N.en.measureAgain;
+      }
+
+      // Title formatting
+      const count = results.length;
+      const formattedW = formatLength(spaceWidthInches, unit, lang);
+      let title = '';
+      if (count === 1) {
+        title = lang === 'fr'
+          ? `1 meuble-lavabo convient à un espace de ${formattedW}`
+          : `1 vanity fits a ${formattedW} space`;
+      } else {
+        title = lang === 'fr'
+          ? `${count} meubles-lavabos conviennent à un espace de ${formattedW}`
+          : `${count} vanities fit a ${formattedW} space`;
+      }
+
+      return {
+        isValid: true,
+        hasResults: true,
+        count,
+        title,
+        spaceWidthFormatted: formattedW,
+        results,
+        sidePanelHint,
+        measureAgainHint,
+        fixedNote1: lang === 'fr' ? I18N.fr.fixedNote1 : I18N.en.fixedNote1,
+        fixedNote2: lang === 'fr' ? I18N.fr.fixedNote2 : I18N.en.fixedNote2
+      };
+    }
+
+    /* ==================================================
+       DOM & Application State Management
+       ================================================== */
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+
+      // Update static text elements
+      const dict = I18N[lang];
+      document.getElementById('txt-page-title').textContent = dict.pageTitle;
+      document.getElementById('txt-page-desc').textContent = dict.pageDesc;
+      document.getElementById('txt-label-width').textContent = dict.labelWidth;
+      document.getElementById('txt-hint-width').textContent = dict.hintWidth;
+      document.getElementById('txt-unit-in').textContent = dict.unitIn;
+      document.getElementById('txt-unit-cm').textContent = dict.unitCm;
+      document.getElementById('txt-label-sides').textContent = dict.labelSides;
+      document.getElementById('txt-side-both-walls').textContent = dict.sideBothWalls;
+      document.getElementById('txt-side-one-open').textContent = dict.sideOneOpen;
+      document.getElementById('txt-side-both-open').textContent = dict.sideBothOpen;
+      document.getElementById('txt-label-front').textContent = dict.labelFront;
+      document.getElementById('txt-hint-front').textContent = dict.hintFront;
+      document.getElementById('txt-label-config').textContent = dict.labelConfig;
+      document.getElementById('txt-config-cabinet').textContent = dict.configCabinet;
+      document.getElementById('txt-config-cabinet-top').textContent = dict.configCabinetTop;
+      document.getElementById('txt-config-both').textContent = dict.configBoth;
+      document.getElementById('txt-label-colour').textContent = dict.labelColour;
+      document.getElementById('txt-colour-white').textContent = dict.colourWhite;
+      document.getElementById('txt-colour-grey').textContent = dict.colourGrey;
+      document.getElementById('txt-colour-both').textContent = dict.colourBoth;
+      document.getElementById('btn-submit').textContent = dict.btnSubmit;
+      document.getElementById('txt-faq-title').textContent = dict.faqTitle;
+
+      renderFaqs();
+      updateCalculations();
+    }
+
+    function renderFaqs() {
+      const container = document.getElementById('faq-items');
+      const faqs = I18N[currentLang].faqs;
+      let html = '';
+      for (let i = 0; i < faqs.length; i++) {
+        const numStr = (i + 1 < 10 ? '0' : '') + (i + 1);
+        html += '<article class="faq-card">';
+        html += '<span class="faq-index">FAQ ' + numStr + '</span>';
+        html += '<h3>' + escapeHtml(faqs[i].q) + '</h3>';
+        html += '<p>' + escapeHtml(faqs[i].a) + '</p>';
+        html += '</article>';
+      }
+      container.innerHTML = html;
+    }
+
+    function getFormValues() {
+      const widthVal = document.getElementById('input-width').value.trim();
+      const unitVal = document.querySelector('input[name="units"]:checked')?.value || 'in';
+      const sidesVal = document.querySelector('input[name="sides"]:checked')?.value || 'both_walls';
+      const frontVal = document.getElementById('input-front').value.trim();
+      const configVal = document.querySelector('input[name="configuration"]:checked')?.value || 'both';
+      const colourVal = document.querySelector('input[name="colour"]:checked')?.value || 'both';
+
+      return {
+        spaceWidthInput: widthVal,
+        unit: unitVal,
+        sides: sidesVal,
+        spaceInFrontInput: frontVal,
+        configuration: configVal,
+        colour: colourVal,
+        lang: currentLang
+      };
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      updateCalculations();
+    }
+
+    function handleInputChange() {
+      updateCalculations();
+    }
+
+    function handleUnitChange(newUnit) {
+      const widthInput = document.getElementById('input-width');
+      const val = parseFloat(widthInput.value);
+      if (!isNaN(val) && val > 0) {
+        if (newUnit === 'cm') {
+          widthInput.value = (val * 2.54).toFixed(1);
+        } else {
+          widthInput.value = (val / 2.54).toFixed(1);
+        }
+      }
+      updateCalculations();
+    }
+
+    function updateCalculations() {
+      const values = getFormValues();
+      const errorBox = document.getElementById('error-box');
+      const resultsArea = document.getElementById('results-area');
+
+      if (values.spaceWidthInput === '') {
+        errorBox.style.display = 'none';
+        resultsArea.innerHTML = '';
+        return;
+      }
+
+      const output = calculateVanities(values);
+
+      if (!output.isValid) {
+        errorBox.textContent = output.errorMsg;
+        errorBox.style.display = 'block';
+        resultsArea.innerHTML = '';
+        return;
+      }
+
+      errorBox.style.display = 'none';
+
+      // If no vanities fit (< 24")
+      if (!output.hasResults) {
+        let noResHtml = '<div class="alert-hint">';
+        const msg = output.noResultsMsg;
+        const linkText = output.contactLinkText;
+        const url = output.contactUrl;
+        const linkedMsg = msg.replace(linkText, '<a href="' + url + '" target="_blank" rel="noopener">' + linkText + '</a>');
+        noResHtml += linkedMsg;
+        noResHtml += '</div>';
+        resultsArea.innerHTML = noResHtml;
+        return;
+      }
+
+      // Render Redesigned Luxury Editorial Results
+      const dict = I18N[currentLang];
+      let html = '<div class="results-header-box">';
+      html += '<h3 class="results-title">' + escapeHtml(output.title) + '</h3>';
+      html += '<span class="results-meta-count">' + output.results.length + ' ' + (currentLang === 'fr' ? 'modèles' : 'models') + '</span>';
+      html += '</div>';
+
+      html += '<div class="vanity-cards">';
+
+      const colourMode = values.colour;
+      const configMode = values.configuration;
+
+      for (let i = 0; i < output.results.length; i++) {
+        const item = output.results[i];
+        const isFlush = Math.abs(item.spareRaw) < 0.001;
+
+        let colourSuffix = '';
+        if (colourMode === 'white') {
+          colourSuffix = currentLang === 'fr' ? ' (Blanc)' : ' (White)';
+        } else if (colourMode === 'light_grey') {
+          colourSuffix = currentLang === 'fr' ? ' (Gris pâle)' : ' (Light Grey)';
+        }
+        const linkLabel = dict.viewProduct + colourSuffix;
+
+        html += '<div class="vanity-card">';
+        
+        // Card Top Row
+        html += '<div class="card-top">';
+        html += '<div class="card-title-group">';
+        html += '<span class="model-code-kicker">' + escapeHtml(item.model) + '</span>';
+        html += '<h4 class="item-name">' + escapeHtml(item.name) + '</h4>';
+        html += '</div>';
+        
+        // Spare clearance badge
+        const badgeClass = isFlush ? 'spare-badge flush' : 'spare-badge';
+        html += '<span class="' + badgeClass + '">' + escapeHtml(item.spareFormatted) + ' ' + escapeHtml(dict.toSpare) + '</span>';
+        html += '</div>';
+
+        // Card Specifications & Pricing Row
+        html += '<div class="card-details-row">';
+        html += '<div class="specs-group">';
+        html += '<span class="spec-pill"><span class="spec-label">Dim:</span> <span class="spec-val">' + escapeHtml(item.dimensionsFormatted) + '</span></span>';
+        html += '</div>';
+
+        // Price Tags
+        html += '<div class="price-group">';
+        if (configMode === 'cabinet' || configMode === 'both') {
+          html += '<div class="price-chip">';
+          html += '<span class="p-type">' + (currentLang === 'fr' ? 'Meuble' : 'Cabinet') + ':</span>';
+          html += '<span class="p-val">' + escapeHtml(item.priceCabFormatted) + '</span>';
+          html += '</div>';
+        }
+        if (configMode === 'cabinet_top' || configMode === 'both') {
+          html += '<div class="price-chip">';
+          html += '<span class="p-type">' + (currentLang === 'fr' ? 'Avec comptoir' : 'With Top') + ':</span>';
+          html += '<span class="p-val">' + escapeHtml(item.priceTopFormatted) + '</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+
+        // Product Action Link Button
+        html += '<a href="' + item.url + '" class="product-link" target="_blank" rel="noopener">' + escapeHtml(linkLabel) + ' →</a>';
+        html += '</div>';
+
+        // Front clearance if provided
+        if (item.leavesText) {
+          html += '<div class="leaves-callout">' + escapeHtml(item.leavesText) + '</div>';
+        }
+
+        html += '</div>';
+      }
+      html += '</div>';
+
+      // Side panel hint
+      if (output.sidePanelHint) {
+        html += '<div class="alert-hint">';
+        html += escapeHtml(output.sidePanelHint.text) + ' ';
+        html += '<a href="' + output.sidePanelHint.url + '" target="_blank" rel="noopener">' + escapeHtml(dict.viewProduct) + '</a>';
+        html += '</div>';
+      }
+
+      // Measure again hint
+      if (output.measureAgainHint) {
+        html += '<div class="alert-hint caution">' + escapeHtml(output.measureAgainHint) + '</div>';
+      }
+
+      // Fixed notes
+      html += '<div class="fixed-notes">';
+      html += '<p>' + escapeHtml(output.fixedNote1) + '</p>';
+      html += '<p>' + escapeHtml(output.fixedNote2) + '</p>';
+      html += '</div>';
+
+      resultsArea.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    /* ==================================================
+       Section 9: Acceptance Self Tests
+       ================================================== */
+    function runSelfTests() {
+      const tests = [];
+
+      // Test 1: 30 in, both walls: 7 models, order 30" (VS30, V3021STDR, V3021STDL, V3021TDR, V3021TDL), VS27, VS24. Spares: 0,0,0,0,0,3,6, measure again hint.
+      const t1 = calculateVanities({ spaceWidthInput: 30, unit: 'in', sides: 'both_walls', lang: 'en' });
+      const t1Models = t1.results.map(r => r.model);
+      const t1Expected = ['VS30', 'V3021STDR', 'V3021STDL', 'V3021TDR', 'V3021TDL', 'VS27', 'VS24'];
+      const t1Spares = t1.results.map(r => Math.round(r.spareRaw));
+      const t1Pass = t1.results.length === 7 &&
+        JSON.stringify(t1Models) === JSON.stringify(t1Expected) &&
+        JSON.stringify(t1Spares) === JSON.stringify([0, 0, 0, 0, 0, 3, 6]) &&
+        t1.measureAgainHint !== null;
+      tests.push({ id: 1, desc: 'Input 30 in, walls on both sides: 7 models, 30" group first, spares 0,0,0,0,0,3,6, measure again hint displayed', pass: t1Pass });
+
+      // Test 2: 66 in: all 13 models, V663522 dimensions displayed as 66 × 35 × 22
+      const t2 = calculateVanities({ spaceWidthInput: 66, unit: 'in', lang: 'en' });
+      const v66 = t2.results.find(r => r.model === 'V663522');
+      const t2Pass = t2.results.length === 13 && v66 && v66.dimensionsFormatted.includes('66 × 35 × 22');
+      tests.push({ id: 2, desc: 'Input 66 in: all 13 models shown, V663522 dimensions 66 × 35 × 22', pass: t2Pass });
+
+      // Test 3: 23 in: narrowest is 24" message, no list shown
+      const t3 = calculateVanities({ spaceWidthInput: 23, unit: 'in', lang: 'en' });
+      const t3Pass = t3.isValid === true && t3.hasResults === false && t3.results.length === 0 && t3.noResultsMsg.includes('24"');
+      tests.push({ id: 3, desc: 'Input 23 in: displays narrowest is 24" message without results list', pass: t3Pass });
+
+      // Test 4: 36 in, one side open: 1 panel VEP2230 hint, price $57.54
+      const t4 = calculateVanities({ spaceWidthInput: 36, unit: 'in', sides: 'one_open', lang: 'en' });
+      const t4Pass = t4.sidePanelHint && t4.sidePanelHint.count === 1 && t4.sidePanelHint.text.includes('$57.54') && t4.sidePanelHint.text.includes('VEP2230');
+      tests.push({ id: 4, desc: 'Input 36 in, one side open: 1 panel VEP2230 hint with price $57.54', pass: t4Pass });
+
+      // Test 5: 66 in, front depth 40 in: 21" deep models show "Leaves 19" in front of the vanity.", V663522 shows "Leaves 18" in front of the vanity."
+      const t5 = calculateVanities({ spaceWidthInput: 66, spaceInFrontInput: 40, unit: 'in', lang: 'en' });
+      const d21 = t5.results.find(r => r.d === 21);
+      const d22 = t5.results.find(r => r.model === 'V663522');
+      const t5Pass = d21 && d21.leavesText === 'Leaves 19" in front of the vanity.' &&
+                     d22 && d22.leavesText === 'Leaves 18" in front of the vanity.';
+      tests.push({ id: 5, desc: 'Input 66 in, space in front 40 in: 21" models show Leaves 19", V663522 shows Leaves 18"', pass: t5Pass });
+
+      // Test 6: Unit cm, input 91.44: identical to 36 in, 10 models in order
+      const t6 = calculateVanities({ spaceWidthInput: 91.44, unit: 'cm', lang: 'en' });
+      const t6Expected = ['VS36', 'V3621TDR', 'V3621TDL', 'VS30', 'V3021STDR', 'V3021STDL', 'V3021TDR', 'V3021TDL', 'VS27', 'VS24'];
+      const t6Models = t6.results.map(r => r.model);
+      const t6Pass = t6.results.length === 10 && JSON.stringify(t6Models) === JSON.stringify(t6Expected);
+      tests.push({ id: 6, desc: 'Unit cm, input 91.44: 10 models, matches 36 in order exactly', pass: t6Pass });
+
+      // Test 7: Input 0, 250, or abc: error displayed, no results
+      const t7a = calculateVanities({ spaceWidthInput: 0, unit: 'in', lang: 'en' });
+      const t7b = calculateVanities({ spaceWidthInput: 250, unit: 'in', lang: 'en' });
+      const t7c = calculateVanities({ spaceWidthInput: 'abc', unit: 'in', lang: 'en' });
+      const t7Pass = !t7a.isValid && t7a.results.length === 0 &&
+                     !t7b.isValid && t7b.results.length === 0 &&
+                     !t7c.isValid && t7c.results.length === 0;
+      tests.push({ id: 7, desc: 'Input 0, 250, or abc: error message displayed, no results list', pass: t7Pass });
+
+      // Test 8: Input 31.5 in: VS30 spare width is 1½"
+      const t8 = calculateVanities({ spaceWidthInput: 31.5, unit: 'in', lang: 'en' });
+      const vs30 = t8.results.find(r => r.model === 'VS30');
+      const t8Pass = vs30 && vs30.spareFormatted === '1½"';
+      tests.push({ id: 8, desc: 'Input 31.5 in: VS30 spare width formatted as 1½"', pass: t8Pass });
+
+      // Test 9: Switch to FR: all text in French, price 1075 is "1 075 $", 57.54 is "57,54 $"
+      const p1075Fr = formatPrice(1075, 'fr');
+      const p57Fr = formatPrice(57.54, 'fr');
+      const t9 = calculateVanities({ spaceWidthInput: 48, unit: 'in', sides: 'one_open', lang: 'fr' });
+      const t9Pass = p1075Fr === '1 075 $' && p57Fr === '57,54 $' &&
+                     t9.title.includes('conviennent') && t9.sidePanelHint.text.includes('57,54 $');
+      tests.push({ id: 9, desc: 'Switch to FR: all French copy, prices 1 075 $ and 57,54 $', pass: t9Pass });
+
+      // Test 10: Only 1 fits (input 24 in): singular title "1 vanity fits a 24" space"
+      const t10 = calculateVanities({ spaceWidthInput: 24, unit: 'in', lang: 'en' });
+      const t10Pass = t10.results.length === 1 && t10.title === '1 vanity fits a 24" space';
+      tests.push({ id: 10, desc: 'Only 1 fits (input 24 in): singular title "1 vanity fits a 24\\" space"', pass: t10Pass });
+
+      // Test 11: Space in front empty or 0: no leaves line, no error
+      const t11a = calculateVanities({ spaceWidthInput: 30, spaceInFrontInput: '', unit: 'in', lang: 'en' });
+      const t11b = calculateVanities({ spaceWidthInput: 30, spaceInFrontInput: 0, unit: 'in', lang: 'en' });
+      const t11Pass = t11a.isValid && t11a.results.every(r => r.leavesText === null) &&
+                      t11b.isValid && t11b.results.every(r => r.leavesText === null);
+      tests.push({ id: 11, desc: 'Space in front empty or 0: no leaves line shown, no error message', pass: t11Pass });
+
+      let allPass = true;
+      console.log('--- VanStro Vanity Size Finder Acceptance Self-Tests ---');
+      tests.forEach(t => {
+        const status = t.pass ? 'PASS' : 'FAIL';
+        console.log(`[${status}] Test ${t.id}: ${t.desc}`);
+        if (!t.pass) allPass = false;
+      });
+      console.log(`Summary: ${allPass ? 'ALL 11 TESTS PASSED' : 'TESTS FAILED'}`);
+      return allPass;
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      renderFaqs();
+      document.getElementById('input-width').value = '36';
+      updateCalculations();
+      console.log('Vanity Size Finder initialized. Run runSelfTests() in console to execute acceptance tests.');
+    });
+  </script>
+</body>
+</html>
