@@ -1,5 +1,5 @@
 export interface FinishDetail {
-  id: 'veneer' | 'painted' | 'thermofoil' | 'hardware';
+  id: 'pvc_door' | 'plywood_box' | 'veneer' | 'painted' | 'thermofoil' | 'hardware';
   name: string;
   subtitle: string;
   description: string;
@@ -14,6 +14,66 @@ export interface FinishDetail {
 }
 
 export const FINISH_DETAILS: Record<string, FinishDetail> = {
+  pvc_door: {
+    id: 'pvc_door',
+    name: 'PVC Soft-Touch',
+    subtitle: 'PVC Matte Soft-Touch over ¾" MDF Thermofoil in Shaker Style',
+    description:
+      'Engineered factory-sealed PVC soft-touch exterior membrane wrapped seamlessly over precision-machined ¾" MDF thermofoil cores in classic and slim Shaker profiles.',
+    recommendedSolution: 'A soft, slightly damp microfiber cloth with lukewarm water (cleaner applied to cloth first)',
+    spongeType: 'Ultra-soft split-microfiber cloth; dry immediately with a second clean cloth',
+    phRange: 'pH 6.5 – 7.5 (Mild neutral soap)',
+    wipeTechnique: 'Wipe lightly along shaker rails; do not let moisture air-dry on seams or door edges',
+    moistureLimit: 'Immediate drying — never allow standing water along lower shaker rails',
+    specNotes: [
+      { label: 'Surface Finish', value: 'PVC Matte Soft-Touch' },
+      { label: 'Core Base', value: '¾" High-Density MDF' },
+      { label: 'Profile Style', value: 'Recessed Shaker' },
+      { label: 'Surface Seal', value: 'Factory Heat-Sealed' },
+    ],
+    tailoredDos: [
+      'Use a soft, slightly damp cloth on the PVC soft-touch door faces and drawer fronts.',
+      'Dry the surface afterward with a second, clean dry microfiber cloth.',
+      'Apply cleaner to the cloth first so liquid never pools in shaker corners or around hardware.',
+      'Wipe fingerprints and kitchen cooking residue promptly before grease bakes on.',
+    ],
+    tailoredDonts: [
+      'Avoid abrasive scouring pads, magic erasers, and solvent-based degreasers.',
+      'Do not spray cleaner directly onto the cabinet door or joints.',
+      'Never allow wet dish towels or cleaning rags to hang draped over cabinet doors.',
+      'Do not wipe paint-ready trim with a wet cloth before paint or primer is applied.',
+    ],
+  },
+  plywood_box: {
+    id: 'plywood_box',
+    name: 'Cabinet Box',
+    subtitle: '¾" Premium Multi-Ply Box with Double-Sided Sealed Melamine',
+    description:
+      'Rigid ¾" European multi-ply cabinet box architecture finished with double-sided factory-sealed melamine interiors for superior scratch and water-resistance.',
+    recommendedSolution: 'A soft, barely damp cloth with gentle plant-based soap',
+    spongeType: 'Clean microfiber towel followed by dry buffing cloth',
+    phRange: 'pH 7.0 (Neutral)',
+    wipeTechnique: 'Wipe along interior shelves and drawer boxes; dry along perimeter joints',
+    moistureLimit: 'Dry immediately — prevent moisture from entering edge-banding seams',
+    specNotes: [
+      { label: 'Box Construction', value: '¾" Multi-Ply Core' },
+      { label: 'Panel Face', value: 'Double-Sided Melamine' },
+      { label: 'Interior Shelves', value: 'Heavy-Duty Melamine-Faced' },
+      { label: 'Water Sealing', value: 'Factory Hot-Melt Edgebanding' },
+    ],
+    tailoredDos: [
+      'Wipe the melamine-finished box and drawer interiors with a soft, slightly damp cloth.',
+      'Dry along drawer-box seams where two finished surfaces meet.',
+      'Use shelf liner beneath oils, vinegars, and liquid honey jars.',
+      'Inspect plumbing sink base cabinets regularly for under-sink water drips.',
+    ],
+    tailoredDonts: [
+      'Never allow water to pool in shelf corners or behind back panel dados.',
+      'Do not use acidic lime removers or caustic bleach cleansers inside cabinet boxes.',
+      'Avoid placing soaking wet dishes or damp pots directly onto bare shelf surfaces.',
+      'Never saturate raw plywood cutouts created for plumbing penetrations.',
+    ],
+  },
   veneer: {
     id: 'veneer',
     name: 'Veneer',

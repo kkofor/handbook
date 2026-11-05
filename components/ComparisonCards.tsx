@@ -8,7 +8,7 @@ interface ComparisonCardsProps {
 }
 
 export default function ComparisonCards({ activeFinish }: ComparisonCardsProps) {
-  const current = FINISH_DETAILS[activeFinish] || FINISH_DETAILS.veneer;
+  const current = FINISH_DETAILS[activeFinish] || FINISH_DETAILS.pvc_door || FINISH_DETAILS.veneer;
 
   return (
     <section id="dos-donts" className="scroll-mt-28 space-y-6">

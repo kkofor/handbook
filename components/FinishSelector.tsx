@@ -7,13 +7,13 @@ interface FinishSelectorProps {
   onSelectFinish: (finish: string) => void;
 }
 
-const FINISH_KEYS = ['veneer', 'painted', 'thermofoil', 'hardware'];
+const FINISH_KEYS = ['pvc_door', 'plywood_box', 'veneer', 'painted', 'hardware'];
 
 export default function FinishSelector({
   activeFinish,
   onSelectFinish,
 }: FinishSelectorProps) {
-  const current = FINISH_DETAILS[activeFinish] || FINISH_DETAILS.veneer;
+  const current = FINISH_DETAILS[activeFinish] || FINISH_DETAILS.pvc_door;
 
   return (
     <section id="material-care" className="scroll-mt-28 space-y-6">

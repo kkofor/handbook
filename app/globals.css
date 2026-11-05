@@ -2,24 +2,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* VanStro Official Guide Tokens */
+  --hb-paper: #f9f8f6;
+  --hb-surface: #ffffff;
+  --hb-line: #e7e5e0;
+  --hb-ink: #1c1a17;
+  --hb-muted: #73706b;
+  --hb-body: #5e5a54;
+  --hb-copper: #9b7a4f;
+  --hb-dark: #181715;
+  --hb-gold: #c5a069;
+  --hb-do: #244a29;
+  --hb-dont: #8b2627;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #F9F8F6;
-  color: #1C1A17;
+  background-color: var(--hb-paper);
+  color: var(--hb-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.font-serif-luxury {
+.font-serif-luxury, .hb-serif {
   font-family: var(--font-serif);
 }
 
-.font-sans-clean {
+.font-sans-clean, .hb-sans {
   font-family: var(--font-sans);
+}
+
+.guides-hb {
+  background-color: var(--hb-paper);
+  color: var(--hb-ink);
+}
+
+.guides-hb :focus-visible {
+  outline: 2px solid var(--hb-copper);
+  outline-offset: 2px;
 }
 
 /* Custom subtle scrollbar */

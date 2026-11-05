@@ -13,7 +13,13 @@ export default function GuidesPage() {
     <>
       <GuidesHub
         onNavigateToCareGuide={() => {
-          router.push('/cabinet-care');
+          router.push('/guides/cabinet-care');
+        }}
+        onNavigateToMeasureGuide={() => {
+          router.push('/guides/how-to-measure-for-cabinets');
+        }}
+        onSelectGuideSlug={(slug) => {
+          router.push(`/guides/${slug}`);
         }}
         onOpenChecklistModal={() => setIsChecklistOpen(true)}
       />

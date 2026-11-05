@@ -7,6 +7,8 @@ import ContactModal from '@/components/ContactModal';
 
 interface GuidesHubProps {
   onNavigateToCareGuide: () => void;
+  onNavigateToMeasureGuide?: () => void;
+  onSelectGuideSlug?: (slug: string) => void;
   onOpenChecklistModal: () => void;
 }
 
@@ -18,83 +20,114 @@ interface GuideCardItem {
   readTime: string;
   image: string;
   description: string;
-  target?: string;
+  slug: string;
 }
 
 const ALL_GUIDES: GuideCardItem[] = [
   {
-    id: 'pet-vs-painted',
+    id: 'how-to-measure-for-cabinets',
+    slug: 'how-to-measure-for-cabinets',
+    category: 'Planning Guide',
+    label: 'SIZING & MEASURING',
+    title: 'Measuring for Cabinets',
+    readTime: '6 min read',
+    image: '/images/kitchen_blueprint_plan_1793829048195.jpg',
+    description:
+      'Cabinet widths, heights, clearances and fillers. Step-by-step VanStro guidance for planning, ordering and installing your cabinets.',
+  },
+  {
+    id: 'cabinet-care',
+    slug: 'cabinet-care',
+    category: 'Cabinet Care',
+    label: 'MAINTENANCE',
+    title: 'How to Clean Kitchen Cabinets',
+    readTime: '4 min read',
+    image: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
+    description:
+      'How to clean PVC soft-touch doors, melamine-faced cabinet boxes and paint-ready trim without treating them like wood furniture.',
+  },
+  {
+    id: 'cabinet-adjustment',
+    slug: 'cabinet-adjustment',
+    category: 'Hardware & Hinges',
+    label: 'HARDWARE & HINGES',
+    title: 'How to Adjust Cabinet Doors & Drawers',
+    readTime: '4 min read',
+    image: '/images/soft_close_hinge_detail_1793829047892.jpg',
+    description:
+      'When to adjust a cabinet door or drawer, what to check first, and practical steps for DTC 3-way spiral cam soft-close hinges.',
+  },
+  {
+    id: 'what-finishes-are-available',
+    slug: 'what-finishes-are-available',
     category: 'Materials & Finishes',
     label: 'MATERIAL GUIDE',
-    title: 'PET vs. Painted: Which is best?',
+    title: 'Cabinet Finishes: White & Light Grey',
     readTime: '4 min read',
     image: '/images/cabinet_finish_swatches_1793829048007.jpg',
     description:
-      'A side-by-side material breakdown comparing scratch resilience, repairability, and satin tactile sheen for luxury kitchens.',
+      'VanStro cabinets come in White or Light Grey with a PVC matte soft-touch door finish. See what each surface is and how to compare samples.',
   },
   {
-    id: 'dtc-hinges',
-    category: 'Cabinet Care',
-    label: 'HARDWARE & HINGES',
-    title: 'Adjusting DTC Soft-Close Hinges Easily',
-    readTime: '3 min read',
-    image: '/images/soft_close_hinge_detail_1793829047892.jpg',
-    description:
-      'Step-by-step 3-way spiral cam adjustments to eliminate door sag, gap misalignment, and uneven reveal seams.',
-  },
-  {
-    id: 'layout-clearance',
-    category: 'Planning Guide',
-    label: 'SIZING & MEASURING',
-    title: 'Kitchen Layout & Clearance Guide',
+    id: 'what-are-rta-cabinets',
+    slug: 'what-are-rta-cabinets',
+    category: 'Construction Spec',
+    label: 'CONSTRUCTION SPEC',
+    title: 'RTA Kitchen Cabinets: What Ready-to-Assemble Means',
     readTime: '5 min read',
     image: '/images/kitchen_blueprint_plan_1793829048195.jpg',
     description:
-      'Architectural clearance rules for island walkways, refrigerator swing radii, and work triangle ergonomics.',
+      'What ready-to-assemble (RTA) kitchen cabinets are, how VanStro RTA cabinets are built, and how to plan, order and pick them up in Canada.',
   },
   {
-    id: 'oak-veneer-selection',
+    id: 'plywood-vs-particle-board-cabinets',
+    slug: 'plywood-vs-particle-board-cabinets',
     category: 'Materials & Finishes',
-    label: 'TIMBER CRAFT',
-    title: 'Quarter-Sawn vs. Rift-Cut White Oak',
+    label: 'MATERIAL GUIDE',
+    title: 'Plywood vs Particle Board Cabinets: What to Check',
     readTime: '4 min read',
     image: '/images/oak_wood_grain_1793828381387.jpg',
     description:
-      'Understanding medullary ray flecks, grain linear stability, and modern fluted millwork applications.',
+      'How plywood and particle board cabinet boxes differ in moisture, screw holding and weight, and what VanStro cabinets and vanities use.',
   },
   {
-    id: 'unlacquered-brass',
-    category: 'Interior Styling',
-    label: 'FINISH PROFILE',
-    title: 'The Living Patina of Unlacquered Brass',
-    readTime: '3 min read',
-    image: '/images/brushed_brass_handle_1793828381577.jpg',
+    id: 'bathroom-vanity-sizes',
+    slug: 'bathroom-vanity-sizes',
+    category: 'Planning Guide',
+    label: 'SIZING & MEASURING',
+    title: 'Bathroom Vanity Sizes: Widths, Height and Depth',
+    readTime: '4 min read',
+    image: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
     description:
-      'How raw brass reacts to hand oils, oxidation cycles, and how to accelerate or arrest the aging process.',
+      'Standard bathroom vanity widths, heights and depths, how to measure your space, and the exact sizes of every VanStro vanity model.',
   },
   {
-    id: 'microfiber-guide',
-    category: 'Cabinet Care',
-    label: 'MAINTENANCE',
-    title: 'Textile Guide: Waffle Linen vs. Microfiber',
+    id: 'pickup-and-delivery-options',
+    slug: 'pickup-and-delivery-options',
+    category: 'Logistics',
+    label: 'DISTRIBUTION & LOGISTICS',
+    title: 'Delivery and Local Dealer Pickup Options',
     readTime: '3 min read',
-    image: '/images/folded_linen_cloths_1793828382675.jpg',
+    image: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
     description:
-      'Selecting the correct GSM density to absorb liquid droplets without stripping ultra-matte lacquer topcoats.',
-    target: 'handbook',
+      'Availability, warehouse pickup and regional freight delivery depend on your dealer location and postal code across Canada.',
   },
 ];
 
 const FILTER_TAGS = [
-  { label: 'All (12)', value: 'All' },
+  { label: 'All (8)', value: 'All' },
   { label: 'Cabinet Care', value: 'Cabinet Care' },
-  { label: 'Materials & Finishes', value: 'Materials & Finishes' },
   { label: 'Planning Guide', value: 'Planning Guide' },
-  { label: 'Interior Styling', value: 'Interior Styling' },
+  { label: 'Materials & Finishes', value: 'Materials & Finishes' },
+  { label: 'Hardware & Hinges', value: 'Hardware & Hinges' },
+  { label: 'Construction Spec', value: 'Construction Spec' },
+  { label: 'Logistics', value: 'Logistics' },
 ];
 
 export default function GuidesHub({
   onNavigateToCareGuide,
+  onNavigateToMeasureGuide,
+  onSelectGuideSlug,
   onOpenChecklistModal,
 }: GuidesHubProps) {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -308,13 +341,15 @@ export default function GuidesHub({
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
-              {filteredGuides.map((guide) => {
-                const isCareGuideLink = guide.target === 'handbook' || guide.id === 'dtc-hinges';
-                return (
-                  <article
-                    key={guide.id}
+              {filteredGuides.map((guide) => (
+                <article
+                  key={guide.id}
                     onClick={() => {
-                      if (isCareGuideLink) {
+                      if (onSelectGuideSlug) {
+                        onSelectGuideSlug(guide.slug);
+                      } else if (guide.slug === 'how-to-measure-for-cabinets' && onNavigateToMeasureGuide) {
+                        onNavigateToMeasureGuide();
+                      } else if (guide.slug === 'cabinet-care') {
                         onNavigateToCareGuide();
                       } else {
                         setActiveCardModal(guide);
@@ -362,8 +397,7 @@ export default function GuidesHub({
                       <span className="text-[11px] text-[#A09D96]">VanStro Archive</span>
                     </div>
                   </article>
-                );
-              })}
+                ))}
             </div>
           )}
         </section>

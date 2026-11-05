@@ -21,7 +21,7 @@ export default function CabinetCareHandbook({
   onBackToGuides,
 }: CabinetCareHandbookProps) {
   const [activeSection, setActiveSection] = useState('daily-rules');
-  const [activeFinish, setActiveFinish] = useState('veneer');
+  const [activeFinish, setActiveFinish] = useState('pvc_door');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
 
@@ -52,7 +52,7 @@ export default function CabinetCareHandbook({
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F8F6] text-[#1C1A17] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
+    <div className="guides-hb min-h-screen bg-[#F9F8F6] text-[#1C1A17] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
       {/* Top Navbar */}
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
 
@@ -77,12 +77,12 @@ export default function CabinetCareHandbook({
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="space-y-3 max-w-3xl">
               {/* Care Guide Tag / Metadata */}
-              <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-[0.16em] text-[#9B7A4F]">
-                <span>4 MIN READ</span>
-                <span className="text-[#C4C0B6]">·</span>
+              <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono uppercase tracking-[0.16em] text-[#9B7A4F]">
                 <span>CARE GUIDE</span>
                 <span className="text-[#C4C0B6]">·</span>
-                <span>ARCHITECTURAL MILLWORK</span>
+                <span>4 MIN READ</span>
+                <span className="text-[#C4C0B6]">·</span>
+                <span>KITCHEN CABINETS &amp; BATHROOM VANITIES</span>
               </div>
 
               {/* Large Serif Title */}
@@ -92,7 +92,7 @@ export default function CabinetCareHandbook({
 
               {/* Elegant Subtitle */}
               <p className="text-sm sm:text-base text-[#73706B] leading-relaxed max-w-2xl font-normal">
-                An architectural guide to preserving custom bespoke cabinetry, natural wood grain depth, hand-applied lacquer, and precision German mechanical hardware.
+                How to clean PVC soft-touch doors, melamine-faced cabinet boxes and paint-ready trim without treating them like wood furniture.
               </p>
             </div>
 
