@@ -1,12 +1,20 @@
 'use client';
 
+import { motion } from 'motion/react';
+
 interface DownloadBannerProps {
   onOpenChecklist: () => void;
 }
 
 export default function DownloadBanner({ onOpenChecklist }: DownloadBannerProps) {
   return (
-    <footer className="w-full bg-[#181715] text-[#F9F8F6] border-t border-[#292621] py-14 sm:py-18 transition-colors">
+    <motion.footer
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full bg-[#181715] text-[#F9F8F6] border-t border-[#292621] py-14 sm:py-18 transition-colors"
+    >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="space-y-2 max-w-2xl">
@@ -57,6 +65,6 @@ export default function DownloadBanner({ onOpenChecklist }: DownloadBannerProps)
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

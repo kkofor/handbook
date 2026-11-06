@@ -7,21 +7,12 @@ import HowToMeasureGuide from '@/components/HowToMeasureGuide';
 import UniversalGuideDetail from '@/components/UniversalGuideDetail';
 import VanityFinderApp from '@/components/VanityFinderApp';
 import PrintableChecklistModal from '@/components/PrintableChecklistModal';
+import ContactUsPage from '@/components/ContactUsPage';
 import { VANSTRO_GUIDES } from '@/data/all-vanstro-guides';
 
-const GUIDE_SLUGS = [
-  { slug: 'cabinet-care', label: '1. Care Handbook' },
-  { slug: 'how-to-measure-for-cabinets', label: '2. Measuring for Cabinets' },
-  { slug: 'cabinet-adjustment', label: '3. Door & Drawer Adjustment' },
-  { slug: 'what-finishes-are-available', label: '4. White & Light Grey Finishes' },
-  { slug: 'what-are-rta-cabinets', label: '5. RTA Cabinets Explained' },
-  { slug: 'plywood-vs-particle-board-cabinets', label: '6. Plywood vs Particle Board' },
-  { slug: 'bathroom-vanity-sizes', label: '7. Bathroom Vanity Sizes' },
-  { slug: 'pickup-and-delivery-options', label: '8. Pickup & Delivery Options' },
-];
-
 export default function Page() {
-  const [currentView, setCurrentView] = useState<string>('guides');
+  // Default to user's core request: 橱柜保养手册详情页 (Cabinet Care Handbook)
+  const [currentView, setCurrentView] = useState<string>('cabinet-care');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
 
   // Sync with browser URL hash
@@ -30,7 +21,9 @@ export default function Page() {
       const hash = window.location.hash.toLowerCase().replace(/^#/, '');
       if (hash.includes('vanity-finder') || hash.includes('size-finder')) {
         setCurrentView('vanity-finder');
-      } else if (hash === 'guides' || hash === '') {
+      } else if (hash === 'contact' || hash.includes('contact-us')) {
+        setCurrentView('contact');
+      } else if (hash === 'guides' || hash === 'hub') {
         setCurrentView('guides');
       } else if (hash.includes('measure')) {
         setCurrentView('how-to-measure-for-cabinets');
@@ -57,91 +50,24 @@ export default function Page() {
 
   return (
     <div className="relative min-h-screen bg-[#F9F8F6]">
-      {/* Editorial View Switcher Bar for Reviewers & Users */}
-      <div className="sticky top-0 z-50 bg-[#181715] text-white text-[11px] font-mono py-2 px-4 flex flex-wrap items-center justify-between gap-3 border-b border-[#2E2B26] shadow-sm">
-        <div className="flex items-center gap-2.5">
-          <span className="text-[#C5A069] tracking-widest uppercase font-semibold">
-            VANSTRO FIGMA ARCHIVE
-          </span>
-          <span className="text-[#595349]">/</span>
-          <span className="text-[#A09D96] hidden sm:inline">
-            Active Screen:{' '}
-            <strong className="text-white font-normal uppercase">
-              {currentView === 'guides' && 'Guides & Insights Hub (8 Guides)'}
-              {currentView === 'vanity-finder' && 'Vanity Size Finder Tool'}
-              {isGuideSlug && `Guide: ${activeGuideData?.title}`}
-            </strong>
-          </span>
-        </div>
+      {/* 1. Dedicated Interactive Cabinet Care Handbook (Primary Showcase) */}
+      {currentView === 'cabinet-care' && (
+        <CabinetCareHandbook
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
+        />
+      )}
 
-        {/* Navigation Selector Row */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <button
-            type="button"
-            onClick={() => navigateToView('guides')}
-            className={`px-2.5 py-1 rounded-xs transition-colors cursor-pointer ${
-              currentView === 'guides'
-                ? 'bg-[#C5A069] text-black font-semibold'
-                : 'text-[#A09D96] hover:text-white'
-            }`}
-          >
-            Guides Hub
-          </button>
-
-          <span className="text-[#4A463F]">·</span>
-
-          {/* Quick Select for All 8 Guides */}
-          <div className="relative inline-flex items-center">
-            <select
-              value={isGuideSlug ? currentView : ''}
-              onChange={(e) => {
-                if (e.target.value) navigateToView(e.target.value);
-              }}
-              className="bg-[#24221E] text-white border border-[#3E3A33] px-2.5 py-1 rounded-xs text-[11px] font-mono cursor-pointer focus:outline-[#C5A069]"
-              aria-label="Select guide subpage"
-            >
-              <option value="" disabled>
-                Select Guide Subpage (8 Available)...
-              </option>
-              {GUIDE_SLUGS.map((g) => (
-                <option key={g.slug} value={g.slug}>
-                  {g.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <span className="text-[#4A463F]">·</span>
-
-          <button
-            type="button"
-            onClick={() => navigateToView('vanity-finder')}
-            className={`px-2.5 py-1 rounded-xs transition-colors cursor-pointer ${
-              currentView === 'vanity-finder'
-                ? 'bg-[#C5A069] text-black font-semibold'
-                : 'text-[#A09D96] hover:text-white'
-            }`}
-          >
-            Vanity Size Finder
-          </button>
-        </div>
-      </div>
-
-      {/* 1. Guides Hub */}
+      {/* 2. Guides Hub */}
       {currentView === 'guides' && (
         <GuidesHub
           onNavigateToCareGuide={() => navigateToView('cabinet-care')}
           onNavigateToMeasureGuide={() => navigateToView('how-to-measure-for-cabinets')}
           onSelectGuideSlug={(slug) => navigateToView(slug)}
           onOpenChecklistModal={() => setIsChecklistOpen(true)}
-        />
-      )}
-
-      {/* 2. Dedicated Interactive Cabinet Care Handbook */}
-      {currentView === 'cabinet-care' && (
-        <CabinetCareHandbook
-          onBackToGuides={() => navigateToView('guides')}
-          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigateToContact={() => navigateToView('contact')}
+          onNavigate={(view) => navigateToView(view)}
         />
       )}
 
@@ -149,10 +75,20 @@ export default function Page() {
       {currentView === 'how-to-measure-for-cabinets' && (
         <HowToMeasureGuide
           onBackToGuides={() => navigateToView('guides')}
+          onNavigate={(view) => navigateToView(view)}
         />
       )}
 
-      {/* 4. Other 6 Rebuilt Guide Subpages using Universal Architectural Layout */}
+      {/* 4. Dedicated Contact Us Page (vanstro.ca/contact Rebuild) */}
+      {currentView === 'contact' && (
+        <ContactUsPage
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
+        />
+      )}
+
+      {/* 5. Rebuilt Guide Subpages using Universal Architectural Layout */}
       {isGuideSlug &&
         currentView !== 'cabinet-care' &&
         currentView !== 'how-to-measure-for-cabinets' &&
@@ -160,12 +96,16 @@ export default function Page() {
           <UniversalGuideDetail
             guide={activeGuideData}
             onBackToGuides={() => navigateToView('guides')}
+            onNavigate={(view) => navigateToView(view)}
           />
         )}
 
-      {/* 5. Vanity Size Finder Tool */}
+      {/* 6. Vanity Size Finder Tool */}
       {currentView === 'vanity-finder' && (
-        <VanityFinderApp />
+        <VanityFinderApp
+          onNavigate={(view) => navigateToView(view)}
+          onBackToGuides={() => navigateToView('guides')}
+        />
       )}
 
       {/* Global Printable Checklist Modal */}

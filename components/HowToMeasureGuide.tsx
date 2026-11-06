@@ -2,12 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'motion/react';
 import Navbar from '@/components/Navbar';
 import ContactModal from '@/components/ContactModal';
 import MeasurementModal from '@/components/MeasurementModal';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Ruler, Calculator, CheckCircle2, AlertTriangle, ArrowRight, Sparkles, Layers, Sliders } from 'lucide-react';
 
 interface HowToMeasureGuideProps {
   onBackToGuides: () => void;
+  onNavigate?: (view: string) => void;
 }
 
 const MEASURE_TOC = [
@@ -19,7 +27,7 @@ const MEASURE_TOC = [
   { id: 'filler-calc', num: '06', title: 'Interactive Calculator' },
 ];
 
-export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideProps) {
+export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToMeasureGuideProps) {
   const [activeSection, setActiveSection] = useState('tools-prep');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,12 +78,22 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
   return (
     <div className="guides-hb min-h-screen bg-[#F9F8F6] text-[#1C1A17] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
       {/* Top Navbar */}
-      <Navbar onOpenContact={() => setIsContactOpen(true)} />
+      <Navbar
+        currentView="how-to-measure-for-cabinets"
+        onNavigate={onNavigate}
+        onOpenContact={() => setIsContactOpen(true)}
+        onNavigateToContact={() => onNavigate?.('contact')}
+      />
 
       {/* Main Container */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-8 lg:py-12">
         {/* Top Header Section */}
-        <section className="mb-12 lg:mb-16 border-b border-[#E7E5E0] pb-10">
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12 lg:mb-16 border-b border-[#E7E5E0] pb-10"
+        >
           {/* Subtle Back to Guides link */}
           <div className="mb-6">
             <button
@@ -124,12 +142,17 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
               </button>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* 3-Column Asymmetric Layout (18% : 52% : 30%) */}
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-12 items-start w-full">
           {/* Left Column (18% width): Sticky Table of Contents */}
-          <aside className="w-full lg:w-[18%] lg:shrink-0 order-2 lg:order-1">
+          <motion.aside
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full lg:w-[18%] lg:shrink-0 order-2 lg:order-1"
+          >
             <div className="sticky top-28 space-y-8 pr-4">
               <div>
                 <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#73706B] block mb-4">
@@ -177,10 +200,15 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 </p>
               </div>
             </div>
-          </aside>
+          </motion.aside>
 
           {/* Middle Column (52% width): Main Content */}
-          <div className="w-full lg:w-[52%] space-y-14 order-1 lg:order-2">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full lg:w-[52%] space-y-14 order-1 lg:order-2"
+          >
             {/* Section 01: Essential Tools & Prep */}
             <section id="tools-prep" className="scroll-mt-28 space-y-6">
               <div className="flex items-baseline justify-between border-b border-[#E7E5E0] pb-3">
@@ -201,67 +229,73 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 Before measuring your kitchen or vanity alcove, gather dedicated precision tools. Accuracy at the eighth-of-an-inch level avoids costly layout misalignments during installation.
               </p>
 
-              {/* 3 Quick Cards */}
+              {/* 3 Sliced Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] p-5 rounded-sm hover:border-[#1C1A17]/30 transition-all duration-300 flex flex-col justify-between">
-                  <div>
-                    <div className="w-9 h-9 flex items-center justify-center text-[#1C1A17] mb-4 bg-[#F9F8F6] rounded-xs border border-[#E7E5E0]">
-                      📏
+                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-xl flex flex-col justify-between">
+                  <CardHeader className="p-5 pb-3 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
+                        <Ruler className="w-4 h-4" />
+                      </div>
+                      <Badge variant="copper" className="text-[9px] font-mono">
+                        Primary Tool
+                      </Badge>
                     </div>
-                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F] block mb-1">
-                      Primary Tool
-                    </span>
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17] mb-2">
+                    <CardTitle className="text-lg font-serif-luxury font-normal text-[#1C1A17]">
                       25ft+ Locking Tape
-                    </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    </CardTitle>
+                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-1">
                       Use a steel locking tape measure with a rigid blade. Avoid soft cloth tailor tapes which stretch over long runs.
-                    </p>
-                  </div>
-                  <div className="pt-4 mt-4 border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter className="px-5 py-3 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
                     Accurate to 1/16&quot;
-                  </div>
-                </div>
+                  </CardFooter>
+                </Card>
 
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] p-5 rounded-sm hover:border-[#1C1A17]/30 transition-all duration-300 flex flex-col justify-between">
-                  <div>
-                    <div className="w-9 h-9 flex items-center justify-center text-[#1C1A17] mb-4 bg-[#F9F8F6] rounded-xs border border-[#E7E5E0]">
-                      📐
+                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-xl flex flex-col justify-between">
+                  <CardHeader className="p-5 pb-3 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
+                        <Layers className="w-4 h-4" />
+                      </div>
+                      <Badge variant="secondary" className="text-[9px] font-mono">
+                        Documentation
+                      </Badge>
                     </div>
-                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F] block mb-1">
-                      Documentation
-                    </span>
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17] mb-2">
+                    <CardTitle className="text-lg font-serif-luxury font-normal text-[#1C1A17]">
                       Grid Graph Paper
-                    </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    </CardTitle>
+                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-1">
                       Sketch a bird’s-eye floor plan view. Note all permanent architectural elements, doorways, and radiator covers.
-                    </p>
-                  </div>
-                  <div className="pt-4 mt-4 border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter className="px-5 py-3 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
                     Scale: ¼&quot; = 1 foot
-                  </div>
-                </div>
+                  </CardFooter>
+                </Card>
 
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] p-5 rounded-sm hover:border-[#1C1A17]/30 transition-all duration-300 flex flex-col justify-between">
-                  <div>
-                    <div className="w-9 h-9 flex items-center justify-center text-[#1C1A17] mb-4 bg-[#F9F8F6] rounded-xs border border-[#E7E5E0]">
-                      📷
+                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-xl flex flex-col justify-between">
+                  <CardHeader className="p-5 pb-3 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
+                        <Sparkles className="w-4 h-4" />
+                      </div>
+                      <Badge variant="secondary" className="text-[9px] font-mono">
+                        Visual Context
+                      </Badge>
                     </div>
-                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F] block mb-1">
-                      Visual Context
-                    </span>
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17] mb-2">
+                    <CardTitle className="text-lg font-serif-luxury font-normal text-[#1C1A17]">
                       Multi-Angle Photos
-                    </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    </CardTitle>
+                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-1">
                       Capture wide-angle photos of each wall run, floor transitions, exposed ductwork bulkheads, and ceiling soffits.
-                    </p>
-                  </div>
-                  <div className="pt-4 mt-4 border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter className="px-5 py-3 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
                     Provide to Designer
-                  </div>
-                </div>
+                  </CardFooter>
+                </Card>
               </div>
             </section>
 
@@ -467,159 +501,169 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 </span>
               </div>
 
-              <div className="bg-[#FFFFFF] border border-[#E7E5E0] p-6 sm:p-7 rounded-sm space-y-6">
-                <div className="space-y-1">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F]">
-                    Live Sizing Engine
-                  </span>
-                  <h3 className="font-serif-luxury text-xl font-medium text-[#1C1A17]">
-                    Calculate Cabinet Combinations &amp; Filler Gap
-                  </h3>
-                  <p className="text-xs text-[#73706B] leading-relaxed">
+              <Card className="border-[#E7E5E0] bg-white rounded-xl shadow-xs overflow-hidden">
+                <CardHeader className="p-6 sm:p-7 pb-4 space-y-1.5 border-b border-[#F0EFEA] bg-[#FAF9F6]">
+                  <div className="flex items-center gap-2">
+                    <Badge variant="copper" className="text-[9px]">
+                      Live Sizing Engine
+                    </Badge>
+                    <span className="text-[#C4C0B6]">/</span>
+                    <span className="text-xs font-mono text-[#73706B]">
+                      Field Scribing &amp; Filler Analysis
+                    </span>
+                  </div>
+                  <CardTitle className="text-xl sm:text-2xl font-serif-luxury text-[#1C1A17]">
+                    Calculate Cabinet Combinations &amp; Scribe Fillers
+                  </CardTitle>
+                  <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-0.5">
                     Enter your total wall measurement in inches, select VanStro standard modular cabinets, and compute the exact filler split for each side.
-                  </p>
-                </div>
+                  </CardDescription>
+                </CardHeader>
 
-                {/* Wall Width Input */}
-                <div className="p-4 bg-[#F9F8F6] border border-[#E7E5E0] rounded-xs space-y-3">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <label className="text-xs font-mono uppercase tracking-wider text-[#1C1A17] font-semibold">
-                      Total Wall Length (Corner to Corner):
-                    </label>
-                    <span className="text-xs font-mono text-[#9B7A4F] font-medium">
-                      {(wallWidth / 12).toFixed(2)} feet / {wallWidth}&quot;
-                    </span>
-                  </div>
+                <CardContent className="p-6 sm:p-7 space-y-6">
+                  {/* Wall Width Input Slice */}
+                  <div className="p-4 bg-[#FAF9F6] border border-[#E7E5E0] rounded-lg space-y-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <label className="text-xs font-mono uppercase tracking-wider text-[#1C1A17] font-semibold flex items-center gap-1.5">
+                        <Sliders className="w-3.5 h-3.5 text-[#9B7A4F]" />
+                        <span>Total Wall Length (Corner to Corner):</span>
+                      </label>
+                      <Badge variant="secondary" className="font-mono text-xs font-semibold text-[#9B7A4F]">
+                        {(wallWidth / 12).toFixed(2)} feet / {wallWidth}&quot;
+                      </Badge>
+                    </div>
 
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="range"
-                      min="60"
-                      max="240"
-                      step="1"
-                      value={wallWidth}
-                      onChange={(e) => setWallWidth(Number(e.target.value))}
-                      className="w-full accent-[#181715] cursor-pointer"
-                    />
-                    <div className="relative shrink-0">
+                    <div className="flex items-center gap-3">
                       <input
-                        type="number"
-                        min="48"
-                        max="300"
+                        type="range"
+                        min="60"
+                        max="240"
+                        step="1"
                         value={wallWidth}
-                        onChange={(e) => setWallWidth(Math.max(24, Number(e.target.value)))}
-                        className="w-20 px-2 py-1.5 bg-[#FFFFFF] border border-[#E7E5E0] rounded-xs text-xs font-mono text-center font-semibold text-[#1C1A17] focus:outline-[#9B7A4F]"
+                        onChange={(e) => setWallWidth(Number(e.target.value))}
+                        className="w-full accent-[#181715] cursor-pointer"
                       />
-                      <span className="absolute right-2 top-2 text-[10px] text-[#8C8880] font-mono">in</span>
+                      <div className="relative shrink-0 w-24">
+                        <Input
+                          type="number"
+                          min="48"
+                          max="300"
+                          value={wallWidth}
+                          onChange={(e) => setWallWidth(Math.max(24, Number(e.target.value)))}
+                          className="text-center font-mono font-semibold pr-6 text-xs h-9"
+                        />
+                        <span className="absolute right-2 top-2.5 text-[10px] text-[#8C8880] font-mono pointer-events-none">in</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Cabinet Sequence Chips */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-wider text-[#8C8880]">
-                      Cabinet Sequence in this Run:
-                    </span>
-                    <span className="text-xs font-mono text-[#1C1A17] font-medium">
-                      Sum: <strong>{totalCabinetWidth}&quot;</strong>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-2 min-h-12 p-3 bg-[#FAFAF8] border border-[#E7E5E0] rounded-xs">
-                    {cabinetRun.map((width, idx) => (
-                      <div
-                        key={idx}
-                        className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E7E5E0] text-xs font-mono rounded-xs shadow-2xs group"
-                      >
-                        <span className="font-semibold text-[#1C1A17]">{width}&quot; Cabinet</span>
-                        <button
-                          type="button"
-                          onClick={() => removeCabinet(idx)}
-                          className="text-[#A09D96] hover:text-[#8B2627] text-xs cursor-pointer ml-1"
-                          title="Remove cabinet"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    ))}
-                    {cabinetRun.length === 0 && (
-                      <span className="text-xs text-[#A09D96] italic">
-                        Click below to add standard cabinet modules to this wall run.
+                  {/* Cabinet Sequence Chips */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono uppercase tracking-wider text-[#8C8880]">
+                        Cabinet Sequence in this Run:
                       </span>
-                    )}
+                      <span className="text-xs font-mono text-[#1C1A17]">
+                        Run Sum: <strong className="font-semibold text-sm">{totalCabinetWidth}&quot;</strong>
+                      </span>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 min-h-12 p-3 bg-[#FAF9F6]/60 border border-[#E7E5E0] rounded-lg">
+                      {cabinetRun.map((width, idx) => (
+                        <div
+                          key={idx}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-[#E7E5E0] text-xs font-mono rounded-md shadow-2xs group hover:border-[#1C1A17] transition-colors"
+                        >
+                          <span className="font-semibold text-[#1C1A17]">{width}&quot; Cabinet</span>
+                          <button
+                            type="button"
+                            onClick={() => removeCabinet(idx)}
+                            className="text-[#A09D96] hover:text-[#8B2627] text-xs cursor-pointer ml-1 transition-colors"
+                            title="Remove cabinet"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                      {cabinetRun.length === 0 && (
+                        <span className="text-xs text-[#A09D96] italic">
+                          Click below to add standard cabinet modules to this wall run.
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Add Standard Modules Slices */}
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <span className="text-[11px] font-mono text-[#8C8880] mr-1">Add Standard Module:</span>
+                      {[24, 27, 30, 36, 42, 48].map((size) => (
+                        <Button
+                          key={size}
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => addCabinet(size)}
+                          className="h-7 text-xs font-mono px-2.5"
+                        >
+                          + {size}&quot;
+                        </Button>
+                      ))}
+                    </div>
                   </div>
 
-                  {/* Add Standard Modules */}
-                  <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                    <span className="text-[11px] font-mono text-[#8C8880] mr-2">Add Standard Size:</span>
-                    {[24, 27, 30, 36, 42, 48].map((size) => (
-                      <button
-                        key={size}
-                        type="button"
-                        onClick={() => addCabinet(size)}
-                        className="px-2.5 py-1 text-xs font-mono bg-[#FFFFFF] border border-[#E7E5E0] text-[#1C1A17] hover:border-[#1C1A17] hover:bg-[#F2EFE9] transition-all rounded-xs cursor-pointer"
-                      >
-                        + {size}&quot;
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Result Display */}
-                <div className={`p-5 rounded-xs border transition-all ${
-                  totalCabinetWidth > wallWidth
-                    ? 'bg-[#FDF2F2] border-[#8B2627]/30 text-[#8B2627]'
-                    : 'bg-[#F4F8F4] border-[#244A29]/30 text-[#1C1A17]'
-                }`}>
+                  {/* Result Display Slice */}
                   {totalCabinetWidth > wallWidth ? (
-                    <div className="space-y-1">
-                      <div className="font-semibold text-xs font-mono uppercase">
-                        ⚠️ Overrun: Cabinets Exceed Wall Space
-                      </div>
-                      <p className="text-xs text-[#8B2627]">
+                    <Alert variant="destructive" className="rounded-lg">
+                      <AlertTriangle className="w-4 h-4 text-[#8B2627]" />
+                      <AlertTitle>Overrun: Cabinets Exceed Wall Space</AlertTitle>
+                      <AlertDescription>
                         Cabinet sum ({totalCabinetWidth}&quot;) is larger than total wall width ({wallWidth}&quot;) by {(totalCabinetWidth - wallWidth).toFixed(1)}&quot;. Remove or downsize modules to fit within the room boundary.
-                      </p>
-                    </div>
+                      </AlertDescription>
+                    </Alert>
                   ) : (
-                    <div className="space-y-2">
-                      <div className="flex items-baseline justify-between border-b border-[#244A29]/20 pb-2">
-                        <span className="text-xs font-mono uppercase tracking-wider text-[#244A29] font-semibold">
-                          ✓ Recommended Wall Filler Split
-                        </span>
-                        <span className="text-xs font-mono text-[#244A29]">
-                          Remaining Gap: <strong>{remainingGap.toFixed(2)}&quot;</strong>
+                    <Alert variant="success" className="rounded-lg">
+                      <CheckCircle2 className="w-4 h-4 text-[#244A29]" />
+                      <div className="flex items-baseline justify-between w-full border-b border-[#244A29]/20 pb-2 mb-2">
+                        <AlertTitle className="mb-0 text-[#244A29]">Recommended Wall Filler Split</AlertTitle>
+                        <span className="text-xs font-mono font-semibold text-[#244A29]">
+                          Remaining Gap: {remainingGap.toFixed(2)}&quot;
                         </span>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
-                        <div>
-                          <span className="text-[10px] font-mono uppercase text-[#73706B] block">Left Wall Filler:</span>
-                          <span className="text-base font-semibold text-[#1C1A17] font-mono">
-                            {fillerPerSide.toFixed(2)}&quot;
-                          </span>
-                          <span className="text-[10px] text-[#73706B] block">
-                            (Cut from standard {fillerPerSide <= 3 ? '3&quot; WF330' : '6&quot; WF630'} filler)
-                          </span>
+                      <AlertDescription>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1">
+                          <div className="p-3 bg-white border border-[#244A29]/20 rounded-md">
+                            <span className="text-[10px] font-mono uppercase text-[#73706B] block">Left Wall Scribe:</span>
+                            <span className="text-base font-semibold text-[#1C1A17] font-mono block">
+                              {fillerPerSide.toFixed(2)}&quot;
+                            </span>
+                            <span className="text-[10px] text-[#73706B] block">
+                              (Cut from {fillerPerSide <= 3 ? '3" WF330' : '6" WF630'} filler)
+                            </span>
+                          </div>
+                          <div className="p-3 bg-white border border-[#244A29]/20 rounded-md">
+                            <span className="text-[10px] font-mono uppercase text-[#73706B] block">Right Wall Scribe:</span>
+                            <span className="text-base font-semibold text-[#1C1A17] font-mono block">
+                              {fillerPerSide.toFixed(2)}&quot;
+                            </span>
+                            <span className="text-[10px] text-[#73706B] block">
+                              (Cut from {fillerPerSide <= 3 ? '3" WF330' : '6" WF630'} filler)
+                            </span>
+                          </div>
                         </div>
-                        <div>
-                          <span className="text-[10px] font-mono uppercase text-[#73706B] block">Right Wall Filler:</span>
-                          <span className="text-base font-semibold text-[#1C1A17] font-mono">
-                            {fillerPerSide.toFixed(2)}&quot;
-                          </span>
-                          <span className="text-[10px] text-[#73706B] block">
-                            (Cut from standard {fillerPerSide <= 3 ? '3&quot; WF330' : '6&quot; WF630'} filler)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                      </AlertDescription>
+                    </Alert>
                   )}
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </section>
-          </div>
+          </motion.div>
 
           {/* Right Column (30% width): Architectural Plates Moodboard Collage */}
-          <aside className="w-full lg:w-[30%] space-y-8 order-3">
+          <motion.aside
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full lg:w-[30%] space-y-8 order-3"
+          >
             <div className="sticky top-28 space-y-6">
               <div className="border-b border-[#E7E5E0] pb-3 flex items-baseline justify-between">
                 <span className="text-xs font-serif-luxury uppercase tracking-widest text-[#1C1A17] font-medium">
@@ -633,7 +677,7 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 className="group relative bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden p-2.5 transition-all duration-300 hover:border-[#1C1A17]/40 cursor-pointer"
                 onClick={() =>
                   setZoomImage({
-                    src: '/images/kitchen_blueprint_plan_1793829048195.jpg',
+                    src: '/assets/guides/guide-measure.webp',
                     title: 'FIG. 01 — Architectural Blueprint & Floor Plan',
                     caption: 'Precise dimensioning with wall run lengths, door clearances, and appliance centerlines.',
                   })
@@ -641,20 +685,17 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
               >
                 <div className="relative aspect-[4/3] w-full bg-[#EAE6DF] overflow-hidden rounded-xs">
                   <Image
-                    src="/images/kitchen_blueprint_plan_1793829048195.jpg"
+                    src="/assets/guides/guide-measure.webp"
                     alt="Architectural kitchen blueprint plan and clearance markers"
                     fill
                     sizes="(max-width: 1024px) 100vw, 30vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-103"
+                    className="object-cover transition-transform duration-500 group-hover:scale-102"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/60 text-white font-mono text-[9px] tracking-wider rounded-xs backdrop-blur-xs">
-                    CLICK TO ZOOM
-                  </div>
                 </div>
                 <div className="pt-2.5 pb-1 px-1">
                   <span className="font-mono text-[10px] tracking-widest uppercase text-[#9B7A4F] block">
-                    FIG. 01 — FLOOR PLAN CLEARANCE
+                    Figure 01 — Floor Plan Clearance
                   </span>
                   <p className="text-xs text-[#73706B] mt-0.5 leading-snug">
                     Bird’s-eye elevation mapping showing 36&quot; traffic pathways and 42&quot; island working aisles.
@@ -667,28 +708,25 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 className="group relative bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden p-2.5 transition-all duration-300 hover:border-[#1C1A17]/40 cursor-pointer"
                 onClick={() =>
                   setZoomImage({
-                    src: '/images/cabinet_finish_swatches_1793829048007.jpg',
-                    title: 'FIG. 02 — Finish Swatches & Filler Material Scribing',
+                    src: '/assets/guides/handbook/hb-trim.webp',
+                    title: 'Figure 02 — Finish Swatches & Filler Material Scribing',
                     caption: 'Matching filler strips in Matte White and Natural Rift-Cut Oak, scribed seamlessly to irregular walls.',
                   })
                 }
               >
                 <div className="relative aspect-[4/3] w-full bg-[#EAE6DF] overflow-hidden rounded-xs">
                   <Image
-                    src="/images/cabinet_finish_swatches_1793829048007.jpg"
+                    src="/assets/guides/handbook/hb-trim.webp"
                     alt="Cabinet finish swatches and filler strips"
                     fill
                     sizes="(max-width: 1024px) 100vw, 30vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-103"
+                    className="object-cover transition-transform duration-500 group-hover:scale-102"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/60 text-white font-mono text-[9px] tracking-wider rounded-xs backdrop-blur-xs">
-                    CLICK TO ZOOM
-                  </div>
                 </div>
                 <div className="pt-2.5 pb-1 px-1">
                   <span className="font-mono text-[10px] tracking-widest uppercase text-[#9B7A4F] block">
-                    FIG. 02 — FINISH &amp; FILLER SCRIBING
+                    Figure 02 — Scribe &amp; Filler Material
                   </span>
                   <p className="text-xs text-[#73706B] mt-0.5 leading-snug">
                     Standard 3&quot; and 6&quot; fillers matched to PVC Matte Soft-Touch or Natural Veneer door runs.
@@ -701,24 +739,21 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 className="group relative bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden p-2.5 transition-all duration-300 hover:border-[#1C1A17]/40 cursor-pointer"
                 onClick={() =>
                   setZoomImage({
-                    src: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
-                    title: 'FIG. 03 — Finished Modular Cabinet Installation',
+                    src: '/assets/dealers/kitchen-scene.webp',
+                    title: 'Figure 03 — Finished Modular Cabinet Installation',
                     caption: 'Continuous modular alignment featuring soft-close DTC hardware and flush wall filler transitions.',
                   })
                 }
               >
                 <div className="relative aspect-[4/3] w-full bg-[#EAE6DF] overflow-hidden rounded-xs">
                   <Image
-                    src="/images/scandinavian_kitchen_oak_1793829046784.jpg"
+                    src="/assets/dealers/kitchen-scene.webp"
                     alt="Bespoke installed kitchen cabinetry with precision fillers"
                     fill
                     sizes="(max-width: 1024px) 100vw, 30vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-103"
+                    className="object-cover transition-transform duration-500 group-hover:scale-102"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/60 text-white font-mono text-[9px] tracking-wider rounded-xs backdrop-blur-xs">
-                    CLICK TO ZOOM
-                  </div>
                 </div>
                 <div className="pt-2.5 pb-1 px-1">
                   <span className="font-mono text-[10px] tracking-widest uppercase text-[#9B7A4F] block">
@@ -740,12 +775,18 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
                 </p>
               </div>
             </div>
-          </aside>
+          </motion.aside>
         </div>
       </main>
 
       {/* Bottom Horizontal Charcoal Banner */}
-      <section className="w-full bg-[#181715] text-[#F9F8F6] py-12 px-6 sm:px-12 mt-16 border-t border-[#292621]">
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full bg-[#181715] text-[#F9F8F6] py-12 px-6 sm:px-12 mt-16 border-t border-[#292621]"
+      >
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-1 max-w-2xl">
             <span className="text-[11px] font-mono tracking-widest uppercase text-[#C5A069]">
@@ -767,7 +808,7 @@ export default function HowToMeasureGuide({ onBackToGuides }: HowToMeasureGuideP
             [ Download Measurement Grid PDF ]
           </button>
         </div>
-      </section>
+      </motion.section>
 
       {/* High-Resolution Zoom Modal */}
       {zoomImage && (

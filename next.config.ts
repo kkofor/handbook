@@ -17,6 +17,18 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**', // This allows any path under the hostname
       },
+      {
+        protocol: 'https',
+        hostname: 'www.vanstro.ca',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vanstro.ca',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   output: 'standalone',

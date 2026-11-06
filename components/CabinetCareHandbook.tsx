@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import Navbar from '@/components/Navbar';
 import TableOfContents from '@/components/TableOfContents';
 import QuickRules from '@/components/QuickRules';
@@ -15,10 +16,13 @@ import ContactModal from '@/components/ContactModal';
 interface CabinetCareHandbookProps {
   onBackToGuides: () => void;
   onOpenChecklistModal?: () => void;
+  onNavigate?: (view: string) => void;
 }
 
 export default function CabinetCareHandbook({
   onBackToGuides,
+  onOpenChecklistModal,
+  onNavigate,
 }: CabinetCareHandbookProps) {
   const [activeSection, setActiveSection] = useState('daily-rules');
   const [activeFinish, setActiveFinish] = useState('pvc_door');
@@ -53,8 +57,16 @@ export default function CabinetCareHandbook({
 
   return (
     <div className="guides-hb min-h-screen bg-[#F9F8F6] text-[#1C1A17] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
-      {/* Top Navbar */}
-      <Navbar onOpenContact={() => setIsContactOpen(true)} />
+      {/* Top Navbar with Clean Navigation */}
+      <Navbar
+        currentView="cabinet-care"
+        onNavigate={onNavigate}
+        onOpenContact={() => setIsContactOpen(true)}
+        onOpenChecklist={() => {
+          if (onOpenChecklistModal) onOpenChecklistModal();
+          else setIsChecklistOpen(true);
+        }}
+      />
 
       {/* Main Container */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-8 lg:py-12">
@@ -100,7 +112,10 @@ export default function CabinetCareHandbook({
             <div className="shrink-0 pt-2 lg:pt-0">
               <button
                 type="button"
-                onClick={() => setIsChecklistOpen(true)}
+                onClick={() => {
+                  if (onOpenChecklistModal) onOpenChecklistModal();
+                  else setIsChecklistOpen(true);
+                }}
                 className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#1C1A17] border-b border-[#1C1A17] pb-1 hover:text-[#9B7A4F] hover:border-[#9B7A4F] transition-all cursor-pointer"
               >
                 <span>View Printable Checklist</span>

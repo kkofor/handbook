@@ -2,14 +2,22 @@
 
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
+import { motion } from 'motion/react';
 import Navbar from '@/components/Navbar';
 import ContactModal from '@/components/ContactModal';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Search, Clock, ArrowRight, BookOpen, Sparkles, FileText, CheckCircle2 } from 'lucide-react';
 
 interface GuidesHubProps {
   onNavigateToCareGuide: () => void;
   onNavigateToMeasureGuide?: () => void;
   onSelectGuideSlug?: (slug: string) => void;
   onOpenChecklistModal: () => void;
+  onNavigateToContact?: () => void;
+  onNavigate?: (view: string) => void;
 }
 
 interface GuideCardItem {
@@ -31,7 +39,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'SIZING & MEASURING',
     title: 'Measuring for Cabinets',
     readTime: '6 min read',
-    image: '/images/kitchen_blueprint_plan_1793829048195.jpg',
+    image: '/assets/guides/guide-measure.webp',
     description:
       'Cabinet widths, heights, clearances and fillers. Step-by-step VanStro guidance for planning, ordering and installing your cabinets.',
   },
@@ -42,7 +50,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'MAINTENANCE',
     title: 'How to Clean Kitchen Cabinets',
     readTime: '4 min read',
-    image: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
+    image: '/assets/guides/guide-care.webp',
     description:
       'How to clean PVC soft-touch doors, melamine-faced cabinet boxes and paint-ready trim without treating them like wood furniture.',
   },
@@ -53,7 +61,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'HARDWARE & HINGES',
     title: 'How to Adjust Cabinet Doors & Drawers',
     readTime: '4 min read',
-    image: '/images/soft_close_hinge_detail_1793829047892.jpg',
+    image: '/assets/guides/guide-adjustment.webp',
     description:
       'When to adjust a cabinet door or drawer, what to check first, and practical steps for DTC 3-way spiral cam soft-close hinges.',
   },
@@ -64,7 +72,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'MATERIAL GUIDE',
     title: 'Cabinet Finishes: White & Light Grey',
     readTime: '4 min read',
-    image: '/images/cabinet_finish_swatches_1793829048007.jpg',
+    image: '/assets/guides/guide-finishes.webp',
     description:
       'VanStro cabinets come in White or Light Grey with a PVC matte soft-touch door finish. See what each surface is and how to compare samples.',
   },
@@ -75,7 +83,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'CONSTRUCTION SPEC',
     title: 'RTA Kitchen Cabinets: What Ready-to-Assemble Means',
     readTime: '5 min read',
-    image: '/images/kitchen_blueprint_plan_1793829048195.jpg',
+    image: '/assets/guides/guide-rta.webp',
     description:
       'What ready-to-assemble (RTA) kitchen cabinets are, how VanStro RTA cabinets are built, and how to plan, order and pick them up in Canada.',
   },
@@ -86,7 +94,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'MATERIAL GUIDE',
     title: 'Plywood vs Particle Board Cabinets: What to Check',
     readTime: '4 min read',
-    image: '/images/oak_wood_grain_1793828381387.jpg',
+    image: '/assets/guides/guide-plywood.webp',
     description:
       'How plywood and particle board cabinet boxes differ in moisture, screw holding and weight, and what VanStro cabinets and vanities use.',
   },
@@ -97,7 +105,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'SIZING & MEASURING',
     title: 'Bathroom Vanity Sizes: Widths, Height and Depth',
     readTime: '4 min read',
-    image: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
+    image: '/assets/guides/guide-vanity.webp',
     description:
       'Standard bathroom vanity widths, heights and depths, how to measure your space, and the exact sizes of every VanStro vanity model.',
   },
@@ -108,7 +116,7 @@ const ALL_GUIDES: GuideCardItem[] = [
     label: 'DISTRIBUTION & LOGISTICS',
     title: 'Delivery and Local Dealer Pickup Options',
     readTime: '3 min read',
-    image: '/images/scandinavian_kitchen_oak_1793829046784.jpg',
+    image: '/assets/guides/guide-pickup.webp',
     description:
       'Availability, warehouse pickup and regional freight delivery depend on your dealer location and postal code across Canada.',
   },
@@ -129,6 +137,8 @@ export default function GuidesHub({
   onNavigateToMeasureGuide,
   onSelectGuideSlug,
   onOpenChecklistModal,
+  onNavigateToContact,
+  onNavigate,
 }: GuidesHubProps) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -162,7 +172,19 @@ export default function GuidesHub({
   return (
     <div className="min-h-screen bg-[#F9F8F6] text-[#1F1F1F] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1F1F1F]">
       {/* 1. Top Navigation Bar */}
-      <Navbar onOpenContact={() => setIsContactOpen(true)} />
+      <Navbar
+        currentView="guides"
+        onNavigate={onNavigate}
+        onOpenContact={() => {
+          if (onNavigateToContact) {
+            onNavigateToContact();
+          } else {
+            setIsContactOpen(true);
+          }
+        }}
+        onNavigateToContact={onNavigateToContact}
+        onOpenChecklist={onOpenChecklistModal}
+      />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-10 lg:py-16 space-y-16 lg:space-y-24">
@@ -242,7 +264,7 @@ export default function GuidesHub({
             {/* Left 50%: High-resolution Scandinavian kitchen photo */}
             <div className="relative aspect-[4/3] lg:aspect-auto min-h-[340px] lg:min-h-[460px] w-full bg-[#24221E] overflow-hidden">
               <Image
-                src="/images/scandinavian_kitchen_oak_1793829046784.jpg"
+                src="/assets/guides/guides-hero.webp"
                 alt="Bespoke Scandinavian kitchen with rift-cut white oak and matte white cabinetry"
                 fill
                 priority
@@ -295,10 +317,7 @@ export default function GuidesHub({
                   className="group inline-flex items-center gap-3 text-xs sm:text-sm font-mono uppercase tracking-[0.16em] text-[#C5A069] hover:text-white transition-colors cursor-pointer"
                 >
                   <span className="font-medium underline underline-offset-4 decoration-[#C5A069]/40 group-hover:decoration-white">
-                    [ Read Guide → ]
-                  </span>
-                  <span className="text-[11px] text-[#8C8880] font-sans lowercase tracking-normal">
-                    (opens handbook detail view)
+                    Read Care Handbook →
                   </span>
                 </button>
               </div>
@@ -340,64 +359,81 @@ export default function GuidesHub({
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 xl:gap-8">
               {filteredGuides.map((guide) => (
-                <article
+                <Card
                   key={guide.id}
-                    onClick={() => {
-                      if (onSelectGuideSlug) {
-                        onSelectGuideSlug(guide.slug);
-                      } else if (guide.slug === 'how-to-measure-for-cabinets' && onNavigateToMeasureGuide) {
-                        onNavigateToMeasureGuide();
-                      } else if (guide.slug === 'cabinet-care') {
-                        onNavigateToCareGuide();
-                      } else {
-                        setActiveCardModal(guide);
-                      }
-                    }}
-                    className="group bg-white border border-[#E7E5E0] rounded-sm overflow-hidden hover:border-[#1F1F1F]/40 transition-all duration-300 flex flex-col justify-between cursor-pointer"
-                  >
-                    <div>
-                      {/* Image slot */}
-                      <div className="relative aspect-[4/3] w-full bg-[#EAE7E0] overflow-hidden">
-                        <Image
-                          src={guide.image}
-                          alt={guide.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-104"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-xs text-[10px] font-mono text-white/90 tracking-widest uppercase">
+                  onClick={() => {
+                    if (onSelectGuideSlug) {
+                      onSelectGuideSlug(guide.slug);
+                    } else if (guide.slug === 'how-to-measure-for-cabinets' && onNavigateToMeasureGuide) {
+                      onNavigateToMeasureGuide();
+                    } else if (guide.slug === 'cabinet-care') {
+                      onNavigateToCareGuide();
+                    } else {
+                      setActiveCardModal(guide);
+                    }
+                  }}
+                  className="group cursor-pointer border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Media Slice */}
+                    <div className="relative aspect-[16/10] w-full bg-[#EAE7E0] overflow-hidden border-b border-[#E7E5E0]">
+                      <Image
+                        src={guide.image}
+                        alt={guide.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-103"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <Badge variant="copper" className="shadow-xs backdrop-blur-xs text-[9px] tracking-wider font-mono">
                           {guide.label}
-                        </div>
+                        </Badge>
                       </div>
-
-                      {/* Content block */}
-                      <div className="p-6 space-y-2.5">
-                        <div className="flex items-center justify-between text-[11px] text-[#73706B] font-mono">
-                          <span className="uppercase tracking-wider">{guide.category}</span>
-                          <span>{guide.readTime}</span>
-                        </div>
-
-                        <h3 className="font-serif-luxury text-2xl font-medium text-[#1F1F1F] group-hover:text-[#9B7A4F] transition-colors leading-tight">
-                          {guide.title}
-                        </h3>
-
-                        <p className="text-xs text-[#73706B] leading-relaxed line-clamp-2">
-                          {guide.description}
-                        </p>
+                      <div className="absolute top-3 right-3">
+                        <Badge variant="secondary" className="bg-white/90 backdrop-blur-xs text-[9px] font-mono border-white/50 text-[#1C1A17]">
+                          <Clock className="w-2.5 h-2.5 mr-1 text-[#9B7A4F]" />
+                          {guide.readTime}
+                        </Badge>
                       </div>
                     </div>
 
-                    <div className="px-6 py-3.5 border-t border-[#F0EFEA] flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#1F1F1F] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-medium">
-                        Read Article →
-                      </span>
-                      <span className="text-[11px] text-[#A09D96]">VanStro Archive</span>
-                    </div>
-                  </article>
-                ))}
+                    {/* Content Slice */}
+                    <CardHeader className="p-6 pb-2 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-[#9B7A4F] font-semibold">
+                          {guide.category}
+                        </span>
+                        <span className="text-[#C4C0B6]">·</span>
+                        <span className="text-[10px] font-mono text-[#8C8880]">
+                          ARCHIVE ID #{guide.id.slice(0, 4).toUpperCase()}
+                        </span>
+                      </div>
+
+                      <CardTitle className="text-xl sm:text-2xl font-serif-luxury font-normal text-[#1C1A17] group-hover:text-[#9B7A4F] transition-colors leading-snug">
+                        {guide.title}
+                      </CardTitle>
+
+                      <CardDescription className="text-xs text-[#5E5A54] leading-relaxed line-clamp-2 pt-1 font-sans">
+                        {guide.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </div>
+
+                  {/* Sliced Footer */}
+                  <CardFooter className="px-6 py-3.5 bg-[#FAF9F6] border-t border-[#EFECE6] flex items-center justify-between text-xs font-mono">
+                    <span className="text-[#1C1A17] group-hover:text-[#9B7A4F] group-hover:translate-x-1 transition-all inline-flex items-center gap-1.5 font-semibold text-[11px] uppercase tracking-wider">
+                      <span>Explore Guide</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#9B7A4F]" />
+                    </span>
+                    <span className="text-[10px] text-[#A09D96] font-mono uppercase tracking-wider">
+                      Verified Spec
+                    </span>
+                  </CardFooter>
+                </Card>
+              ))}
             </div>
           )}
         </section>
@@ -451,7 +487,7 @@ export default function GuidesHub({
                     type="submit"
                     className="px-6 py-3 text-xs uppercase font-mono tracking-[0.16em] font-medium text-white bg-[#9B7A4F] hover:bg-[#85663F] transition-colors cursor-pointer shrink-0 whitespace-nowrap active:scale-[0.98]"
                   >
-                    [ Download Free Guide ]
+                    Download Care Checklist
                   </button>
                 </form>
               )}
@@ -471,11 +507,9 @@ export default function GuidesHub({
               </span>
             </div>
             <div className="text-[11px] flex items-center gap-4">
-              <span>Copenhagen</span>
+              <span>Winnipeg, Manitoba</span>
               <span>·</span>
-              <span>Stockholm</span>
-              <span>·</span>
-              <span>Tokyo</span>
+              <span>Certified Canadian Dealer Distribution</span>
             </div>
           </div>
         </div>
