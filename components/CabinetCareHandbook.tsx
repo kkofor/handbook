@@ -71,7 +71,7 @@ export default function CabinetCareHandbook({
       {/* Main Container */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-8 lg:py-12">
         {/* Top Header Section with Clean White & Subtle Architectural Wash */}
-        <section className="mb-12 lg:mb-16 -mx-6 sm:-mx-10 lg:-mx-14 px-6 sm:px-10 lg:px-14 pt-4 pb-10 border-b border-[#EAE6DF] bg-gradient-to-b from-[#FAF8F5] via-[#FFFFFF] to-[#FFFFFF]">
+        <section className="mb-12 lg:mb-16 -mx-6 sm:-mx-10 lg:-mx-14 px-6 sm:px-10 lg:px-14 pt-4 pb-10 border-b border-[#d9e1df] bg-white">
           {/* Subtle Back to Guides link */}
           <div className="mb-6">
             <button
@@ -118,7 +118,7 @@ export default function CabinetCareHandbook({
                   if (onOpenChecklistModal) onOpenChecklistModal();
                   else setIsChecklistOpen(true);
                 }}
-                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#181715] bg-white border border-[#D5D0C5] hover:border-[#181715] hover:bg-[#181715] hover:text-[#FAF8F5] px-4 py-2.5 rounded-lg shadow-xs transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#181715] bg-white border border-[#D5D0C5] hover:border-[#181715] hover:bg-[#181715] hover:text-white px-4 py-2.5 rounded-lg shadow-xs transition-all duration-200 cursor-pointer"
               >
                 <span>View Printable Checklist</span>
                 <span className="text-[#9B7A4F]">→</span>
@@ -149,7 +149,7 @@ export default function CabinetCareHandbook({
             <div className="p-3 bg-white/80 border border-[#E0D9CC] rounded-lg space-y-0.5 shadow-2xs">
               <span className="font-mono text-[10px] uppercase tracking-wider text-[#244A29] font-semibold block">Warranty Status</span>
               <span className="text-sm font-mono font-bold text-[#244A29] block">12 Months</span>
-              <span className="text-[10px] text-[#7A756D] block">Full Factory Joinery Guarantee</span>
+              <span className="text-[10px] text-[#7A756D] block">Limited Residential Warranty</span>
             </div>
           </div>
         </section>
@@ -178,7 +178,7 @@ export default function CabinetCareHandbook({
             {/* Module 3: Side-by-side Do's and Don'ts Comparison Cards */}
             <ComparisonCards activeFinish={activeFinish} />
 
-            {/* Module 4: Hardware and Blumotion Mechanics */}
+            {/* Module 4: Hardware and DTC Soft-Close Mechanics */}
             <HardwareSection />
           </div>
 

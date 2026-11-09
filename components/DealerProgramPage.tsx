@@ -28,6 +28,10 @@ import {
   AlertCircle,
   Users,
   Check,
+  Compass,
+  Monitor,
+  Database,
+  Users2,
 } from 'lucide-react';
 
 interface DealerProgramPageProps {
@@ -36,125 +40,34 @@ interface DealerProgramPageProps {
   onOpenChecklistModal?: () => void;
 }
 
-// Authentic Division of Responsibilities from vanstro.ca/dealer-program
-const RESPONSIBILITIES_MATRIX = [
-  {
-    area: 'Product & Inventory',
-    platformRole:
-      'Sources products globally, manages manufacturing supply chains, maintains national inventory, and sets standardized product catalogs.',
-    dealerRole:
-      'Maintains local display/showroom samples, handles physical product handoff, and manages local floor inventory where applicable.',
-  },
-  {
-    area: 'Pricing & Commerce',
-    platformRole:
-      'Provides standardized national platform pricing, product disclosures, and platform-level digital checkout.',
-    dealerRole:
-      'Operates independently; quotes, sets, and bills any dealer-provided local services (such as installation, assembly, or specialized delivery) separately.',
-  },
-  {
-    area: 'Fulfillment & Logistics',
-    platformRole:
-      'Oversees overall national supply chain infrastructure, central warehouse inventory at 856 Century St (Winnipeg), and digital order processing.',
-    dealerRole:
-      'Coordinates local order execution, customer pickup scheduling, and localized regional delivery logistics.',
-  },
-  {
-    area: 'Customer Support & Service',
-    platformRole:
-      'Handles platform inquiries, website support, general product information, specifications, and manufacturer policy guidelines.',
-    dealerRole:
-      'Provides direct on-site customer communication, face-to-face assistance, after-sales support, and local service coordination.',
-  },
-];
-
-// Authentic "Who is a Good Fit" guidelines from vanstro.ca/dealer-program
-const GOOD_FIT_CRITERIA = [
-  {
-    title: 'Showrooms, Contractors & Trade Operators',
-    desc: 'Existing kitchen and bath showrooms, general contractors, millwork shops, interior design studios, or building-materials retailers.',
-  },
-  {
-    title: 'Defined Service Area & Local Team',
-    desc: 'Businesses with an established local presence, a defined geographic service territory, and a customer-facing team.',
-  },
-  {
-    title: 'Pickup & Delivery Execution Capacity',
-    desc: 'Operational capability to coordinate local order pickups, warehouse handoffs, and customer job-site delivery.',
-  },
-  {
-    title: 'Brand & Policy Alignment',
-    desc: 'Commitment to operating independently while upholding VanStro standardized product specifications, quality standards, and customer disclosure policies.',
-  },
-];
-
-const NOT_FIT_CRITERIA = [
-  {
-    title: 'No Local Customer Service Capacity',
-    desc: 'Operators without dedicated staff or facilities to handle customer inquiries, pickups, or localized support.',
-  },
-  {
-    title: 'Expecting Platform to Absorb Local Labor Liability',
-    desc: 'Businesses expecting VanStro to perform on-site installations, measure visits, or absorb localized service liabilities.',
-  },
-  {
-    title: 'Expecting Guaranteed Customer Referrals Without Local Commitment',
-    desc: 'Applicants expecting guaranteed sales quotas, territorial lockouts, or financial subsidies without active local operational investment.',
-  },
-];
-
-const FAQS = [
-  {
-    q: 'How does the VanStro Dealer Program operating model work?',
-    a: 'VanStro operates a hybrid model separating the centralized supply platform from localized dealer services. VanStro handles global sourcing, catalog management, national inventory, and digital checkout. Independent authorized dealers handle local customer communication, showroom displays, order execution, pickup coordination, and value-added services like installation.',
-  },
-  {
-    q: 'How are dealer-provided services (such as installation) billed?',
-    a: 'VanStro provides national standardized platform pricing for the products themselves. Any local services provided by the dealer — including on-site measuring, kitchen assembly, installation, or custom millwork adjustments — are priced, contracted, and billed directly and independently by the authorized dealer.',
-  },
-  {
-    q: 'Does submitting a dealer application guarantee territory exclusivity or approval?',
-    a: 'No. All dealer applications are reviewed on a case-by-case basis. Submitting an application does not automatically guarantee acceptance, exclusive service area rights, pricing tiers, inventory access, or customer referrals. Final terms require written approval and a formal agreement from VanStro Global Supply Inc.',
-  },
-  {
-    q: 'Where are VanStro products fulfilled and distributed from?',
-    a: 'Central supply operations and inventory are managed from VanStro central warehouse at 856 Century Street in Winnipeg, Manitoba, coordinating with regional staging and pickup partners across Canadian provinces.',
-  },
-  {
-    q: 'What products are included in the VanStro supply catalog?',
-    a: 'The core product catalog includes ready-to-assemble (RTA) modular kitchen cabinets (FSC birch plywood box construction), bathroom vanities, quartz vanity tops, wall panels, architectural mouldings, baseboards, and soft-close cabinet hardware.',
-  },
-];
-
 export default function DealerProgramPage({
   onBackToGuides,
   onNavigate,
   onOpenChecklistModal,
 }: DealerProgramPageProps) {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [activeTab, setActiveTab] = useState<'3d' | 'erp' | 'crm'>('3d');
 
-  // Form state
+  // Application form state
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submissionRef, setSubmissionRef] = useState('VS-DLR-829140');
   const [formData, setFormData] = useState({
-    companyLegalName: '',
-    dbaName: '',
-    businessType: 'Kitchen & Bath Showroom',
-    yearsOperating: '3-5 Years',
-    address: '',
-    city: '',
-    province: 'Manitoba',
-    postalCode: '',
-    serviceArea: '',
-    hasCustomerTeam: 'Yes',
-    hasPickupFacility: 'Yes',
-    offersInstallation: 'Yes',
+    companyName: '',
+    operatingName: '',
     contactName: '',
-    contactTitle: '',
+    businessType: 'Kitchen & Bath Showroom',
     email: '',
     phone: '',
-    businessOverview: '',
+    city: '',
+    province: 'MB',
+    postalCode: '',
+    yearsInBusiness: '3-5 years',
+    hasShowroom: 'Yes',
+    hasWarehousePickup: 'Yes',
+    hasInstallationTeam: 'Independent team',
+    proposedServiceArea: '',
+    currentMonthlyVolume: '$50,000 - $100,000',
+    notes: '',
   });
 
   const handleInputChange = (
@@ -166,718 +79,778 @@ export default function DealerProgramPage({
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmissionRef(`VS-DLR-${Math.floor(100000 + Math.random() * 900000)}`);
+    const refCode = `VS-DLR-${Math.floor(100000 + Math.random() * 900000)}`;
+    setSubmissionRef(refCode);
     setFormSubmitted(true);
   };
 
+  const scrollToSection = (id: string) => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#181715] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#181715]">
-      {/* Universal Top Navigation */}
+    <div className="min-h-screen bg-white text-[#10201d] font-sans antialiased selection:bg-[#f28a0b]/20 selection:text-[#003f3f]">
+      {/* Navigation */}
       <Navbar
         currentView="dealer-program"
         onNavigate={onNavigate}
         onOpenContact={() => setIsContactModalOpen(true)}
+        onNavigateToContact={() => onNavigate?.('contact')}
         onOpenChecklist={onOpenChecklistModal}
       />
 
-      <main className="flex-1">
-        {/* =========================================================================
-            HERO: Authentic VanStro Dealer Program Header
-        ========================================================================= */}
-        <section className="relative pt-12 pb-16 sm:pt-16 sm:pb-20 border-b border-[#EAE6DF] bg-gradient-to-b from-[#FAF8F5] via-[#FFFFFF] to-[#FFFFFF]">
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
-            {/* Breadcrumb */}
-            <div className="flex flex-wrap items-center gap-3 text-xs tracking-wider uppercase mb-8">
-              <button
-                type="button"
-                onClick={() => onNavigate && onNavigate('about')}
-                className="text-[#8C827A] hover:text-[#181715] transition-colors"
+      {/* 1. Hero Section */}
+      <section className="border-b border-[#d9e1df] bg-white pt-10 sm:pt-14 pb-12 sm:pb-16">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#5f7376] mb-6">
+            <button
+              type="button"
+              onClick={onBackToGuides}
+              className="hover:text-[#003f3f] transition-colors cursor-pointer"
+            >
+              Home
+            </button>
+            <span aria-hidden="true" className="text-[#d9e1df]">/</span>
+            <span className="text-[#003f3f] font-semibold">Dealer Program</span>
+          </nav>
+
+          <div className="max-w-4xl space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#003f3f]">
+              <Store className="w-4 h-4 text-[#003f3f]" />
+              <span className="uppercase tracking-wider">B2B Partner Network</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#003f3f] tracking-tight leading-[1.1]">
+              Dealer Program
+            </h1>
+
+            <p className="text-base sm:text-xl text-[#315b60] leading-relaxed max-w-3xl font-normal">
+              For qualified local building-materials operators who can support customer communication, order execution and local service within VanStro&apos;s platform-backed supply model.
+            </p>
+
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <Button
+                onClick={() => scrollToSection('apply-form')}
+                className="bg-[#003f3f] hover:bg-[#0f5554] text-white px-6 py-2.5 text-sm font-semibold rounded-md transition-colors"
               >
-                VanStro Canada
-              </button>
-              <span className="text-[#C5A069]">/</span>
-              <span className="text-[#9B7A4F] font-semibold">Dealer Network</span>
-              <span className="text-[#C5A069]">/</span>
-              <span className="text-[#181715] font-bold">Dealer Program</span>
+                Start dealer application
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => scrollToSection('qualification')}
+                className="border-[#d9e1df] text-[#003f3f] hover:bg-[#f5f8f7] px-6 py-2.5 text-sm font-medium rounded-md"
+              >
+                Review fit first
+              </Button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FAF5EE] border border-[#DFD6C5] text-[#9B7A4F] text-[11px] font-mono uppercase tracking-widest font-semibold mb-6">
-                  <Briefcase className="w-3.5 h-3.5" />
-                  <span>Authorized Dealer Partnership</span>
-                </div>
-
-                <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl text-[#181715] leading-[1.08] font-normal tracking-tight mb-6">
-                  VanStro Dealer Program
-                </h1>
-
-                <p className="text-base sm:text-lg text-[#5A554E] leading-relaxed max-w-2xl mb-8">
-                  VanStro connects established global manufacturing with local Canadian businesses. Our dealer program separates the centralized digital supply platform from localized customer-facing operations — enabling independent showrooms, contractors, and building-material businesses to deliver quality cabinetry with dedicated local execution.
-                </p>
-
-                <div className="flex flex-wrap items-center gap-4">
-                  <a
-                    href="#application"
-                    className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#181715] hover:bg-[#9B7A4F] text-[#FAF7F2] text-xs font-mono uppercase tracking-widest font-semibold transition-all duration-200 shadow-sm"
-                  >
-                    <span>Submit Dealer Profile</span>
-                    <ArrowRight className="w-4 h-4 text-[#C5A069]" />
-                  </a>
-
-                  <a
-                    href="#model"
-                    className="inline-flex items-center gap-2 px-5 py-3.5 bg-[#FAF7F2] hover:bg-[#F3EFEA] text-[#181715] border border-[#DFD6C5] text-xs font-mono uppercase tracking-widest font-medium transition-colors"
-                  >
-                    <span>Review Operating Model</span>
-                  </a>
-
-                  <button
-                    type="button"
-                    onClick={() => onNavigate && onNavigate('dealers-map')}
-                    className="inline-flex items-center gap-2 px-4 py-3.5 text-xs font-mono uppercase tracking-wider text-[#6B665F] hover:text-[#181715] transition-colors"
-                  >
-                    <MapPin className="w-3.5 h-3.5 text-[#9B7A4F]" />
-                    <span>View Dealer Map</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Operating Summary Card */}
-              <div className="lg:col-span-5">
-                <div className="bg-[#FAF7F2] border border-[#DFD6C5] p-8 relative">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#9B7A4F]" />
-                  
-                  <span className="text-[11px] font-mono tracking-widest uppercase text-[#9B7A4F] font-bold block mb-2">
-                    Operating Principle
-                  </span>
-                  <h3 className="text-xl font-serif-luxury font-medium text-[#181715] mb-4">
-                    Platform Scale + Local Execution
-                  </h3>
-                  <p className="text-xs text-[#5A554E] leading-relaxed mb-6">
-                    VanStro provides the national supply infrastructure, digital product catalog, and centralized logistics. Independent local dealers manage the customer relationship, physical product handoff, and localized services.
-                  </p>
-
-                  <div className="space-y-3 border-t border-[#EAE6DF] pt-6 text-xs text-[#5A554E]">
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#9B7A4F] shrink-0 mt-0.5" />
-                      <span><strong>National Product Catalog:</strong> Standardized specifications and transparent platform pricing.</span>
-                    </div>
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#9B7A4F] shrink-0 mt-0.5" />
-                      <span><strong>Independent Service Pricing:</strong> Dealers price and bill local installation and services separately.</span>
-                    </div>
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#9B7A4F] shrink-0 mt-0.5" />
-                      <span><strong>Case-by-Case Review:</strong> Applications are evaluated on operational capacity and local market fit.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            SECTION 1: The Operating Model & Division of Responsibilities
-        ========================================================================= */}
-        <section id="model" className="py-16 sm:py-20 border-b border-[#EAE6DF] bg-[#FFFFFF]">
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
-            <div className="max-w-3xl mb-12">
-              <span className="text-xs font-mono tracking-widest uppercase text-[#9B7A4F] font-semibold block mb-2">
-                Operational Framework
-              </span>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl text-[#181715] font-normal tracking-tight mb-4">
-                The Operating Model &amp; Division of Responsibilities
-              </h2>
-              <p className="text-sm sm:text-base text-[#6B665F] leading-relaxed">
-                A clear division of roles between the VanStro centralized platform and the independent authorized local dealer ensures operational accountability, transparent customer expectations, and sustainable local business growth.
-              </p>
-            </div>
-
-            {/* Division of Responsibilities Table */}
-            <div className="border border-[#DFD6C5] overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-12 bg-[#FAF7F2] border-b border-[#DFD6C5] text-xs font-mono uppercase tracking-wider text-[#181715] font-bold p-4 sm:px-6">
-                <div className="md:col-span-3">Functional Area</div>
-                <div className="md:col-span-5 text-[#9B7A4F]">VanStro Platform Role</div>
-                <div className="md:col-span-4 text-[#181715]">Local Dealer Partner Role</div>
-              </div>
-
-              {RESPONSIBILITIES_MATRIX.map((item, index) => (
-                <div
-                  key={item.area}
-                  className={`grid grid-cols-1 md:grid-cols-12 p-5 sm:px-6 gap-4 items-start text-xs border-b border-[#EAE6DF] last:border-b-0 ${
-                    index % 2 === 0 ? 'bg-white' : 'bg-[#FAF8F5]/60'
-                  }`}
+            {/* Jump Navigation Anchor Bar */}
+            <div className="pt-6 border-t border-[#d9e1df]/60 flex flex-wrap gap-2 text-xs font-mono text-[#5f7376]">
+              <span className="self-center text-[#10201d] font-bold mr-1">Jump to:</span>
+              {[
+                { label: 'Qualification', id: 'qualification' },
+                { label: 'Operating model', id: 'operating-model' },
+                { label: 'Tools', id: 'tools' },
+                { label: 'Review', id: 'review' },
+                { label: 'Rules', id: 'rules' },
+                { label: 'Application', id: 'apply-form' },
+              ].map((link) => (
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => scrollToSection(link.id)}
+                  className="px-2.5 py-1 bg-[#f5f8f7] hover:bg-[#d9e1df] text-[#003f3f] rounded-sm transition-colors cursor-pointer"
                 >
-                  <div className="md:col-span-3 font-serif-luxury text-sm font-semibold text-[#181715]">
-                    {item.area}
-                  </div>
-                  <div className="md:col-span-5 text-[#5A554E] leading-relaxed">
-                    <span className="md:hidden font-mono font-bold text-[#9B7A4F] block mb-1">
-                      VanStro Platform:
-                    </span>
-                    {item.platformRole}
-                  </div>
-                  <div className="md:col-span-4 text-[#5A554E] leading-relaxed">
-                    <span className="md:hidden font-mono font-bold text-[#181715] block mb-1">
-                      Local Dealer Partner:
-                    </span>
-                    {item.dealerRole}
-                  </div>
-                </div>
+                  {link.label}
+                </button>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* =========================================================================
-            SECTION 2: Who is a Good Fit? (Qualifications & Expectations)
-        ========================================================================= */}
-        <section className="py-16 sm:py-20 border-b border-[#EAE6DF] bg-[#FAF7F2]">
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
-            <div className="max-w-2xl mb-12">
-              <span className="text-xs font-mono tracking-widest uppercase text-[#9B7A4F] font-semibold block mb-2">
-                Partner Profile
+      {/* 2. Program at a Glance */}
+      <section className="py-12 sm:py-16 border-b border-[#d9e1df] bg-[#f5f8f7]">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="max-w-2xl mb-8 space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
+              Program at a Glance
+            </h2>
+            <p className="text-sm text-[#315b60] leading-relaxed">
+              The dealer program is structured around a platform-backed product supply model and local dealer responsibility.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg shadow-xs space-y-3">
+              <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] tracking-wider block">
+                01 · Supply Platform
               </span>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl text-[#181715] font-normal tracking-tight mb-4">
-                Who Is a Good Fit for the Dealer Network?
-              </h2>
-              <p className="text-sm sm:text-base text-[#6B665F] leading-relaxed">
-                We partner with established local operators who take pride in customer service, physical order execution, and long-term community presence.
+              <h3 className="text-lg font-bold text-[#003f3f]">VanStro role</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Product supply platform, catalogue, checkout, product information, dealer network support, and dealer operating tools after written approval.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-              {/* Positive Alignment */}
-              <div className="bg-white border border-[#DFD6C5] p-6 sm:p-8 space-y-6">
-                <div className="flex items-center gap-3 pb-4 border-b border-[#EAE6DF]">
-                  <div className="w-8 h-8 rounded-full bg-[#FAF5EE] border border-[#DFD6C5] flex items-center justify-center text-[#9B7A4F]">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif-luxury text-xl font-medium text-[#181715]">
-                      A Strong Fit For Partnership
-                    </h3>
-                    <span className="text-xs text-[#8C827A] font-mono">
-                      Core partner competencies
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {GOOD_FIT_CRITERIA.map((crit) => (
-                    <div key={crit.title} className="space-y-1">
-                      <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-[#181715] flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-[#9B7A4F] rounded-full" />
-                        {crit.title}
-                      </h4>
-                      <p className="text-xs text-[#5A554E] leading-relaxed pl-3.5">
-                        {crit.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Not a Fit Yet */}
-              <div className="bg-white border border-[#DFD6C5] p-6 sm:p-8 space-y-6">
-                <div className="flex items-center gap-3 pb-4 border-b border-[#EAE6DF]">
-                  <div className="w-8 h-8 rounded-full bg-[#FAF5EE] border border-[#DFD6C5] flex items-center justify-center text-[#8C827A]">
-                    <XCircle className="w-5 h-5 text-[#8C827A]" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif-luxury text-xl font-medium text-[#181715]">
-                      Not a Fit at This Stage
-                    </h3>
-                    <span className="text-xs text-[#8C827A] font-mono">
-                      Operating misalignments
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {NOT_FIT_CRITERIA.map((crit) => (
-                    <div key={crit.title} className="space-y-1">
-                      <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-[#6B665F] flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-[#8C827A] rounded-full" />
-                        {crit.title}
-                      </h4>
-                      <p className="text-xs text-[#6B665F] leading-relaxed pl-3.5">
-                        {crit.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            SECTION 3: Authentic Application Intake Form & Disclosures
-        ========================================================================= */}
-        <section id="application" className="py-16 sm:py-20 border-b border-[#EAE6DF] bg-[#FFFFFF]">
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              {/* Form Disclosures */}
-              <div className="lg:col-span-5">
-                <div className="sticky top-28 space-y-6">
-                  <div>
-                    <span className="text-xs font-mono tracking-widest uppercase text-[#9B7A4F] font-semibold block mb-2">
-                      Application &amp; Review Policy
-                    </span>
-                    <h2 className="font-serif-luxury text-3xl text-[#181715] font-normal tracking-tight mb-4">
-                      Submit Your Company Profile
-                    </h2>
-                    <p className="text-sm text-[#5A554E] leading-relaxed">
-                      All dealer applications are evaluated individually on a case-by-case basis by VanStro Global Supply Inc. in Winnipeg.
-                    </p>
-                  </div>
-
-                  {/* Authentic Legal Disclosures */}
-                  <div className="p-5 bg-[#FAF7F2] border border-[#DFD6C5] space-y-3 text-xs text-[#5A554E]">
-                    <div className="flex items-start gap-2.5">
-                      <AlertCircle className="w-4 h-4 text-[#9B7A4F] shrink-0 mt-0.5" />
-                      <div>
-                        <strong className="text-[#181715] block">No Automatic Guarantees:</strong>
-                        <span>
-                          Submitting an application form does not automatically guarantee approval, exclusive service area rights, pricing tiers, inventory access, or customer referrals.
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5">
-                      <FileText className="w-4 h-4 text-[#9B7A4F] shrink-0 mt-0.5" />
-                      <div>
-                        <strong className="text-[#181715] block">Formal Agreement Required:</strong>
-                        <span>
-                          Final commercial terms, operational responsibilities, and onboarding schedules require written approval and formal agreement from VanStro.
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5">
-                      <Building2 className="w-4 h-4 text-[#9B7A4F] shrink-0 mt-0.5" />
-                      <div>
-                        <strong className="text-[#181715] block">Head Office Review:</strong>
-                        <span>
-                          Central team in Winnipeg reviews submissions and reaches out to qualified candidates for preliminary operational discussions.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-4 border border-[#EAE6DF] text-xs text-[#6B665F]">
-                    <span className="font-mono text-[#181715] font-semibold block mb-1">
-                      Direct Inquiries:
-                    </span>
-                    <p>Dealer Desk: <a href="mailto:dealer@vanstro.ca" className="text-[#9B7A4F] hover:underline">dealer@vanstro.ca</a></p>
-                    <p>Phone: 204-777-6668 | Toll-Free: 1-855-826-7876</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Form Input Container */}
-              <div className="lg:col-span-7">
-                <div className="bg-[#FAF7F2] border border-[#DFD6C5] p-8 sm:p-10 shadow-sm">
-                  {formSubmitted ? (
-                    <div className="py-10 text-center space-y-4">
-                      <div className="w-14 h-14 rounded-full bg-[#FAF5EE] border border-[#DFD6C5] text-[#9B7A4F] flex items-center justify-center mx-auto mb-4">
-                        <CheckCircle2 className="w-7 h-7" />
-                      </div>
-                      <h3 className="font-serif-luxury text-2xl text-[#181715] font-medium">
-                        Dealer Application Received
-                      </h3>
-                      <p className="text-xs sm:text-sm text-[#5A554E] max-w-md mx-auto leading-relaxed">
-                        Thank you for submitting your company profile for <span className="font-bold text-[#181715]">{formData.companyLegalName || 'your business'}</span>. The VanStro dealer review desk will review your submission on a case-by-case basis.
-                      </p>
-                      <div className="p-4 bg-white border border-[#DFD6C5] max-w-sm mx-auto text-left text-xs font-mono text-[#6B665F] space-y-1">
-                        <div><strong>Submission Ref:</strong> {submissionRef}</div>
-                        <div><strong>Review Desk:</strong> VanStro Central (Winnipeg)</div>
-                        <div><strong>Follow-up Contact:</strong> dealer@vanstro.ca</div>
-                      </div>
-                      <Button
-                        type="button"
-                        onClick={() => setFormSubmitted(false)}
-                        className="bg-[#181715] hover:bg-[#9B7A4F] text-[#FAF7F2] text-xs font-mono uppercase tracking-widest px-6 py-2.5 rounded-none"
-                      >
-                        Submit Another Profile
-                      </Button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleFormSubmit} className="space-y-6">
-                      <div className="border-b border-[#EAE6DF] pb-3 mb-4">
-                        <span className="text-xs font-mono tracking-widest uppercase text-[#9B7A4F] font-bold block mb-1">
-                          Dealer Profile Intake
-                        </span>
-                        <h3 className="text-base font-serif-luxury text-[#181715]">
-                          Business Information &amp; Operational Capacity
-                        </h3>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Company Legal Name *
-                          </label>
-                          <input
-                            type="text"
-                            name="companyLegalName"
-                            required
-                            placeholder="e.g. Prairie Cabinet Works Ltd."
-                            value={formData.companyLegalName}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            DBA / Trade Name (If Different)
-                          </label>
-                          <input
-                            type="text"
-                            name="dbaName"
-                            placeholder="Trade name or storefront name"
-                            value={formData.dbaName}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Primary Business Type *
-                          </label>
-                          <select
-                            name="businessType"
-                            value={formData.businessType}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          >
-                            <option>Kitchen &amp; Bath Showroom / Design Studio</option>
-                            <option>General Contractor / Renovation Business</option>
-                            <option>Building Materials Retailer / Supply Yard</option>
-                            <option>Independent Cabinet Maker / Millwork Shop</option>
-                            <option>Local Distributor / Commercial Operator</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Years In Operation *
-                          </label>
-                          <select
-                            name="yearsOperating"
-                            value={formData.yearsOperating}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          >
-                            <option>Under 1 Year (New Business)</option>
-                            <option>1 - 3 Years</option>
-                            <option>3 - 5 Years</option>
-                            <option>5 - 10 Years</option>
-                            <option>10+ Years Established</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div className="sm:col-span-2">
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Business Address / Facility Location *
-                          </label>
-                          <input
-                            type="text"
-                            name="address"
-                            required
-                            placeholder="Street address & unit #"
-                            value={formData.address}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Province *
-                          </label>
-                          <select
-                            name="province"
-                            value={formData.province}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          >
-                            <option>Manitoba</option>
-                            <option>Alberta</option>
-                            <option>Quebec</option>
-                            <option>Saskatchewan</option>
-                            <option>British Columbia</option>
-                            <option>Ontario</option>
-                            <option>Other / Atlantic Canada</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                          Proposed Dealer Service Area (City / Regions Covered) *
-                        </label>
-                        <input
-                          type="text"
-                          name="serviceArea"
-                          required
-                          placeholder="e.g. Greater Winnipeg, Brandon & Westman, Southern Alberta corridor..."
-                          value={formData.serviceArea}
-                          onChange={handleInputChange}
-                          className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Customer-Facing Team?
-                          </label>
-                          <select
-                            name="hasCustomerTeam"
-                            value={formData.hasCustomerTeam}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          >
-                            <option>Yes, dedicated staff</option>
-                            <option>Owner-operated team</option>
-                            <option>Currently staffing up</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Pickup / Warehouse Facility?
-                          </label>
-                          <select
-                            name="hasPickupFacility"
-                            value={formData.hasPickupFacility}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          >
-                            <option>Yes, commercial warehouse / dock</option>
-                            <option>Showroom with back storage</option>
-                            <option>Job-site direct delivery setup</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Offer Installation Services?
-                          </label>
-                          <select
-                            name="offersInstallation"
-                            value={formData.offersInstallation}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          >
-                            <option>Yes, in-house installation</option>
-                            <option>Yes, partner subcontractor network</option>
-                            <option>Product supply only (No install)</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="border-t border-[#EAE6DF] pt-4">
-                        <span className="text-xs font-mono tracking-widest uppercase text-[#9B7A4F] font-bold block mb-1">
-                          Primary Contact
-                        </span>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Full Name *
-                          </label>
-                          <input
-                            type="text"
-                            name="contactName"
-                            required
-                            placeholder="Primary contact name"
-                            value={formData.contactName}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Position / Title *
-                          </label>
-                          <input
-                            type="text"
-                            name="contactTitle"
-                            required
-                            placeholder="e.g. Owner, Managing Director"
-                            value={formData.contactTitle}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Business Email *
-                          </label>
-                          <input
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="name@business.ca"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                            Phone Number *
-                          </label>
-                          <input
-                            type="tel"
-                            name="phone"
-                            required
-                            placeholder="Business telephone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-[#181715] mb-1.5 font-medium">
-                          Brief Business Overview &amp; Operating Capabilities
-                        </label>
-                        <textarea
-                          name="businessOverview"
-                          rows={3}
-                          placeholder="Provide a brief summary of your showroom space, current supplier relationships, customer segments, or fulfillment capacity..."
-                          value={formData.businessOverview}
-                          onChange={handleInputChange}
-                          className="w-full px-3.5 py-2.5 bg-white border border-[#DFD6C5] text-xs font-sans text-[#181715] focus:outline-none focus:border-[#9B7A4F]"
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full py-3.5 bg-[#181715] hover:bg-[#9B7A4F] text-[#FAF7F2] text-xs font-mono uppercase tracking-widest font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-                      >
-                        <Send className="w-4 h-4 text-[#C5A069]" />
-                        <span>Submit Application for Case-by-Case Review</span>
-                      </button>
-
-                      <p className="text-[11px] text-[#8C827A] text-center font-mono">
-                        Submitting this form signifies application interest only. Final dealer authorization requires formal written agreement with VanStro Global Supply Inc.
-                      </p>
-                    </form>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            SECTION 4: Authentic Program FAQs
-        ========================================================================= */}
-        <section className="py-16 sm:py-20 border-b border-[#EAE6DF] bg-[#FAF7F2]">
-          <div className="max-w-[900px] mx-auto px-6 sm:px-10">
-            <div className="text-center mb-12">
-              <span className="text-xs font-mono tracking-widest uppercase text-[#9B7A4F] font-semibold block mb-2">
-                Frequently Asked Questions
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg shadow-xs space-y-3">
+              <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] tracking-wider block">
+                02 · Local Execution
               </span>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl text-[#181715] font-normal tracking-tight mb-4">
-                Dealer Program FAQs
-              </h2>
-              <p className="text-sm text-[#6B665F]">
-                Authentic operational and policy guidance for prospective Canadian dealer partners.
+              <h3 className="text-lg font-bold text-[#003f3f]">Dealer role</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Independent local customer contact, order execution, delivery coordination and services where offered.
               </p>
             </div>
 
-            <div className="space-y-4">
-              {FAQS.map((faq, idx) => {
-                const isOpen = openFaqIndex === idx;
-                return (
-                  <div
-                    key={faq.q}
-                    className="border border-[#DFD6C5] bg-white transition-colors"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                      className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
-                    >
-                      <span className="font-serif-luxury text-base sm:text-lg text-[#181715] font-medium">
-                        {faq.q}
-                      </span>
-                      <div className="w-6 h-6 rounded-full bg-[#FAF7F2] border border-[#DFD6C5] flex items-center justify-center shrink-0 text-[#9B7A4F]">
-                        {isOpen ? (
-                          <ChevronUp className="w-3.5 h-3.5" />
-                        ) : (
-                          <ChevronDown className="w-3.5 h-3.5" />
-                        )}
-                      </div>
-                    </button>
-                    {isOpen && (
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0 text-xs sm:text-sm text-[#5A554E] leading-relaxed border-t border-[#EAE6DF]/60 mt-1">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg shadow-xs space-y-3">
+              <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] tracking-wider block">
+                03 · Case by Case
+              </span>
+              <h3 className="text-lg font-bold text-[#003f3f]">Application status</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Reviewed case by case. Submission does not guarantee approval, a dealer service area assignment, pricing or customer referrals.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg shadow-xs space-y-3">
+              <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] tracking-wider block">
+                04 · Written Terms
+              </span>
+              <h3 className="text-lg font-bold text-[#003f3f]">Final terms</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Commercial terms, launch timing and obligations require written approval or agreement.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* =========================================================================
-            CTA BANNER: Head Office Contact
-        ========================================================================= */}
-        <section className="py-14 bg-[#181715] text-[#FAF7F2]">
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <span className="text-[10px] font-mono tracking-widest uppercase text-[#C5A069] font-bold block mb-1">
-                VanStro Head Office
-              </span>
-              <h3 className="font-serif-luxury text-2xl text-white font-medium">
-                Have questions before submitting your company profile?
+      {/* 3. Partner Qualification */}
+      <section id="qualification" className="py-12 sm:py-16 border-b border-[#d9e1df] bg-white scroll-mt-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="max-w-3xl mb-10 space-y-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
+              Partner Qualification
+            </h2>
+            <p className="text-sm sm:text-base text-[#315b60] leading-relaxed">
+              This page is intended for B2B operators who can take local responsibility for customer contact and service coordination. It is not a general consumer support page.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Good fit */}
+            <div className="bg-[#f5f8f7] border border-[#d9e1df] p-6 sm:p-8 rounded-xl space-y-4">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#0b7a4b]">
+                <CheckCircle2 className="w-5 h-5 text-[#0b7a4b] shrink-0" />
+                <span>Good fit</span>
+              </div>
+              <ul className="space-y-3.5 text-xs sm:text-sm text-[#10201d]">
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b7a4b] mt-2 shrink-0" />
+                  <span>Showroom, contractor or local building-materials business</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b7a4b] mt-2 shrink-0" />
+                  <span>Defined dealer service area and customer-facing team</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b7a4b] mt-2 shrink-0" />
+                  <span>Ability to coordinate pickup, delivery or after-sales support</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b7a4b] mt-2 shrink-0" />
+                  <span>Willingness to follow applicable VanStro product and disclosure policies while operating independently</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Not a fit yet */}
+            <div className="bg-[#fff4f2] border border-[#d9e1df] p-6 sm:p-8 rounded-xl space-y-4">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#a33125]">
+                <XCircle className="w-5 h-5 text-[#a33125] shrink-0" />
+                <span>Not a fit yet</span>
+              </div>
+              <ul className="space-y-3.5 text-xs sm:text-sm text-[#10201d]">
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#a33125] mt-2 shrink-0" />
+                  <span>No local service or customer support capacity</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#a33125] mt-2 shrink-0" />
+                  <span>No clear owner for dealer-provided services</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#a33125] mt-2 shrink-0" />
+                  <span>Expectation that VanStro will absorb dealer service liability</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#a33125] mt-2 shrink-0" />
+                  <span>Requirement for guaranteed referrals, customers, orders, revenue or profit</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Operating Model */}
+      <section id="operating-model" className="py-12 sm:py-16 border-b border-[#d9e1df] bg-[#f5f8f7] scroll-mt-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
+          <div className="max-w-3xl space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
+              Operating Model
+            </h2>
+            <p className="text-sm sm:text-base text-[#315b60] leading-relaxed">
+              VanStro separates platform product supply from dealer-provided local services. The distinction should be clear to applicants, customers and dealer teams before work begins.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* 1. Product order */}
+            <div className="bg-white p-6 sm:p-7 border border-[#d9e1df] rounded-lg shadow-xs space-y-4">
+              <div className="border-b border-[#d9e1df] pb-3">
+                <span className="text-xs font-mono font-bold text-[#f28a0b] uppercase">Step 01</span>
+                <h3 className="text-xl font-bold text-[#003f3f]">Product order</h3>
+                <p className="text-xs text-[#5f7376]">Catalogue and checkout on the platform. Local handoff with the dealer.</p>
+              </div>
+              <div className="space-y-2 text-xs text-[#10201d]">
+                <p><strong>VanStro platform:</strong> Catalogue, product supply, product information, platform checkout and product policy review.</p>
+                <p><strong>Dealer partner:</strong> Local order execution, customer communication and product handoff.</p>
+                <p className="text-[#5f7376] italic"><strong>Customer path:</strong> Browses products online and may select a participating independent local dealer for the applicable order.</p>
+              </div>
+            </div>
+
+            {/* 2. Dealer services */}
+            <div className="bg-white p-6 sm:p-7 border border-[#d9e1df] rounded-lg shadow-xs space-y-4">
+              <div className="border-b border-[#d9e1df] pb-3">
+                <span className="text-xs font-mono font-bold text-[#f28a0b] uppercase">Step 02</span>
+                <h3 className="text-xl font-bold text-[#003f3f]">Dealer services</h3>
+                <p className="text-xs text-[#5f7376]">Extended services stay with the dealer unless VanStro states otherwise in writing.</p>
+              </div>
+              <div className="space-y-2 text-xs text-[#10201d]">
+                <p><strong>VanStro platform:</strong> Does not provide delivery, installation, measurement or renovation services unless stated in writing.</p>
+                <p><strong>Dealer partner:</strong> Sets service scope, price, schedule, payment collection, workmanship and service warranty.</p>
+                <p className="text-[#5f7376] italic"><strong>Customer path:</strong> Contracts directly with the dealer for extended services where offered.</p>
+              </div>
+            </div>
+
+            {/* 3. Returns and support */}
+            <div className="bg-white p-6 sm:p-7 border border-[#d9e1df] rounded-lg shadow-xs space-y-4">
+              <div className="border-b border-[#d9e1df] pb-3">
+                <span className="text-xs font-mono font-bold text-[#f28a0b] uppercase">Step 03</span>
+                <h3 className="text-xl font-bold text-[#003f3f]">Returns and support</h3>
+                <p className="text-xs text-[#5f7376]">The selling local dealer is the first point of contact.</p>
+              </div>
+              <div className="space-y-2 text-xs text-[#10201d]">
+                <p><strong>VanStro platform:</strong> Reviews product-policy escalations and RMA matters where appropriate.</p>
+                <p><strong>Dealer partner:</strong> First point of contact for delivery, returns, exchanges and after-sales support.</p>
+                <p className="text-[#5f7376] italic"><strong>Customer path:</strong> Starts routine support and return questions with the selling local dealer.</p>
+              </div>
+            </div>
+
+            {/* 4. Dealer tools */}
+            <div className="bg-white p-6 sm:p-7 border border-[#d9e1df] rounded-lg shadow-xs space-y-4">
+              <div className="border-b border-[#d9e1df] pb-3">
+                <span className="text-xs font-mono font-bold text-[#f28a0b] uppercase">Step 04</span>
+                <h3 className="text-xl font-bold text-[#003f3f]">Dealer tools</h3>
+                <p className="text-xs text-[#5f7376]">3D design, ERP and CRM tools are provided after written approval. Using them doesn’t change who sets or collects dealer service fees.</p>
+              </div>
+              <div className="space-y-2 text-xs text-[#10201d]">
+                <p><strong>VanStro platform:</strong> Provides 3D design with the VanStro product library, plus dedicated ERP and CRM, after written approval.</p>
+                <p><strong>Dealer partner:</strong> Uses the tools for local selling, order follow-through and customer records.</p>
+                <p className="text-[#5f7376] italic"><strong>Customer path:</strong> Interacts with the dealer during design and service coordination.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Responsibility boundary callout */}
+          <div className="p-5 bg-white border border-[#d9e1df] rounded-lg text-xs sm:text-sm text-[#10201d]">
+            <p>
+              <strong>Responsibility boundary:</strong> Product orders do not include dealer extended services unless VanStro states otherwise in writing. Dealer service fees are separate from VanStro product pricing and are collected directly by the dealer.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Dealer Operating Tools */}
+      <section id="tools" className="py-12 sm:py-16 border-b border-[#d9e1df] bg-white scroll-mt-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
+          <div className="max-w-3xl space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
+              Dealer Operating Tools
+            </h2>
+            <p className="text-sm sm:text-base text-[#315b60] leading-relaxed">
+              After written approval or agreement, VanStro may make three systems available to participating dealers: a 3D design workspace with the VanStro product library, a dedicated ERP for orders, inventory and sales, and a CRM for local customer work. The tools support the dealer&apos;s own operation. They do not guarantee customers, orders, revenue or profit, and they do not move dealer-service liability onto VanStro.
+            </p>
+          </div>
+
+          {/* Tool selector buttons */}
+          <div className="flex flex-wrap gap-2 border-b border-[#d9e1df] pb-4">
+            <button
+              type="button"
+              onClick={() => setActiveTab('3d')}
+              className={`px-4 py-2.5 rounded-md text-xs sm:text-sm font-semibold transition-colors cursor-pointer flex items-center gap-2 ${
+                activeTab === '3d'
+                  ? 'bg-[#003f3f] text-white'
+                  : 'bg-[#f5f8f7] text-[#003f3f] hover:bg-[#d9e1df]'
+              }`}
+            >
+              <Monitor className="w-4 h-4" />
+              <span>3D design · Product library plus AI render</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('erp')}
+              className={`px-4 py-2.5 rounded-md text-xs sm:text-sm font-semibold transition-colors cursor-pointer flex items-center gap-2 ${
+                activeTab === 'erp'
+                  ? 'bg-[#003f3f] text-white'
+                  : 'bg-[#f5f8f7] text-[#003f3f] hover:bg-[#d9e1df]'
+              }`}
+            >
+              <Database className="w-4 h-4" />
+              <span>Dealer ERP · Orders, inventory and sales</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('crm')}
+              className={`px-4 py-2.5 rounded-md text-xs sm:text-sm font-semibold transition-colors cursor-pointer flex items-center gap-2 ${
+                activeTab === 'crm'
+                  ? 'bg-[#003f3f] text-white'
+                  : 'bg-[#f5f8f7] text-[#003f3f] hover:bg-[#d9e1df]'
+              }`}
+            >
+              <Users2 className="w-4 h-4" />
+              <span>Dealer CRM · Accounts through after-sales</span>
+            </button>
+          </div>
+
+          {/* Tab 1: 3D design */}
+          {activeTab === '3d' && (
+            <div className="bg-[#f5f8f7] p-6 sm:p-8 border border-[#d9e1df] rounded-xl space-y-4">
+              <h3 className="text-xl font-bold text-[#003f3f]">
+                3D design with the VanStro product library
               </h3>
-              <p className="text-xs sm:text-sm text-white/70 mt-1 max-w-xl">
-                Contact our dealer desk at 856 Century Street, Winnipeg, MB R3H 0M5 or email <span className="font-mono text-[#C5A069]">dealer@vanstro.ca</span>.
+              <p className="text-xs sm:text-sm text-[#315b60] leading-relaxed">
+                The workspace includes the VanStro product library (cabinets, vanities, trim and hardware). The dealer builds a room, then the tool can produce a render the showroom team reviews with the customer.
+              </p>
+              <ul className="space-y-2 text-xs sm:text-sm text-[#10201d]">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>The VanStro product library is available in the workspace.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Place products in a room layout and adjust doors, finishes and hardware while the customer is present.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>The tool can generate a rendering of the current scene for review with the customer.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>A layout can be turned into a product list for a later VanStro order.</span>
+                </li>
+              </ul>
+              <p className="text-xs text-[#5f7376] italic pt-2">
+                The render and product list stay with the dealer. They do not change VanStro product pricing or dealer-service fees.
+              </p>
+            </div>
+          )}
+
+          {/* Tab 2: ERP */}
+          {activeTab === 'erp' && (
+            <div className="bg-[#f5f8f7] p-6 sm:p-8 border border-[#d9e1df] rounded-xl space-y-4">
+              <h3 className="text-xl font-bold text-[#003f3f]">
+                Dedicated ERP for orders, inventory and sales
+              </h3>
+              <p className="text-xs sm:text-sm text-[#315b60] leading-relaxed">
+                Participating dealers get a VanStro ERP console so the same team can follow a product order from draft through warehouse movement, sales posting and after-sales without leaving the dealer login.
+              </p>
+              <ul className="space-y-2 text-xs sm:text-sm text-[#10201d]">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Track sales orders, purchase orders and draft quotes in one console.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Monitor inventory, warehouse requests and product/SKU movement.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Read sales amount and order-count trends, plus order-status mix such as pending, outbound and installed.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Keep commission, deposit, after-sales refund and tax records next to the order, not in a separate spreadsheet.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Filter by date range and dealer or product view when the written approval opens those records.</span>
+                </li>
+              </ul>
+            </div>
+          )}
+
+          {/* Tab 3: CRM */}
+          {activeTab === 'crm' && (
+            <div className="bg-[#f5f8f7] p-6 sm:p-8 border border-[#d9e1df] rounded-xl space-y-4">
+              <h3 className="text-xl font-bold text-[#003f3f]">
+                CRM for the dealer&apos;s local book of business
+              </h3>
+              <p className="text-xs sm:text-sm text-[#315b60] leading-relaxed">
+                The CRM sits beside the ERP so the same dealer team can keep the customer conversation, the project calendar and the after-sales case in one place. VanStro supplies the system. The dealer owns the local records and the customer relationship.
+              </p>
+              <ul className="space-y-2 text-xs sm:text-sm text-[#10201d]">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Accounts and contacts for showroom, contractor and repeat buyers.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Leads and opportunities so a kitchen or millwork inquiry has a named owner and a next step.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Sales and purchases tied back to VanStro product orders, without mixing dealer-service invoices into VanStro product pricing.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Tasks, calendar, meetings, calls and email threads on the same account.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#0b7a4b] mt-0.5 shrink-0" />
+                  <span>Support cases and a knowledge base for delivery, return and product questions the dealer handles first.</span>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* 6. Application Review */}
+      <section id="review" className="py-12 sm:py-16 border-b border-[#d9e1df] bg-[#f5f8f7] scroll-mt-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
+              Application Review
+            </h2>
+            <p className="text-sm text-[#315b60] leading-relaxed">
+              VanStro reviews dealer applications for local coverage, operating readiness and fit with the existing dealer network. Submission is not approval.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg space-y-2">
+              <span className="text-xs font-mono font-bold text-[#f28a0b]">Step 1</span>
+              <h3 className="text-base font-bold text-[#003f3f]">Company profile</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Business details, proposed dealer service area, product focus and operating capabilities.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 shrink-0">
-              <a
-                href="mailto:dealer@vanstro.ca"
-                className="px-6 py-3 bg-[#9B7A4F] hover:bg-[#C5A069] text-white text-xs font-mono uppercase tracking-widest font-semibold transition-colors"
-              >
-                Email Dealer Desk
-              </a>
-              <button
-                type="button"
-                onClick={() => onNavigate && onNavigate('dealers-map')}
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-mono uppercase tracking-widest font-medium transition-colors"
-              >
-                View Dealer Map
-              </button>
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg space-y-2">
+              <span className="text-xs font-mono font-bold text-[#f28a0b]">Step 2</span>
+              <h3 className="text-base font-bold text-[#003f3f]">Participation review</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                VanStro reviews the applicant&apos;s customer support capacity in its proposed dealer service area.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg space-y-2">
+              <span className="text-xs font-mono font-bold text-[#f28a0b]">Step 3</span>
+              <h3 className="text-base font-bold text-[#003f3f]">Review rules</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Candidates review the rules that apply to VanStro orders, returns, privacy and independent-dealer disclosure.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 border border-[#d9e1df] rounded-lg space-y-2">
+              <span className="text-xs font-mono font-bold text-[#f28a0b]">Step 4</span>
+              <h3 className="text-base font-bold text-[#003f3f]">Activation</h3>
+              <p className="text-xs text-[#5f7376] leading-relaxed">
+                Launch timing and commercial terms are confirmed only through written approval or agreement.
+              </p>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* 7. Operating Rules Before Applying */}
+      <section id="rules" className="py-12 sm:py-16 border-b border-[#d9e1df] bg-white scroll-mt-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 space-y-6">
+          <div className="max-w-3xl space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
+              Operating Rules Before Applying
+            </h2>
+            <p className="text-sm text-[#315b60] leading-relaxed">
+              These pages explain the rules that prospective dealers should understand before applying. They are part of the operating context, not marketing material.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+            {[
+              {
+                title: 'VanStro & Local Dealer Responsibilities',
+                desc: 'Service liability, service pricing, customer handoff and platform boundary.',
+              },
+              {
+                title: 'Return Policy',
+                desc: 'Return routing, RMA review, distributor handling and escalation path.',
+              },
+              {
+                title: 'Privacy Policy',
+                desc: 'Application information, customer referrals and dealer data sharing.',
+              },
+              {
+                title: 'Terms and Conditions',
+                desc: 'Website use, ordering terms, permitted use and governing law.',
+              },
+              {
+                title: 'Legal Disclaimer',
+                desc: 'Product information, images, pricing references and non-binding website content.',
+              },
+              {
+                title: 'Careers',
+                desc: 'Team growth and future regional opportunities.',
+              },
+            ].map((rule, idx) => (
+              <div key={idx} className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-lg space-y-1">
+                <span className="font-bold text-[#003f3f] block">{rule.title}</span>
+                <span className="text-[#5f7376]">{rule.desc}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Important Application Notes */}
+          <div className="p-6 bg-[#f5f8f7] border border-[#d9e1df] rounded-xl space-y-3 mt-6">
+            <h3 className="text-base font-bold text-[#003f3f]">Important Application Notes</h3>
+            <ul className="space-y-2 text-xs sm:text-sm text-[#315b60]">
+              <li className="flex items-start gap-2">
+                <span className="font-bold text-[#003f3f]">•</span>
+                <span>Each dealer independently manages its business operations, marketing, customers, personnel, resale and service pricing, and any services it offers.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-bold text-[#003f3f]">•</span>
+                <span>Submitting an application does not guarantee approval, a dealer service area arrangement, pricing terms, customer referrals, orders, revenue, profit, launch timing or a dealer relationship. Final terms require written approval or agreement.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-bold text-[#003f3f]">•</span>
+                <span>We use your application information to assess your application, set up your dealer account, review local coverage and follow up with you. Review the Privacy Policy and Cookie Preferences before submitting information.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Application Form */}
+      <section id="apply-form" className="py-12 sm:py-16 border-b border-[#d9e1df] bg-[#f5f8f7] scroll-mt-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="max-w-3xl mx-auto bg-white p-8 sm:p-10 border border-[#d9e1df] rounded-xl shadow-xs space-y-8">
+            <div>
+              <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] tracking-wider block mb-1">
+                Dealer Onboarding
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f]">
+                Discuss Your Market and Local Coverage
+              </h2>
+              <p className="text-xs sm:text-sm text-[#5f7376] mt-1">
+                Share your company profile, proposed dealer service area and local support capabilities. VanStro will review fit and follow up with the right team.
+              </p>
+            </div>
+
+            {formSubmitted ? (
+              <div className="p-8 bg-[#f5f8f7] border border-[#d9e1df] rounded-lg text-center space-y-4">
+                <CheckCircle2 className="w-10 h-10 text-[#0b7a4b] mx-auto" />
+                <h3 className="text-xl font-bold text-[#003f3f]">Application Submitted</h3>
+                <p className="text-xs sm:text-sm text-[#5f7376] max-w-md mx-auto">
+                  Thank you for your interest in the VanStro Dealer Program. Your submission reference is{' '}
+                  <strong className="text-[#003f3f] font-mono">{submissionRef}</strong>. Our business development team reviews applications case by case and will contact you within 2 business days.
+                </p>
+                <Button
+                  onClick={() => setFormSubmitted(false)}
+                  className="bg-[#003f3f] hover:bg-[#0f5554] text-white text-xs font-mono uppercase"
+                >
+                  Submit Another Inflow
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Legal Company Name *</label>
+                    <input
+                      required
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Prairie Cabinet Works Inc."
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Trade / Operating Name</label>
+                    <input
+                      name="operatingName"
+                      value={formData.operatingName}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Prairie Cabinet Studio"
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Primary Contact Name *</label>
+                    <input
+                      required
+                      name="contactName"
+                      value={formData.contactName}
+                      onChange={handleInputChange}
+                      placeholder="Full name"
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Business Type *</label>
+                    <select
+                      name="businessType"
+                      value={formData.businessType}
+                      onChange={handleInputChange}
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    >
+                      <option value="Kitchen & Bath Showroom">Kitchen &amp; Bath Showroom</option>
+                      <option value="General Contractor / Builder">General Contractor / Builder</option>
+                      <option value="Millwork / Cabinet Shop">Millwork / Cabinet Shop</option>
+                      <option value="Building Materials Retailer">Building Materials Retailer</option>
+                      <option value="Interior Design Studio">Interior Design Studio</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Business Email *</label>
+                    <input
+                      required
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="contact@company.ca"
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Phone Number *</label>
+                    <input
+                      required
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="204-555-0192"
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">City *</label>
+                    <input
+                      required
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Brandon"
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Province *</label>
+                    <select
+                      name="province"
+                      value={formData.province}
+                      onChange={handleInputChange}
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    >
+                      <option value="MB">Manitoba (MB)</option>
+                      <option value="SK">Saskatchewan (SK)</option>
+                      <option value="AB">Alberta (AB)</option>
+                      <option value="BC">British Columbia (BC)</option>
+                      <option value="ON">Ontario (ON)</option>
+                      <option value="QC">Quebec (QC)</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Postal Code *</label>
+                    <input
+                      required
+                      name="postalCode"
+                      value={formData.postalCode}
+                      onChange={handleInputChange}
+                      placeholder="R7A 7A8"
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-[#10201d]">Proposed Dealer Service Area &amp; Capabilities *</label>
+                  <textarea
+                    required
+                    rows={3}
+                    name="proposedServiceArea"
+                    value={formData.proposedServiceArea}
+                    onChange={handleInputChange}
+                    placeholder="Describe your geographic territory, showroom facilities, pickup bay, and customer-facing team capacity."
+                    className="w-full p-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                  />
+                </div>
+
+                <p className="text-[11px] text-[#5f7376] leading-relaxed">
+                  By submitting this form, you acknowledge that submissions are reviewed on a case-by-case basis and do not constitute an agreement or territorial guarantee.
+                </p>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-[#003f3f] hover:bg-[#0f5554] text-white py-3 text-sm font-semibold rounded-md"
+                >
+                  Submit Dealer Application
+                </Button>
+              </form>
+            )}
+
+            <div className="pt-6 border-t border-[#d9e1df] flex flex-col sm:flex-row items-center justify-between text-xs text-[#5f7376] gap-3">
+              <div>
+                <strong>Dealer program team:</strong>{' '}
+                <a href="mailto:dealer@vanstro.ca" className="text-[#003f3f] underline">dealer@vanstro.ca</a>
+              </div>
+              <div>
+                <strong>Direct phone:</strong>{' '}
+                <a href="tel:18558267876" className="text-[#003f3f] underline">1-855-VANSTRO (1-855-826-7876)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-[#d9e1df] bg-white py-10 text-xs text-[#5f7376]">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p>© 2026 VanStro Global Supply Inc. All rights reserved.</p>
+          <div className="flex gap-4">
+            <button type="button" onClick={() => onNavigate?.('warranty')} className="hover:text-[#003f3f]">Warranty</button>
+            <button type="button" onClick={() => onNavigate?.('contact')} className="hover:text-[#003f3f]">Contact Us</button>
+            <button type="button" onClick={() => onNavigate?.('dealers-map')} className="hover:text-[#003f3f]">Dealer Map</button>
+          </div>
+        </div>
+      </footer>
 
       <ContactModal
         isOpen={isContactModalOpen}

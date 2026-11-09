@@ -66,11 +66,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h4 className="font-serif-luxury text-2xl font-medium text-[#1C1A17]">
-              Concierge Request Received
+            <h4 className="text-2xl font-bold text-[#003f3f]">
+              Inquiry Received
             </h4>
-            <p className="text-xs text-[#73706B] leading-relaxed max-w-sm mx-auto">
-              Our architectural care team will dispatch your requested documentation and care recommendations to <span className="font-medium text-[#1C1A17]">{formData.email}</span> within 24 hours.
+            <p className="text-xs text-[#5f7376] leading-relaxed max-w-sm mx-auto">
+              We will review your request and reply to <span className="font-medium text-[#10201d]">{formData.email}</span> within one business day.
             </p>
             <button
               type="button"

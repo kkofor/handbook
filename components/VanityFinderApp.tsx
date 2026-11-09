@@ -545,7 +545,7 @@ export default function VanityFinderApp({
         {/* Results with aria-live="polite" */}
         <section aria-live="polite" className="space-y-6">
           {hasNoResults && (
-            <div className="p-4 bg-[#FFFFFF] border border-[#E7E5E0] border-l-4 border-l-[#9B7A4F] text-sm text-[#222222] rounded-xs shadow-xs">
+            <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-sm text-[#10201d]">
               {dict.noResults.includes('Contact us') ? (
                 <>
                   The narrowest VanStro vanity is 24&quot; wide.{' '}
@@ -653,7 +653,7 @@ export default function VanityFinderApp({
                       className={`p-5 sm:p-6 rounded-xl transition-all duration-300 ${
                         isSelected
                           ? 'bg-gradient-to-b from-[#FFFDF9] to-[#FAF4E8] border-2 border-[#9B7A4F] shadow-md ring-2 ring-[#9B7A4F]/20'
-                          : 'bg-gradient-to-b from-white to-[#FAF8F5] border border-[#DFD6C5] hover:border-[#9B7A4F] shadow-sm hover:shadow-[0_6px_24px_-4px_rgba(155,122,79,0.12)]'
+                          : 'bg-gradient-to-b from-white to-[#f5f8f7] border border-[#d9e1df] hover:border-[#003f3f] shadow-sm'
                       }`}
                     >
                       {/* Top Row: Model & Actions Slice */}
@@ -766,18 +766,18 @@ export default function VanityFinderApp({
 
               {/* Side panel hint */}
               {sides === 'one_open' && (
-                <div className="p-4 bg-white border border-[#E7E5E0] border-l-4 border-l-[#9B7A4F] text-xs sm:text-sm text-[#222222] rounded-xs shadow-xs">
+                <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] text-xs sm:text-sm text-[#10201d] rounded-md">
                   {lang === 'fr' ? (
                     <>
                       Un côté restera apparent. Un panneau de finition (VEP2230, {vepPriceFormatted}) peut le couvrir.{' '}
-                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#1C1A17]">
+                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#003f3f]">
                         {dict.viewProduct}
                       </a>
                     </>
                   ) : (
                     <>
                       One side will be exposed. A vanity end panel (VEP2230, {vepPriceFormatted}) can cover it.{' '}
-                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#1C1A17]">
+                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#003f3f]">
                         {dict.viewProduct}
                       </a>
                     </>
@@ -786,18 +786,18 @@ export default function VanityFinderApp({
               )}
 
               {sides === 'both_open' && (
-                <div className="p-4 bg-white border border-[#E7E5E0] border-l-4 border-l-[#9B7A4F] text-xs sm:text-sm text-[#222222] rounded-xs shadow-xs">
+                <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] text-xs sm:text-sm text-[#10201d] rounded-md">
                   {lang === 'fr' ? (
                     <>
                       Les deux côtés resteront apparents. Deux panneaux de finition (VEP2230, {vepPriceFormatted} chacun) peuvent les couvrir.{' '}
-                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#1C1A17]">
+                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#003f3f]">
                         {dict.viewProduct}
                       </a>
                     </>
                   ) : (
                     <>
                       Both sides will be exposed. Two vanity end panels (VEP2230, {vepPriceFormatted} each) can cover them.{' '}
-                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#1C1A17]">
+                      <a href={vepUrl} target="_blank" rel="noopener" className="underline font-semibold text-[#003f3f]">
                         {dict.viewProduct}
                       </a>
                     </>
@@ -807,7 +807,7 @@ export default function VanityFinderApp({
 
               {/* Measure again hint */}
               {sides === 'both_walls' && hasExactZeroSpare && (
-                <div className="p-4 bg-[#FFFDF7] border border-[#F6E2B0] border-l-4 border-l-[#D97706] text-xs sm:text-sm text-[#854D0E] rounded-xs shadow-xs">
+                <div className="p-4 bg-[#fff9f2] border border-[#f28a0b]/40 text-xs sm:text-sm text-[#b45309] rounded-md">
                   {dict.measureAgain}
                 </div>
               )}

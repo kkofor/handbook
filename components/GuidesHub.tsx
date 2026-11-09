@@ -1,15 +1,18 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Image from 'next/image';
-import { motion } from 'motion/react';
 import Navbar from '@/components/Navbar';
 import ContactModal from '@/components/ContactModal';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Search, Clock, ArrowRight, BookOpen, Sparkles, FileText, CheckCircle2 } from 'lucide-react';
+import {
+  Search,
+  BookOpen,
+  ArrowRight,
+  Download,
+  FileText,
+  Clock,
+  Sparkles,
+} from 'lucide-react';
 
 interface GuidesHubProps {
   onNavigateToCareGuide: () => void;
@@ -20,116 +23,80 @@ interface GuidesHubProps {
   onNavigate?: (view: string) => void;
 }
 
-interface GuideCardItem {
+interface GuideItem {
   id: string;
-  category: string;
-  label: string;
-  title: string;
-  readTime: string;
-  image: string;
-  description: string;
   slug: string;
+  category: 'Planning & Measuring' | 'Materials & Finishes' | 'Care & Adjustment' | 'Delivery & Pickup';
+  readTime: string;
+  title: string;
+  description: string;
 }
 
-const ALL_GUIDES: GuideCardItem[] = [
+const ALL_GUIDES: GuideItem[] = [
   {
     id: 'how-to-measure-for-cabinets',
     slug: 'how-to-measure-for-cabinets',
-    category: 'Planning Guide',
-    label: 'SIZING & MEASURING',
+    category: 'Planning & Measuring',
+    readTime: '4 min read',
     title: 'Measuring for Cabinets',
-    readTime: '6 min read',
-    image: '/assets/guides/guide-measure.webp',
-    description:
-      'Cabinet widths, heights, clearances and fillers. Step-by-step VanStro guidance for planning, ordering and installing your cabinets.',
-  },
-  {
-    id: 'cabinet-care',
-    slug: 'cabinet-care',
-    category: 'Cabinet Care',
-    label: 'MAINTENANCE',
-    title: 'How to Clean Kitchen Cabinets',
-    readTime: '4 min read',
-    image: '/assets/guides/guide-care.webp',
-    description:
-      'How to clean PVC soft-touch doors, melamine-faced cabinet boxes and paint-ready trim without treating them like wood furniture.',
-  },
-  {
-    id: 'cabinet-adjustment',
-    slug: 'cabinet-adjustment',
-    category: 'Hardware & Hinges',
-    label: 'HARDWARE & HINGES',
-    title: 'How to Adjust Cabinet Doors & Drawers',
-    readTime: '4 min read',
-    image: '/assets/guides/guide-adjustment.webp',
-    description:
-      'When to adjust a cabinet door or drawer, what to check first, and practical steps for DTC 3-way spiral cam soft-close hinges.',
+    description: 'Cabinet widths, heights, clearances and fillers.',
   },
   {
     id: 'what-finishes-are-available',
     slug: 'what-finishes-are-available',
     category: 'Materials & Finishes',
-    label: 'MATERIAL GUIDE',
-    title: 'Cabinet Finishes: White & Light Grey',
-    readTime: '4 min read',
-    image: '/assets/guides/guide-finishes.webp',
-    description:
-      'VanStro cabinets come in White or Light Grey with a PVC matte soft-touch door finish. See what each surface is and how to compare samples.',
+    readTime: '2 min read',
+    title: 'What Finishes Are Available',
+    description: 'White and Light Grey cabinet finishes, paint-ready trim materials and care notes.',
   },
   {
     id: 'what-are-rta-cabinets',
     slug: 'what-are-rta-cabinets',
-    category: 'Construction Spec',
-    label: 'CONSTRUCTION SPEC',
-    title: 'RTA Kitchen Cabinets: What Ready-to-Assemble Means',
-    readTime: '5 min read',
-    image: '/assets/guides/guide-rta.webp',
-    description:
-      'What ready-to-assemble (RTA) kitchen cabinets are, how VanStro RTA cabinets are built, and how to plan, order and pick them up in Canada.',
+    category: 'Materials & Finishes',
+    readTime: '4 min read',
+    title: 'What are RTA kitchen cabinets?',
+    description: 'What ready-to-assemble cabinets are, how VanStro builds them, and how to plan, order and pick them up in Canada.',
   },
   {
     id: 'plywood-vs-particle-board-cabinets',
     slug: 'plywood-vs-particle-board-cabinets',
     category: 'Materials & Finishes',
-    label: 'MATERIAL GUIDE',
-    title: 'Plywood vs Particle Board Cabinets: What to Check',
-    readTime: '4 min read',
-    image: '/assets/guides/guide-plywood.webp',
-    description:
-      'How plywood and particle board cabinet boxes differ in moisture, screw holding and weight, and what VanStro cabinets and vanities use.',
+    readTime: '2 min read',
+    title: 'Plywood or particle board cabinets?',
+    description: 'How plywood and particle board boxes differ where it matters, and what to check inside a cabinet.',
   },
   {
     id: 'bathroom-vanity-sizes',
     slug: 'bathroom-vanity-sizes',
-    category: 'Planning Guide',
-    label: 'SIZING & MEASURING',
-    title: 'Bathroom Vanity Sizes: Widths, Height and Depth',
-    readTime: '4 min read',
-    image: '/assets/guides/guide-vanity.webp',
-    description:
-      'Standard bathroom vanity widths, heights and depths, how to measure your space, and the exact sizes of every VanStro vanity model.',
+    category: 'Planning & Measuring',
+    readTime: '2 min read',
+    title: 'Bathroom vanity sizes',
+    description: 'Common widths, heights and depths, plus the exact size of every VanStro vanity.',
   },
   {
     id: 'pickup-and-delivery-options',
     slug: 'pickup-and-delivery-options',
-    category: 'Logistics',
-    label: 'DISTRIBUTION & LOGISTICS',
+    category: 'Delivery & Pickup',
+    readTime: '2 min read',
     title: 'Delivery and Local Dealer Pickup Options',
-    readTime: '3 min read',
-    image: '/assets/guides/guide-pickup.webp',
-    description:
-      'Availability, warehouse pickup and regional freight delivery depend on your dealer location and postal code across Canada.',
+    description: 'Availability, pickup and delivery depend on your dealer and postal code.',
   },
-];
-
-const FILTER_TAGS = [
-  { label: 'All (8)', value: 'All' },
-  { label: 'Cabinet Care', value: 'Cabinet Care' },
-  { label: 'Planning Guide', value: 'Planning Guide' },
-  { label: 'Materials & Finishes', value: 'Materials & Finishes' },
-  { label: 'Hardware & Hinges', value: 'Hardware & Hinges' },
-  { label: 'Construction Spec', value: 'Construction Spec' },
-  { label: 'Logistics', value: 'Logistics' },
+  {
+    id: 'cabinet-care',
+    slug: 'cabinet-care',
+    category: 'Care & Adjustment',
+    readTime: '2 min read',
+    title: 'Cabinet Care',
+    description: 'How to clean PVC soft-touch doors, melamine boxes and paint-ready trim without treating them like wood furniture.',
+  },
+  {
+    id: 'cabinet-adjustment',
+    slug: 'cabinet-adjustment',
+    category: 'Care & Adjustment',
+    readTime: '2 min read',
+    title: 'Cabinet Adjustment',
+    description: 'When to adjust a door or drawer, what to check first, and when to contact your local dealer.',
+  },
 ];
 
 export default function GuidesHub({
@@ -140,481 +107,237 @@ export default function GuidesHub({
   onNavigateToContact,
   onNavigate,
 }: GuidesHubProps) {
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [emailInput, setEmailInput] = useState('');
-  const [downloadSuccess, setDownloadSuccess] = useState(false);
-  const [activeCardModal, setActiveCardModal] = useState<GuideCardItem | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredGuides = useMemo(() => {
-    return ALL_GUIDES.filter((guide) => {
-      const matchesFilter =
-        activeFilter === 'All' || guide.category === activeFilter;
-      const matchesSearch =
-        searchQuery.trim() === '' ||
-        guide.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        guide.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        guide.label.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesFilter && matchesSearch;
+    return ALL_GUIDES.filter((g) => {
+      const matchesCat = activeCategory === 'All' || g.category === activeCategory;
+      const matchesQuery =
+        !searchQuery ||
+        g.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        g.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCat && matchesQuery;
     });
-  }, [activeFilter, searchQuery]);
+  }, [activeCategory, searchQuery]);
 
-  const handleLeadMagnetSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!emailInput) return;
-    setDownloadSuccess(true);
-    setTimeout(() => {
-      onOpenChecklistModal();
-    }, 600);
+  const handleCardClick = (guide: GuideItem) => {
+    if (guide.slug === 'cabinet-care') {
+      onNavigateToCareGuide();
+    } else if (guide.slug === 'how-to-measure-for-cabinets' && onNavigateToMeasureGuide) {
+      onNavigateToMeasureGuide();
+    } else if (onSelectGuideSlug) {
+      onSelectGuideSlug(guide.slug);
+    } else if (onNavigate) {
+      onNavigate(guide.slug);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1F1F1F] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1F1F1F]">
-      {/* 1. Top Navigation Bar */}
+    <div className="min-h-screen bg-white text-[#10201d] font-sans antialiased selection:bg-[#f28a0b]/20 selection:text-[#003f3f]">
       <Navbar
         currentView="guides"
         onNavigate={onNavigate}
-        onOpenContact={() => {
-          if (onNavigateToContact) {
-            onNavigateToContact();
-          } else {
-            setIsContactOpen(true);
-          }
-        }}
+        onOpenContact={() => setIsContactOpen(true)}
         onNavigateToContact={onNavigateToContact}
         onOpenChecklist={onOpenChecklistModal}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-10 lg:py-16 space-y-16 lg:space-y-24">
-        {/* 2. Centered Hero Header with Warm Luxury Wash */}
-        <section className="text-center max-w-3xl mx-auto space-y-6 pt-4">
-          <div className="space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181715] text-[#E8C78E] border border-[#C5A069]/30 text-[11px] font-mono uppercase tracking-[0.2em] font-bold shadow-2xs">
-              <span>VanStro Knowledge Hub</span>
-            </div>
-            <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#181715] tracking-tight uppercase">
-              Guides &amp; <span className="italic font-light text-[#9B7A4F] font-serif lowercase">Insights</span>
+      {/* Hero */}
+      <section className="border-b border-[#d9e1df] bg-white pt-10 sm:pt-14 pb-12 sm:pb-16">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#5f7376] mb-6">
+            <button
+              type="button"
+              onClick={onNavigateToCareGuide}
+              className="hover:text-[#003f3f] transition-colors cursor-pointer"
+            >
+              Home
+            </button>
+            <span aria-hidden="true" className="text-[#d9e1df]">/</span>
+            <span className="text-[#003f3f] font-semibold">Guides</span>
+          </nav>
+
+          <div className="max-w-3xl space-y-4">
+            <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] tracking-wider block">
+              Resource Centre
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#003f3f] tracking-tight leading-[1.1]">
+              Guides
             </h1>
-            <p className="text-sm sm:text-base text-[#5A564F] leading-relaxed max-w-xl mx-auto font-normal">
-              Expert joinery advice, factory maintenance manuals, and bespoke modular kitchen planning.
+            <p className="text-base sm:text-lg text-[#315b60] leading-relaxed font-normal">
+              Measuring, finishes, care, adjustment, pickup and delivery.
             </p>
-          </div>
 
-          {/* Clean Centered Rounded Search Bar with Warm Border */}
-          <div className="relative max-w-xl mx-auto pt-2">
-            <div className="relative flex items-center">
-              <svg
-                className="w-4 h-4 text-[#9B7A4F] absolute left-4.5 pointer-events-none stroke-[2]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            {/* Search Input */}
+            <div className="pt-2 max-w-md">
+              <div className="relative">
+                <Search className="w-4 h-4 text-[#5f7376] absolute left-3.5 top-3.5" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search guides..."
+                  className="w-full h-11 pl-10 pr-4 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
                 />
-              </svg>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search guides, materials, care tips..."
-                className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#DFD6C5] rounded-full text-xs text-[#181715] placeholder:text-[#9E9B94] focus:outline-none focus:border-[#9B7A4F] shadow-xs transition-colors"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 text-xs text-[#9E9B94] hover:text-[#181715] cursor-pointer"
-                >
-                  ✕
-                </button>
-              )}
+              </div>
+            </div>
+
+            {/* Filter Tabs */}
+            <div className="pt-4 flex flex-wrap gap-2 text-xs font-medium">
+              {[
+                'All (8)',
+                'Planning & Measuring',
+                'Materials & Finishes',
+                'Care & Adjustment',
+                'Delivery & Pickup',
+              ].map((label) => {
+                const value = label.startsWith('All') ? 'All' : label;
+                const isSelected = activeCategory === value;
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setActiveCategory(value)}
+                    className={`px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#003f3f] text-white font-semibold'
+                        : 'bg-[#f5f8f7] text-[#5f7376] hover:bg-[#d9e1df] hover:text-[#003f3f]'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Centered Row of Rounded Pill Filter Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-            {FILTER_TAGS.map((tag) => {
-              const isActive = activeFilter === tag.value;
-              return (
-                <button
-                  key={tag.value}
-                  type="button"
-                  onClick={() => setActiveFilter(tag.value)}
-                  className={`px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 rounded-full ${
-                    isActive
-                      ? 'bg-[#181715] text-[#F9F8F6] border border-[#181715] shadow-xs font-bold'
-                      : 'bg-white text-[#6B665F] border border-[#DFD7C7] hover:text-[#181715] hover:border-[#9B7A4F]'
-                  }`}
-                >
-                  {tag.label}
-                </button>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* 3. Featured Editorial Card */}
-        <section>
-          <div className="w-full bg-[#181715] text-[#F9F8F6] rounded-2xl overflow-hidden border border-[#2E2B26] shadow-xl grid grid-cols-1 lg:grid-cols-2">
-            {/* Left 50%: High-resolution Scandinavian kitchen photo */}
-            <div className="relative aspect-[4/3] lg:aspect-auto min-h-[340px] lg:min-h-[460px] w-full bg-[#24221E] overflow-hidden">
-              <Image
-                src="/assets/guides/guides-hero.webp"
-                alt="Bespoke Scandinavian kitchen with rift-cut white oak and matte white cabinetry"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 hover:scale-103"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 bg-black/60 backdrop-blur-xs text-[10px] font-mono tracking-widest uppercase text-white/90">
-                  Featured Case Study
+      {/* Featured Guide Banner (Cabinet Care) */}
+      <section className="py-10 border-b border-[#d9e1df] bg-[#f5f8f7]">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="bg-white p-6 sm:p-10 border border-[#d9e1df] rounded-xl shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#5f7376]">
+                <span className="px-2 py-0.5 bg-[#edf4ee] text-[#0b7a4b] font-bold rounded">
+                  Featured guide
                 </span>
+                <span>·</span>
+                <span>2 min read</span>
               </div>
-            </div>
-
-            {/* Right 50%: Solid dark charcoal block with gold/white typography */}
-            <div className="p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-[#181715] space-y-6">
-              <div className="space-y-4">
-                {/* Gold / White Kicker */}
-                <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-[0.18em] text-[#C5A069]">
-                  <span>ESSENTIAL GUIDE</span>
-                  <span className="text-[#595349]">·</span>
-                  <span className="text-[#A09D96]">6 MIN READ</span>
-                </div>
-
-                {/* Large Serif Headline */}
-                <h2 className="font-serif-luxury text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#F9F8F6] tracking-tight leading-[1.12]">
-                  The Complete Cabinet Care &amp; Longevity Handbook
-                </h2>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-[#A09D96] leading-relaxed max-w-lg">
-                  How to clean PVC soft-touch doors, melamine-faced cabinet boxes, and paint-ready trim without treating them like wood furniture. Divided into material care specifications, daily wiping rules, and comparative Do&apos;s &amp; Don&apos;ts.
-                </p>
-
-                {/* Micro Meta Specs */}
-                <div className="pt-2 flex flex-wrap items-center gap-4 text-[11px] text-[#C5A069] font-mono">
-                  <span>PVC Soft-Touch</span>
-                  <span className="text-[#595349]">·</span>
-                  <span>¾&quot; Plywood Box</span>
-                  <span className="text-[#595349]">·</span>
-                  <span>DTC 3-Way Hardware</span>
-                  <span className="text-[#595349]">·</span>
-                  <span>Printable Checklist</span>
-                </div>
-              </div>
-
-              {/* Text Link [ Read Guide → ] */}
-              <div className="pt-4 border-t border-[#292621]">
-                <button
-                  type="button"
-                  onClick={onNavigateToCareGuide}
-                  className="group inline-flex items-center gap-3 text-xs sm:text-sm font-mono uppercase tracking-[0.16em] text-[#C5A069] hover:text-white transition-colors cursor-pointer"
-                >
-                  <span className="font-medium underline underline-offset-4 decoration-[#C5A069]/40 group-hover:decoration-white">
-                    Read Care Handbook →
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Curated 3-Column Topic Grid */}
-        <section className="space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-[#E7E5E0] pb-4">
-            <div>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F] block mb-1">
-                Curated Knowledge Base
-              </span>
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#1F1F1F] tracking-tight">
-                Explore By Topic
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f]">
+                Cabinet Care
               </h2>
+              <p className="text-xs sm:text-sm text-[#315b60] leading-relaxed">
+                How to clean PVC soft-touch doors, melamine boxes and paint-ready trim without treating them like wood furniture.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1 text-xs text-[#5f7376]">
+                <span className="px-2.5 py-1 bg-[#f5f8f7] border border-[#d9e1df] rounded">PVC soft-touch doors</span>
+                <span className="px-2.5 py-1 bg-[#f5f8f7] border border-[#d9e1df] rounded">Melamine boxes</span>
+                <span className="px-2.5 py-1 bg-[#f5f8f7] border border-[#d9e1df] rounded">Paint-ready trim</span>
+              </div>
             </div>
-            <p className="text-xs text-[#73706B] font-mono">
-              Showing {filteredGuides.length} curated {filteredGuides.length === 1 ? 'article' : 'articles'}
+
+            <Button
+              onClick={onNavigateToCareGuide}
+              className="bg-[#003f3f] hover:bg-[#0f5554] text-white px-6 py-3 text-xs sm:text-sm font-semibold rounded-md flex items-center gap-2 shrink-0"
+            >
+              <span>Read Guide</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* All Guides Grid (8 of 8) */}
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
+          <div className="flex items-center justify-between border-b border-[#d9e1df] pb-4">
+            <div>
+              <span className="text-xs font-mono font-bold uppercase text-[#f28a0b] block mb-1">
+                Guide library
+              </span>
+              <h2 className="text-2xl font-bold text-[#003f3f]">All guides</h2>
+            </div>
+            <span className="text-xs font-mono text-[#5f7376]">
+              {filteredGuides.length} of 8 guides
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredGuides.map((guide) => (
+              <div
+                key={guide.id}
+                onClick={() => handleCardClick(guide)}
+                className="p-6 bg-[#f5f8f7] border border-[#d9e1df] rounded-xl hover:border-[#003f3f] hover:bg-white hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs text-[#5f7376]">
+                    <span className="font-semibold text-[#003f3f]">{guide.category}</span>
+                    <span className="font-mono text-[11px]">{guide.readTime}</span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-[#003f3f] group-hover:text-[#f28a0b] transition-colors leading-snug">
+                    {guide.title}
+                  </h3>
+
+                  <p className="text-xs text-[#5f7376] leading-relaxed">
+                    {guide.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-[#d9e1df] flex items-center gap-1 text-xs font-semibold text-[#003f3f] group-hover:translate-x-0.5 transition-transform">
+                  <span>Read Article</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Download Centre Banner */}
+      <section className="py-12 border-t border-[#d9e1df] bg-[#f5f8f7]">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          <div className="space-y-1.5 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#003f3f]">
+              <Download className="w-4 h-4 text-[#f28a0b]" />
+              <span>Download Centre</span>
+            </div>
+            <h3 className="text-xl font-bold text-[#003f3f]">
+              Catalogues, installation guides and warranty information
+            </h3>
+            <p className="text-xs text-[#5f7376] leading-relaxed">
+              Download current VanStro catalogues, product-specific installation guides and warranty information. Use the SKU on your product page or order to select the right document.
             </p>
           </div>
 
-          {/* Airy, Spacious 3-Column Grid */}
-          {filteredGuides.length === 0 ? (
-            <div className="p-12 text-center bg-white border border-[#E7E5E0] rounded-sm space-y-3">
-              <p className="text-sm text-[#73706B]">
-                No guides matching &quot;{searchQuery}&quot; in category &quot;{activeFilter}&quot;.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchQuery('');
-                  setActiveFilter('All');
-                }}
-                className="px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#1F1F1F] border border-[#1F1F1F] hover:bg-[#1F1F1F] hover:text-white transition-colors"
-              >
-                Reset Filters
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 xl:gap-8">
-              {filteredGuides.map((guide) => (
-                <Card
-                  key={guide.id}
-                  onClick={() => {
-                    if (onSelectGuideSlug) {
-                      onSelectGuideSlug(guide.slug);
-                    } else if (guide.slug === 'how-to-measure-for-cabinets' && onNavigateToMeasureGuide) {
-                      onNavigateToMeasureGuide();
-                    } else if (guide.slug === 'cabinet-care') {
-                      onNavigateToCareGuide();
-                    } else {
-                      setActiveCardModal(guide);
-                    }
-                  }}
-                  className="group cursor-pointer border-[#DFD6C5] bg-gradient-to-b from-white to-[#FAF7F2] hover:border-[#9B7A4F] hover:shadow-[0_8px_30px_-6px_rgba(155,122,79,0.16)] transition-all duration-300 rounded-xl overflow-hidden flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Media Slice */}
-                    <div className="relative aspect-[16/10] w-full bg-[#EAE7E0] overflow-hidden border-b border-[#EDE6D8]">
-                      <Image
-                        src={guide.image}
-                        alt={guide.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-103"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute top-3 left-3">
-                        <Badge variant="copper" className="shadow-xs backdrop-blur-xs text-[9px] tracking-wider font-mono font-bold">
-                          {guide.label}
-                        </Badge>
-                      </div>
-                      <div className="absolute top-3 right-3">
-                        <Badge variant="secondary" className="bg-[#181715]/85 backdrop-blur-xs text-[9px] font-mono border-stone-700 text-[#E8C78E]">
-                          <Clock className="w-2.5 h-2.5 mr-1 text-[#C5A069]" />
-                          {guide.readTime}
-                        </Badge>
-                      </div>
-                    </div>
+          <Button
+            onClick={onOpenChecklistModal}
+            className="bg-[#003f3f] hover:bg-[#0f5554] text-white text-xs font-semibold px-5 py-2.5 rounded-md"
+          >
+            Checklist PDF
+          </Button>
+        </div>
+      </section>
 
-                    {/* Content Slice */}
-                    <CardHeader className="p-6 pb-2 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-[#9B7A4F] font-bold">
-                          {guide.category}
-                        </span>
-                        <span className="text-[#C4C0B6]">·</span>
-                        <span className="text-[10px] font-mono text-[#8C8880]">
-                          ARCHIVE ID #{guide.id.slice(0, 4).toUpperCase()}
-                        </span>
-                      </div>
-
-                      <CardTitle className="text-xl sm:text-2xl font-serif-luxury font-medium text-[#181715] group-hover:text-[#9B7A4F] transition-colors leading-snug">
-                        {guide.title}
-                      </CardTitle>
-
-                      <CardDescription className="text-xs text-[#5A564F] leading-relaxed line-clamp-2 pt-1 font-sans">
-                        {guide.description}
-                      </CardDescription>
-                    </CardHeader>
-                  </div>
-
-                  {/* Sliced Footer */}
-                  <CardFooter className="px-6 py-3.5 bg-[#FAF7F0] border-t border-[#EAE3D5] flex items-center justify-between text-xs font-mono">
-                    <span className="text-[#181715] group-hover:text-[#9B7A4F] group-hover:translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-[11px] uppercase tracking-wider">
-                      <span>Explore Guide</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#9B7A4F]" />
-                    </span>
-                    <span className="text-[10px] text-[#9B7A4F] font-mono uppercase tracking-wider font-semibold">
-                      Verified Spec
-                    </span>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          )}
-        </section>
-      </main>
-
-      {/* 5. Lead Magnet Footer Strip */}
-      <footer className="w-full bg-[#181715] text-[#F9F8F6] border-t border-[#292621] py-14 sm:py-16 mt-16 transition-colors">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="space-y-2 max-w-xl">
-              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#C5A069]">
-                Printable Architectural Checklist
-              </span>
-              <h3 className="font-serif-luxury text-2xl sm:text-3xl font-normal text-[#F9F8F6] tracking-tight">
-                Keep your cabinets pristine. Download our Cabinet Maintenance Checklist PDF.
-              </h3>
-              <p className="text-xs text-[#A09D96] leading-relaxed">
-                Includes daily wipe rules, seasonal moisture tolerances, and authorized cleaner dilution ratios formulated for high-end residential cabinetry.
-              </p>
-            </div>
-
-            {/* Email input + Bronze button */}
-            <div className="w-full max-w-md shrink-0">
-              {downloadSuccess ? (
-                <div className="p-4 bg-[#244A29]/30 border border-[#244A29]/50 text-white rounded-none flex items-center justify-between gap-3 text-xs">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-[#8CD194]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Checklist unlocked! Opening modal...</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={onOpenChecklistModal}
-                    className="font-mono underline text-[#8CD194] uppercase tracking-wider"
-                  >
-                    View PDF
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleLeadMagnetSubmit} className="flex flex-col sm:flex-row gap-2">
-                  <input
-                    required
-                    type="email"
-                    value={emailInput}
-                    onChange={(e) => setEmailInput(e.target.value)}
-                    placeholder="Enter your email address..."
-                    className="flex-1 px-4 py-3 bg-[#24221E] border border-[#3E3A33] rounded-none text-xs text-white placeholder:text-[#8C8880] focus:outline-none focus:border-[#C5A069]"
-                  />
-                  <button
-                    type="submit"
-                    className="px-6 py-3 text-xs uppercase font-mono tracking-[0.16em] font-medium text-white bg-[#9B7A4F] hover:bg-[#85663F] transition-colors cursor-pointer shrink-0 whitespace-nowrap active:scale-[0.98]"
-                  >
-                    Download Care Checklist
-                  </button>
-                </form>
-              )}
-              <span className="text-[10px] text-[#73706B] font-mono block mt-2">
-                Instant PDF download. No promotional spam. Unsubscribe anytime.
-              </span>
-            </div>
+      {/* Footer */}
+      <footer className="border-t border-[#d9e1df] bg-white py-10 text-xs text-[#5f7376]">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div>
+            <p className="font-semibold text-[#003f3f]">VanStro Global Supply Inc.</p>
+            <p>856 Century Street, Winnipeg, MB R3H 0M5 · Canada</p>
           </div>
-
-          <div className="mt-12 pt-8 border-t border-[#292621] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#73706B]">
-            <div className="flex flex-wrap items-center gap-4">
-              <span className="font-serif-luxury text-base tracking-widest text-[#F9F8F6]">
-                VANSTRO
-              </span>
-              <span className="text-[11px] text-[#A09D96]">
-                Architectural Joinery Standard §2026
-              </span>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-wider text-stone-400">
-              <button
-                type="button"
-                onClick={() => onNavigate?.('cabinet-care')}
-                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
-              >
-                Care Handbook
-              </button>
-              <span className="text-stone-600">·</span>
-              <button
-                type="button"
-                onClick={() => onNavigate?.('how-to-measure-for-cabinets')}
-                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
-              >
-                Measuring
-              </button>
-              <span className="text-stone-600">·</span>
-              <button
-                type="button"
-                onClick={() => onNavigate?.('vanity-finder')}
-                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
-              >
-                Vanity Finder
-              </button>
-              <span className="text-stone-600">·</span>
-              <button
-                type="button"
-                onClick={() => onNavigate?.('warranty')}
-                className="text-[#C5A069] hover:text-white transition-colors cursor-pointer font-semibold"
-              >
-                Warranty
-              </button>
-              <span className="text-stone-600">·</span>
-              <button
-                type="button"
-                onClick={() => onNavigateToContact ? onNavigateToContact() : onNavigate?.('contact')}
-                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
-              >
-                Contact
-              </button>
-            </div>
+          <div className="flex gap-4">
+            <a href="tel:18558267876" className="hover:text-[#003f3f]">1-855-VANSTRO</a>
+            <a href="mailto:support@vanstro.ca" className="hover:text-[#003f3f]">support@vanstro.ca</a>
           </div>
         </div>
       </footer>
 
-      {/* Guide Card Quick View Modal */}
-      {activeCardModal && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 bg-[#1C1A17]/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setActiveCardModal(null)}
-        >
-          <div
-            className="bg-[#F9F8F6] border border-[#E7E5E0] max-w-xl w-full rounded-sm overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative aspect-[16/9] w-full bg-[#EAE7E0]">
-              <Image
-                src={activeCardModal.image}
-                alt={activeCardModal.title}
-                fill
-                className="object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-3 left-3 px-2 py-0.5 bg-black/60 text-white text-[10px] font-mono tracking-widest">
-                {activeCardModal.label}
-              </div>
-            </div>
-            <div className="p-6 space-y-4 bg-white">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-[#9B7A4F] uppercase tracking-wider">
-                  {activeCardModal.category} · {activeCardModal.readTime}
-                </span>
-                <h3 className="font-serif-luxury text-2xl font-medium text-[#1F1F1F]">
-                  {activeCardModal.title}
-                </h3>
-              </div>
-              <p className="text-xs text-[#73706B] leading-relaxed">
-                {activeCardModal.description}
-              </p>
-              <div className="pt-4 border-t border-[#F0EFEA] flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => setActiveCardModal(null)}
-                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#73706B] hover:text-[#1F1F1F] cursor-pointer"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveCardModal(null);
-                    onNavigateToCareGuide();
-                  }}
-                  className="px-5 py-2 text-xs uppercase font-mono tracking-wider font-medium text-white bg-[#1F1F1F] hover:bg-[#333] transition-colors cursor-pointer"
-                >
-                  Explore Cabinet Care Handbook →
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Concierge Modal */}
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}

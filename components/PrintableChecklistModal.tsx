@@ -134,7 +134,7 @@ export default function PrintableChecklistModal({
               Emergency Water Spill Protocol
             </span>
             <p className="leading-relaxed">
-              In case of dishwasher leaks or sink overflow, cut water valve immediately, blot cabinet edges dry within 2 minutes, and position a room dehumidifier running at &lt;45% RH for 48 hours.
+              In case of water leaks or sink splashes, turn off water supply valves immediately, blot all cabinet edges and interior surfaces dry, and ensure good airflow to dry the area thoroughly.
             </p>
           </div>
         </div>

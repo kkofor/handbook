@@ -167,17 +167,17 @@ export default function VanityComparisonModal({
           {/* Header Slice */}
           <div className="px-6 py-5 bg-white border-b border-[#E7E5E0] flex items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-[#9B7A4F]">
+              <div className="w-9 h-9 rounded-lg bg-[#f5f8f7] border border-[#d9e1df] flex items-center justify-center text-[#f28a0b]">
                 <Scale className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-serif-luxury text-xl sm:text-2xl font-normal text-[#1C1A17]">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#003f3f]">
                     {lang === 'fr' ? 'Comparaison des meubles-lavabos' : 'Vanity Specification Comparison'}
                   </h3>
-                  <Badge variant="copper" className="font-mono text-[10px]">
-                    {items.length} / 3 {lang === 'fr' ? 'modèles' : 'models'}
-                  </Badge>
+                  <span className="font-mono text-xs text-[#5f7376]">
+                    ({items.length}/3)
+                  </span>
                 </div>
                 <p className="text-xs text-[#73706B] font-sans mt-0.5">
                   {lang === 'fr'
@@ -242,14 +242,14 @@ export default function VanityComparisonModal({
                       {/* Card Header Slice */}
                       <CardHeader className="p-5 pb-3 border-b border-[#F0EFEA] bg-[#FAF9F6] space-y-2">
                         <div className="flex items-center justify-between">
-                          <Badge variant="copper" className="font-mono text-[10px] font-bold">
+                          <span className="font-mono text-xs font-bold text-[#003f3f]">
                             {prod.id}
-                          </Badge>
+                          </span>
                           <div className="flex items-center gap-1.5">
                             {isLowestCabPrice && (
-                              <Badge variant="success" className="text-[9px] font-mono">
-                                {lang === 'fr' ? 'Plus économique' : 'Best Value'}
-                              </Badge>
+                              <span className="text-[10px] font-mono px-2 py-0.5 bg-[#edf4ee] text-[#0b7a4b] border border-[#0b7a4b]/30 rounded-xs">
+                                {lang === 'fr' ? 'Prix plus bas' : 'Lower price'}
+                              </span>
                             )}
                             <button
                               type="button"
@@ -312,15 +312,12 @@ export default function VanityComparisonModal({
                           </span>
                           <div className="p-3 bg-white border border-[#E7E5E0] rounded-lg space-y-1.5">
                             <div className="flex items-center justify-between">
-                              <span className="text-[#73706B]">{lang === 'fr' ? 'Espace restant (côtés):' : 'Wall space remaining:'}</span>
-                              <Badge
-                                variant={isFlush ? 'success' : 'secondary'}
-                                className="font-mono text-[10px]"
-                              >
+                              <span className="text-[#5f7376]">{lang === 'fr' ? 'Espace restant (côtés):' : 'Wall space remaining:'}</span>
+                              <span className="font-mono text-[11px] font-semibold text-[#003f3f]">
                                 {isFlush
                                   ? lang === 'fr' ? 'Ajustement parfait (0 po)' : 'Exact Flush Fit (0")'
                                   : `${formatLen(spareInches)} ${lang === 'fr' ? 'de jeu' : 'to spare'}`}
-                              </Badge>
+                              </span>
                             </div>
                             {frontInches !== null && (
                               <div className="flex items-center justify-between text-[11px] text-[#73706B] pt-1 border-t border-[#F5F3EE]">

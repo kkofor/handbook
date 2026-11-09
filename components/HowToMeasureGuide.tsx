@@ -7,7 +7,6 @@ import Navbar from '@/components/Navbar';
 import ContactModal from '@/components/ContactModal';
 import MeasurementModal from '@/components/MeasurementModal';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
@@ -282,95 +281,95 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
 
               {/* 4 Sliced Tool Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
-                  <CardHeader className="p-5 pb-3 space-y-2">
+                <Card className="border-[#d9e1df] bg-white hover:border-[#003f3f] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
+                  <CardHeader className="p-6 pb-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-md bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
-                        <Ruler className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-md bg-[#f5f8f7] border border-[#d9e1df] flex items-center justify-center text-sm font-semibold text-[#003f3f]">
+                        <Ruler className="w-4 h-4 text-[#f28a0b]" />
                       </div>
-                      <Badge variant="copper" className="text-[9px] font-mono">
-                        Primary
-                      </Badge>
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#003f3f]">
+                        Primary Tool
+                      </span>
                     </div>
-                    <CardTitle className="text-base font-serif-luxury font-medium text-[#1C1A17]">
+                    <CardTitle className="text-base font-bold text-[#003f3f]">
                       25ft+ Rigid Steel Tape
                     </CardTitle>
-                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed">
+                    <CardDescription className="text-xs text-[#5f7376] leading-relaxed">
                       Use a locking steel tape with a wide, non-sagging blade. Avoid flexible cloth tapes which stretch and sag over long wall runs.
                     </CardDescription>
                   </CardHeader>
-                  <CardFooter className="px-5 py-2.5 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono flex items-center justify-between">
+                  <CardFooter className="px-6 py-2.5 bg-[#f5f8f7] border-t border-[#d9e1df] text-[10px] text-[#5f7376] font-mono flex items-center justify-between">
                     <span>Precision: ±1/16&quot;</span>
-                    <span className="text-[#9B7A4F]">Base &amp; Eye Level</span>
+                    <span className="text-[#003f3f] font-semibold">Base &amp; Eye Level</span>
                   </CardFooter>
                 </Card>
 
-                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
-                  <CardHeader className="p-5 pb-3 space-y-2">
+                <Card className="border-[#d9e1df] bg-white hover:border-[#003f3f] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
+                  <CardHeader className="p-6 pb-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-md bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
-                        <Compass className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-md bg-[#f5f8f7] border border-[#d9e1df] flex items-center justify-center text-sm font-semibold text-[#003f3f]">
+                        <Compass className="w-4 h-4 text-[#f28a0b]" />
                       </div>
-                      <Badge variant="secondary" className="text-[9px] font-mono">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5f7376]">
                         Alignment
-                      </Badge>
+                      </span>
                     </div>
-                    <CardTitle className="text-base font-serif-luxury font-medium text-[#1C1A17]">
+                    <CardTitle className="text-base font-bold text-[#003f3f]">
                       Spirit Level or 360° Laser
                     </CardTitle>
-                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed">
+                    <CardDescription className="text-xs text-[#5f7376] leading-relaxed">
                       A 2ft or 4ft spirit level (or cross-line laser) identifies floor high spots and verifies wall plumbness before placing runs.
                     </CardDescription>
                   </CardHeader>
-                  <CardFooter className="px-5 py-2.5 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono flex items-center justify-between">
+                  <CardFooter className="px-6 py-2.5 bg-[#f5f8f7] border-t border-[#d9e1df] text-[10px] text-[#5f7376] font-mono flex items-center justify-between">
                     <span>Datum Check</span>
-                    <span className="text-[#9B7A4F]">Detects Slope</span>
+                    <span className="text-[#003f3f] font-semibold">Detects Slope</span>
                   </CardFooter>
                 </Card>
 
-                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
-                  <CardHeader className="p-5 pb-3 space-y-2">
+                <Card className="border-[#d9e1df] bg-white hover:border-[#003f3f] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
+                  <CardHeader className="p-6 pb-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-md bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
-                        <Layers className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-md bg-[#f5f8f7] border border-[#d9e1df] flex items-center justify-center text-sm font-semibold text-[#003f3f]">
+                        <Layers className="w-4 h-4 text-[#f28a0b]" />
                       </div>
-                      <Badge variant="secondary" className="text-[9px] font-mono">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5f7376]">
                         Documentation
-                      </Badge>
+                      </span>
                     </div>
-                    <CardTitle className="text-base font-serif-luxury font-medium text-[#1C1A17]">
+                    <CardTitle className="text-base font-bold text-[#003f3f]">
                       Grid Graph Paper &amp; Legend
                     </CardTitle>
-                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed">
+                    <CardDescription className="text-xs text-[#5f7376] leading-relaxed">
                       Sketch a top-down floor plan view. Mark every wall opening, pipe chase, HVAC register, and electrical switch box.
                     </CardDescription>
                   </CardHeader>
-                  <CardFooter className="px-5 py-2.5 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono flex items-center justify-between">
+                  <CardFooter className="px-6 py-2.5 bg-[#f5f8f7] border-t border-[#d9e1df] text-[10px] text-[#5f7376] font-mono flex items-center justify-between">
                     <span>Scale: ¼&quot; = 1 Foot</span>
-                    <span className="text-[#9B7A4F]">Top-Down Plan</span>
+                    <span className="text-[#003f3f] font-semibold">Top-Down Plan</span>
                   </CardFooter>
                 </Card>
 
-                <Card className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
-                  <CardHeader className="p-5 pb-3 space-y-2">
+                <Card className="border-[#d9e1df] bg-white hover:border-[#003f3f] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between">
+                  <CardHeader className="p-6 pb-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-md bg-[#FAF8F5] border border-[#EBE7DF] flex items-center justify-center text-sm font-semibold text-[#9B7A4F]">
-                        <Maximize2 className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-md bg-[#f5f8f7] border border-[#d9e1df] flex items-center justify-center text-sm font-semibold text-[#003f3f]">
+                        <Maximize2 className="w-4 h-4 text-[#f28a0b]" />
                       </div>
-                      <Badge variant="secondary" className="text-[9px] font-mono">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5f7376]">
                         Verification
-                      </Badge>
+                      </span>
                     </div>
-                    <CardTitle className="text-base font-serif-luxury font-medium text-[#1C1A17]">
+                    <CardTitle className="text-base font-bold text-[#003f3f]">
                       Multi-Angle Field Photos
                     </CardTitle>
-                    <CardDescription className="text-xs text-[#5E5A54] leading-relaxed">
+                    <CardDescription className="text-xs text-[#5f7376] leading-relaxed">
                       Capture wide-angle photographs of every wall run, ceiling soffits, floor vents, and exposed pipework for dealer CAD checks.
                     </CardDescription>
                   </CardHeader>
                   <CardFooter className="px-5 py-2.5 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono flex items-center justify-between">
                     <span>Clearance Review</span>
-                    <span className="text-[#9B7A4F]">Visual Archive</span>
+                    <span className="text-[#003f3f]">Visual Reference</span>
                   </CardFooter>
                 </Card>
               </div>
@@ -417,15 +416,15 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                 </div>
 
                 {/* Corner Squaring Test: 3-4-5 Rule */}
-                <div className="p-4 border-l-2 border-[#9B7A4F] bg-[#FAF8F5] text-xs space-y-1.5">
+                <div className="p-4 border border-[#d9e1df] bg-[#f5f8f7] rounded-md text-xs space-y-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[#9B7A4F]">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#003f3f]">
                       Pro Carpenter Tip
                     </span>
-                    <span className="text-[#C4C0B6]">·</span>
-                    <span className="font-medium text-[#1C1A17]">The 3-4-5 Squaring Method</span>
+                    <span className="text-[#d9e1df]">·</span>
+                    <span className="font-semibold text-[#10201d]">The 3-4-5 Squaring Method</span>
                   </div>
-                  <p className="text-[#5E5A54] leading-relaxed">
+                  <p className="text-[#315b60] leading-relaxed">
                     Drywall corners in homes are rarely an exact 90°. Measure 3 feet along one wall and 4 feet along the perpendicular wall. The diagonal across the marks must equal exactly 5 feet. If it varies by more than ¼&quot;, plan for a wider 3&quot; or 6&quot; filler so cabinet doors do not bind against out-of-square walls.
                   </p>
                 </div>
@@ -434,50 +433,50 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
 
             {/* Slice 03: Heights & Ceiling Variations: The Rule of 3 */}
             <section id="heights-ceilings" className="scroll-mt-28 space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[#E7E5E0] pb-3">
+              <div className="flex items-baseline justify-between border-b border-[#d9e1df] pb-3">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-[#9B7A4F] font-semibold tabular-nums">03</span>
-                  <h2 className="font-serif-luxury text-2xl sm:text-3xl font-medium text-[#1C1A17] tracking-tight">
+                  <span className="font-mono text-xs text-[#003f3f] font-bold tabular-nums">03</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-[#003f3f] tracking-tight">
                     Ceiling &amp; Height Variations
                   </h2>
                 </div>
-                <span className="text-xs text-[#73706B] tracking-wider uppercase font-sans">
+                <span className="text-xs text-[#5f7376] tracking-wider uppercase font-mono">
                   The Rule of 3
                 </span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] p-6 rounded-sm space-y-3 flex flex-col justify-between">
+                <div className="bg-[#FFFFFF] border border-[#d9e1df] p-6 rounded-lg space-y-3 flex flex-col justify-between">
                   <div className="space-y-2.5">
-                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F] font-semibold block">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#f28a0b] font-bold block">
                       Ceiling Leveling
                     </span>
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17]">
+                    <h3 className="text-lg font-bold text-[#003f3f]">
                       Measure 3 Distinct Spots Across Wall
                     </h3>
-                    <p className="text-xs text-[#5E5A54] leading-relaxed">
+                    <p className="text-xs text-[#315b60] leading-relaxed">
                       Floors and ceilings in Canadian homes settle over seasons. Always measure the height from the subfloor/finished floor to the ceiling at the <strong>left corner</strong>, <strong>center of the wall run</strong>, and <strong>right corner</strong>.
                     </p>
                   </div>
-                  <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] text-[11px] text-[#73706B] mt-2">
-                    <strong className="text-[#1C1A17]">Golden Rule:</strong> The <em>lowest</em> ceiling measurement establishes the top datum line for tall pantry units and upper wall cabinets.
+                  <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] mt-2">
+                    <strong className="text-[#003f3f]">Golden Rule:</strong> The <em>lowest</em> ceiling measurement establishes the top datum line for tall pantry units and upper wall cabinets.
                   </div>
                 </div>
 
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] p-6 rounded-sm space-y-3 flex flex-col justify-between">
+                <div className="bg-[#FFFFFF] border border-[#d9e1df] p-6 rounded-lg space-y-3 flex flex-col justify-between">
                   <div className="space-y-2.5">
-                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#9B7A4F] font-semibold block">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-[#f28a0b] font-bold block">
                       Trim &amp; Soffit Allowance
                     </span>
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17]">
+                    <h3 className="text-lg font-bold text-[#003f3f]">
                       Crown Moulding &amp; Light Rails
                     </h3>
-                    <p className="text-xs text-[#5E5A54] leading-relaxed">
+                    <p className="text-xs text-[#315b60] leading-relaxed">
                       Leave a minimum <strong>2&quot; to 3&quot; gap</strong> between upper wall cabinets and the ceiling if you intend to install VanStro crown moulding (CM3). Under-cabinet LED light rails (LR3) require <strong>1¼&quot;</strong> bottom clearance.
                     </p>
                   </div>
-                  <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#1C1A17] text-[11px] text-[#73706B] mt-2">
-                    <strong className="text-[#1C1A17]">Standard Height:</strong> Standard base cabinet height is 34½&quot; without countertop, reaching 36&quot; with 1½&quot; stone countertop installed.
+                  <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] mt-2">
+                    <strong className="text-[#003f3f]">Standard Height:</strong> Standard base cabinet height is 34½&quot; without countertop, reaching 36&quot; with 1½&quot; stone countertop installed.
                   </div>
                 </div>
               </div>
@@ -615,36 +614,36 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                 </span>
               </div>
 
-              <Card className="border-[#E7E5E0] bg-white rounded-lg shadow-xs overflow-hidden">
-                <CardHeader className="p-6 sm:p-7 pb-4 space-y-1.5 border-b border-[#F0EFEA] bg-[#FAF9F6]">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="copper" className="text-[9px] font-mono">
+              <Card className="border-[#d9e1df] bg-white rounded-lg shadow-xs overflow-hidden">
+                <CardHeader className="p-6 sm:p-7 pb-4 space-y-1.5 border-b border-[#d9e1df] bg-[#f5f8f7]">
+                  <div className="flex items-center gap-2 text-xs font-mono">
+                    <span className="font-bold text-[#003f3f] uppercase tracking-wider">
                       Field Scribing Engine
-                    </Badge>
-                    <span className="text-[#C4C0B6]">/</span>
-                    <span className="text-xs font-mono text-[#73706B]">
+                    </span>
+                    <span className="text-[#d9e1df]">/</span>
+                    <span className="text-[#5f7376]">
                       VanStro Modular Imperial Sizing
                     </span>
                   </div>
-                  <CardTitle className="text-xl sm:text-2xl font-serif-luxury text-[#1C1A17]">
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-[#003f3f]">
                     Calculate Cabinet Combinations &amp; Scribe Fillers
                   </CardTitle>
-                  <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-0.5">
+                  <CardDescription className="text-xs text-[#315b60] leading-relaxed pt-0.5">
                     Enter your total wall measurement in inches, pick VanStro standard modular cabinets, and compute the exact filler split for each side.
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="p-6 sm:p-7 space-y-6">
                   {/* Wall Width Input Slice */}
-                  <div className="p-4 bg-[#FAF9F6] border border-[#E7E5E0] rounded-sm space-y-3">
+                  <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <label className="text-xs font-mono uppercase tracking-wider text-[#1C1A17] font-semibold flex items-center gap-1.5">
-                        <Sliders className="w-3.5 h-3.5 text-[#9B7A4F]" />
+                      <label className="text-xs font-mono uppercase tracking-wider text-[#003f3f] font-bold flex items-center gap-1.5">
+                        <Sliders className="w-3.5 h-3.5 text-[#f28a0b]" />
                         <span>Total Wall Length (Corner to Corner):</span>
                       </label>
-                      <Badge variant="secondary" className="font-mono text-xs font-semibold text-[#9B7A4F]">
+                      <span className="font-mono text-xs font-bold text-[#003f3f] bg-white px-2 py-0.5 border border-[#d9e1df] rounded-xs">
                         {(wallWidth / 12).toFixed(2)} feet / {wallWidth}&quot;
-                      </Badge>
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -913,13 +912,13 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Filler Formula:</strong>
-                      <p className="text-[#5E5A54]">Remaining Gap = Total Wall Length − ∑(Cabinet Widths). Split evenly across both end walls.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Filler Formula:</strong>
+                      <p className="text-[#315b60]">Remaining Gap = Total Wall Length − ∑(Cabinet Widths). Split evenly across both end walls.</p>
                     </div>
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#181715] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Corner Tolerance:</strong>
-                      <p className="text-[#5E5A54]">Check if walls meet at true 90°. Use a 3-4-5 framing triangle to detect out-of-square walls.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Corner Tolerance:</strong>
+                      <p className="text-[#315b60]">Check if walls meet at true 90°. Use a 3-4-5 framing triangle to detect out-of-square walls.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -965,13 +964,13 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Benchmark Datum:</strong>
-                      <p className="text-[#5E5A54]">Locate the highest spot on the floor along the cabinet run. Set your base cabinet level from this high point.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Benchmark Datum:</strong>
+                      <p className="text-[#315b60]">Locate the highest spot on the floor along the cabinet run. Set your base cabinet level from this high point.</p>
                     </div>
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#181715] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Soffit Check:</strong>
-                      <p className="text-[#5E5A54]">Measure underside of drywalled bulkheads in multiple spots to verify level clearance before ordering tall units.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Soffit Check:</strong>
+                      <p className="text-[#315b60]">Measure underside of drywalled bulkheads in multiple spots to verify level clearance before ordering tall units.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -1017,13 +1016,13 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Trim Measurement:</strong>
-                      <p className="text-[#5E5A54]">Include the full profile of decorative mouldings. Never measure glass or jamb only.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Trim Measurement:</strong>
+                      <p className="text-[#315b60]">Include the full profile of decorative mouldings. Never measure glass or jamb only.</p>
                     </div>
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#181715] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Appliance Path:</strong>
-                      <p className="text-[#5E5A54]">Ensure doorway width allows 36&quot; refrigerators and range units to pass through during delivery.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Appliance Path:</strong>
+                      <p className="text-[#315b60]">Ensure doorway width allows 36&quot; refrigerators and range units to pass through during delivery.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -1035,47 +1034,47 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-[#FFFFFF] border border-[#E7E5E0] p-6 rounded-sm space-y-4"
+                  className="bg-[#FFFFFF] border border-[#d9e1df] p-6 rounded-lg space-y-4"
                 >
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#9B7A4F]">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#f28a0b] font-bold">
                       Rough-In Coordinates
                     </span>
-                    <h3 className="font-serif-luxury text-xl font-medium text-[#1C1A17]">
+                    <h3 className="text-xl font-bold text-[#003f3f]">
                       Centerlines &amp; Service Openings
                     </h3>
-                    <p className="text-xs text-[#5E5A54] leading-relaxed">
+                    <p className="text-xs text-[#315b60] leading-relaxed">
                       Rough-in plumbing, gas, and power lines must align with the specific internal service openings of your modular cabinets and appliances.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2 border-y border-[#F0EFEA]">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2 border-y border-[#d9e1df]">
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono text-[#8C8880] block">Sink Drain Height</span>
-                      <span className="text-xs font-mono font-medium text-[#1C1A17]">16&quot;–18&quot; AFF</span>
+                      <span className="text-[10px] font-mono text-[#5f7376] block">Sink Drain Height</span>
+                      <span className="text-xs font-mono font-bold text-[#10201d]">16&quot;–18&quot; AFF</span>
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono text-[#8C8880] block">Plumbing Zone</span>
-                      <span className="text-xs font-mono font-medium text-[#1C1A17]">Middle 18&quot; of SB</span>
+                      <span className="text-[10px] font-mono text-[#5f7376] block">Plumbing Zone</span>
+                      <span className="text-xs font-mono font-bold text-[#10201d]">Middle 18&quot; of SB</span>
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono text-[#8C8880] block">Dishwasher Opening</span>
-                      <span className="text-xs font-mono font-medium text-[#1C1A17]">24&quot; Cavity</span>
+                      <span className="text-[10px] font-mono text-[#5f7376] block">Dishwasher Opening</span>
+                      <span className="text-xs font-mono font-bold text-[#10201d]">24&quot; Cavity</span>
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono text-[#8C8880] block">Hood Vent Duct</span>
-                      <span className="text-xs font-mono font-medium text-[#1C1A17]">6&quot; Round / 3¼×10&quot;</span>
+                      <span className="text-[10px] font-mono text-[#5f7376] block">Hood Vent Duct</span>
+                      <span className="text-xs font-mono font-bold text-[#10201d]">6&quot; Round / 3¼×10&quot;</span>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Service Chases:</strong>
-                      <p className="text-[#5E5A54]">Mark the locations of any protruding stack pipes or HVAC bulkheads that require scribing cabinet backs.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Service Chases:</strong>
+                      <p className="text-[#315b60]">Mark the locations of any protruding stack pipes or HVAC bulkheads that require scribing cabinet backs.</p>
                     </div>
-                    <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#181715] rounded-xs space-y-1">
-                      <strong className="text-[#1C1A17] block font-mono text-[11px] uppercase">Shutoff Accessibility:</strong>
-                      <p className="text-[#5E5A54]">Ensure quarter-turn shutoff valves are mounted within comfortable reach inside the sink cabinet box.</p>
+                    <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                      <strong className="text-[#003f3f] block font-mono text-[11px] uppercase">Shutoff Accessibility:</strong>
+                      <p className="text-[#315b60]">Ensure quarter-turn shutoff valves are mounted within comfortable reach inside the sink cabinet box.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -1098,65 +1097,69 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* DO Card */}
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden flex flex-col justify-between">
+                <div className="bg-[#FFFFFF] border border-[#d9e1df] rounded-lg overflow-hidden flex flex-col justify-between">
                   <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <Badge variant="success" className="text-[10px] font-mono uppercase tracking-wider font-semibold">
-                        DO — RECOMMENDED PRACTICES
-                      </Badge>
-                      <Check className="w-4 h-4 text-[#244A29]" />
+                      <div className="flex items-center gap-2 text-xs font-mono">
+                        <span className="font-bold text-[#003f3f]">DO</span>
+                        <span className="text-[#d9e1df]">/</span>
+                        <span className="font-bold text-[#5f7376] uppercase tracking-wider">Recommended Practices</span>
+                      </div>
+                      <Check className="w-4 h-4 text-[#003f3f]" />
                     </div>
 
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17]">
+                    <h3 className="text-lg font-bold text-[#003f3f]">
                       Measuring Best Practices
                     </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    <p className="text-xs text-[#5f7376] leading-relaxed">
                       Follow these verification steps before ordering cabinetry modules:
                     </p>
 
-                    <ul className="space-y-2.5 text-xs text-[#5E5A54]">
+                    <ul className="space-y-2.5 text-xs text-[#315b60]">
                       <li className="flex items-start gap-2">
-                        <span className="text-[#244A29] font-bold mt-0.5">✓</span>
+                        <span className="text-[#003f3f] font-bold mt-0.5">✓</span>
                         <span>Measure every wall corner-to-corner along the baseboard and at 36&quot; countertop working height.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-[#244A29] font-bold mt-0.5">✓</span>
+                        <span className="text-[#003f3f] font-bold mt-0.5">✓</span>
                         <span>Measure floor-to-ceiling in at least 3 distinct spots across the run to detect slope.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-[#244A29] font-bold mt-0.5">✓</span>
+                        <span className="text-[#003f3f] font-bold mt-0.5">✓</span>
                         <span>Mark the exact centerline of plumbing drain and water shutoffs from the nearest corner.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-[#244A29] font-bold mt-0.5">✓</span>
+                        <span className="text-[#003f3f] font-bold mt-0.5">✓</span>
                         <span>Provide high-resolution photos of all wall elevations to your VanStro dealer for layout review.</span>
                       </li>
                     </ul>
                   </div>
 
-                  <div className="p-4 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[11px] text-[#244A29] font-mono">
+                  <div className="p-4 bg-[#f5f8f7] border-t border-[#d9e1df] text-[11px] text-[#003f3f] font-mono font-medium">
                     Accurate field measurements eliminate on-site cabinet cutting delays.
                   </div>
                 </div>
 
                 {/* DON'T Card */}
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden flex flex-col justify-between">
+                <div className="bg-[#FFFFFF] border border-[#d9e1df] rounded-lg overflow-hidden flex flex-col justify-between">
                   <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <Badge variant="destructive" className="text-[10px] font-mono uppercase tracking-wider font-semibold">
-                        DON&apos;T — COMMON MISTAKES
-                      </Badge>
+                      <div className="flex items-center gap-2 text-xs font-mono">
+                        <span className="font-bold text-[#8B2627]">DON&apos;T</span>
+                        <span className="text-[#d9e1df]">/</span>
+                        <span className="font-bold text-[#5f7376] uppercase tracking-wider">Common Mistakes</span>
+                      </div>
                       <X className="w-4 h-4 text-[#8B2627]" />
                     </div>
 
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17]">
+                    <h3 className="text-lg font-bold text-[#003f3f]">
                       Common Field Mistakes
                     </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    <p className="text-xs text-[#5f7376] leading-relaxed">
                       Avoid these critical measuring oversights:
                     </p>
 
-                    <ul className="space-y-2.5 text-xs text-[#5E5A54]">
+                    <ul className="space-y-2.5 text-xs text-[#315b60]">
                       <li className="flex items-start gap-2">
                         <span className="text-[#8B2627] font-bold mt-0.5">✕</span>
                         <span>Do not assume drywall corners are perfectly 90° square without checking with a square.</span>
@@ -1176,7 +1179,7 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                     </ul>
                   </div>
 
-                  <div className="p-4 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[11px] text-[#8B2627] font-mono">
+                  <div className="p-4 bg-[#f5f8f7] border-t border-[#d9e1df] text-[11px] text-[#8B2627] font-mono font-medium">
                     Cabinets ordered without adequate filler clearance cannot open doors fully against walls.
                   </div>
                 </div>
@@ -1246,11 +1249,11 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                   </table>
                 </div>
 
-                <div className="p-4 bg-[#FAF9F6] border-t border-[#E7E5E0] text-xs space-y-1">
-                  <div className="font-mono text-[11px] font-semibold text-[#9B7A4F] uppercase">
-                    VanStro Sizing Guarantee:
+                <div className="p-4 bg-[#f5f8f7] border-t border-[#d9e1df] text-xs space-y-1">
+                  <div className="font-mono text-[11px] font-bold text-[#003f3f] uppercase">
+                    VanStro Modular Sizing Rule:
                   </div>
-                  <p className="text-[#5E5A54] leading-relaxed">
+                  <p className="text-[#315b60] leading-relaxed">
                     All VanStro cabinets are modular imperial units. When your wall run leaves an odd remainder, order a 3&quot; (WF330) or 6&quot; (WF630) filler strip to scribe on site.
                   </p>
                 </div>
@@ -1313,7 +1316,7 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                         onClick={() => toggleTask(task.id)}
                         className={`flex items-start gap-3 p-3 rounded-xs border cursor-pointer transition-colors ${
                           isChecked
-                            ? 'bg-[#FAF8F5] border-[#9B7A4F]/40 text-[#1C1A17]'
+                            ? 'bg-[#f5f8f7] border-[#9B7A4F]/40 text-[#1C1A17]'
                             : 'bg-white border-[#E7E5E0] text-[#5E5A54] hover:border-[#1C1A17]/30'
                         }`}
                       >
@@ -1341,12 +1344,12 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                   })}
                 </div>
 
-                <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] text-[11px] text-[#73706B] flex items-center justify-between">
+                <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] flex items-center justify-between">
                   <span>Provide your completed measurement worksheet to an authorized VanStro dealer for 3D layout verification.</span>
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(true)}
-                    className="text-[#9B7A4F] font-mono text-[10px] uppercase font-semibold hover:underline shrink-0 ml-3"
+                    className="text-[#f28a0b] font-mono text-[10px] uppercase font-bold hover:underline shrink-0 ml-3"
                   >
                     Open Printable Worksheet →
                   </button>
@@ -1473,12 +1476,12 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
               </div>
 
               {/* Architecture Dealer Footnote */}
-              <div className="p-4 bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm text-xs space-y-2">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B7A4F] font-semibold block">
+              <div className="p-4 bg-white border border-[#d9e1df] rounded-md text-xs space-y-2">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-[#003f3f] font-bold block">
                   VanStro Dealer Network Notice
                 </span>
-                <p className="text-[#5E5A54] text-[11px] leading-relaxed">
-                  Have an irregular alcove or corner pipe chase? VanStro certified dealers across Canada provide 3D CAD layout reviews to guarantee clean clearance before order submission.
+                <p className="text-[#5f7376] text-[11px] leading-relaxed">
+                  Have an irregular alcove or corner pipe chase? Independent VanStro dealers provide 3D layout reviews to help verify clean clearance before order submission.
                 </p>
               </div>
             </div>
@@ -1530,8 +1533,8 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
           >
             <div className="flex items-center justify-between pb-3 border-b border-[#2E2B26] mb-3">
               <div>
-                <span className="font-mono text-[10px] text-[#C5A069] uppercase tracking-wider block">
-                  VanStro Technical Archive
+                <span className="font-mono text-[10px] text-[#f28a0b] uppercase tracking-wider block">
+                  VanStro Technical Documentation
                 </span>
                 <h3 className="font-serif-luxury text-lg text-white font-medium">
                   {zoomImage.title}

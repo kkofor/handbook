@@ -63,7 +63,7 @@ export default function Page() {
   const activeGuideData = VANSTRO_GUIDES[currentView];
 
   return (
-    <div className="relative min-h-screen bg-[#FFFFFF]">
+    <div className="relative min-h-screen bg-white text-[#10201d]">
       {/* 1. Dedicated Interactive Cabinet Care Handbook */}
       {currentView === 'cabinet-care' && (
         <UniversalGuideDetail

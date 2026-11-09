@@ -171,7 +171,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         name: 'Cabinet Box',
         subtitle: '¾" Plywood Cabinet Box with Double-Sided Sealed Melamine',
         description:
-          'Rigid European frameless cabinet box architecture. Melamine interiors provide superior scratch resistance and water repellency under heavy cookware.',
+          'Rigid European frameless cabinet box architecture. Melamine interiors provide durable scratch resistance and water repellency under heavy cookware.',
         specs: [
           { label: 'Box Construction', value: '¾" Multi-Ply Core' },
           { label: 'Panel Face', value: 'Double-Sided Melamine' },
@@ -197,7 +197,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
           { label: 'Drawer Substrate', value: '⅝" Cabinet Plywood' },
           { label: 'Interior Finish', value: 'Wipeable Melamine' },
           { label: 'Joinery Type', value: 'Precision Interlocking' },
-          { label: 'Slide Capacity', value: '100 lbs Dynamic' },
+          { label: 'Slide Type', value: 'Under-Mount Soft-Close' },
         ],
         primaryNote: {
           label: 'Drawer Maintenance',
@@ -259,7 +259,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       title: 'Hardware & Mechanical Specifications',
       subtitle: 'DTC Clip-On Concealed Mechanical Standards',
       description:
-        'VanStro cabinets use DTC hinges and drawer slides that adjust in three independent dimensions (horizontal, vertical, depth) to achieve uniform 3mm door reveals.',
+        'VanStro cabinets use DTC hinges and drawer slides that feature 6-way adjustability (height, depth, and lateral reveal) to achieve uniform 3mm door spacing.',
       tableHeaders: ['Component', 'Adjustment Range', 'Recommended Tool', 'Maintenance Cycle'],
       tableRows: [
         { col1: 'Hinge Cup Cam (Side-to-Side)', col2: '±2.5mm lateral', col3: '#2 Pozi / Phillips Manual', col4: 'Every 12 Months' },
@@ -461,7 +461,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         { col1: 'Wall Cabinets (W)', col2: '12", 15", 18", 24", 30", 36"', col3: '12" Deep Box', col4: '18" above finished countertop' },
         { col1: 'Tall Pantries (TP)', col2: '18", 24", 30"', col3: '24" Deep Box', col4: '2"–3" ceiling crown margin' },
       ],
-      calloutTitle: 'VanStro Sizing Guarantee:',
+      calloutTitle: 'VanStro Sizing Standard:',
       calloutText:
         'All VanStro cabinets are modular imperial units. When your wall run leaves an odd remainder, order a 3" (WF330) or 6" (WF630) filler strip to scribe on site.',
     },
@@ -517,11 +517,11 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     standardRef: 'VANSTRO MECH §3.1',
     title: 'How to Adjust Cabinet Doors & Drawers',
     subtitle:
-      'When to adjust a cabinet door or drawer, what to check first, and practical steps for DTC 3-way spiral cam soft-close hinges and drawer slides.',
+      'When to adjust a cabinet door or drawer, what to check first, and practical steps for DTC 6-way adjustable soft-close hinges and drawer slides.',
     heroImage: '/assets/guides/guide-adjustment.webp',
     toc: [
       { id: 'first-check', num: '01', title: 'What to Check Before Adjusting' },
-      { id: 'hinge-cams', num: '02', title: 'DTC 3-Way Spiral Cam Hinge Tuning' },
+      { id: 'hinge-cams', num: '02', title: 'DTC 6-Way Adjustable Hinge Tuning' },
       { id: 'dos-donts', num: '03', title: "Adjustment Do's & Don'ts" },
       { id: 'drawer-slides', num: '04', title: 'Under-Mount Drawer Slide Leveling' },
       { id: 'adjust-checklist', num: '05', title: 'Alignment Verification Checklist' },
@@ -539,7 +539,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         id: 'manual-driver',
         title: 'Manual Tools Only',
         label: 'Tool Discipline',
-        body: 'Always use a manual #2 Phillips or Pozidriv screwdriver. Never use high-RPM cordless impact drivers on spiral cams.',
+        body: 'Always use a manual #2 Phillips or Pozidriv screwdriver. Never use high-RPM cordless impact drivers on adjustment cams.',
         note: 'Impact drivers strip adjustment threads.',
         icon: '🪛',
       },
@@ -647,17 +647,17 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       title: 'Under-Mount Drawer Slide Adjustment',
       subtitle: 'DTC Full-Extension Concealed Runner Calibration',
       description:
-        'VanStro drawer bases use concealed under-mount slides equipped with tool-free locking devices beneath the front corners of each drawer box.',
+        'VanStro drawer bases use concealed under-mount slides equipped with front locking clips beneath the front corners of each drawer box.',
       tableHeaders: ['Adjustment Feature', 'Mechanism Location', 'Adjustment Range', 'Function'],
       tableRows: [
         { col1: 'Front Height Wheel', col2: 'Underside of drawer clip', col3: '0 to +3.0mm vertical', col4: 'Aligns horizontal drawer face gap' },
         { col1: 'Rear Tilt Lever', col2: 'Back of runner slide rail', col3: '±2.0mm tilt', col4: 'Levels drawer box from front to back' },
         { col1: 'Side Shift Lever', col2: 'Inside locking clip', col3: '±1.5mm lateral', col4: 'Centers drawer evenly in cabinet opening' },
-        { col1: 'Quick Release Trigger', col2: 'Orange clips under box', col3: 'Instant release', col4: 'Pulls drawer completely off slides' },
+        { col1: 'Quick Release Trigger', col2: 'Clips under box', col3: 'Instant release', col4: 'Pulls drawer completely off slides' },
       ],
-      calloutTitle: 'Dealer Replacement Guarantee:',
+      calloutTitle: 'Dealer Replacement Support:',
       calloutText:
-        'If a DTC hinge or drawer slide fails to soft-close within the 12-month residential warranty period, contact your local VanStro dealer for an exact replacement part.',
+        'If a DTC hinge or drawer slide requires service within the 12-month residential warranty period, contact your local VanStro dealer for replacement parts.',
     },
     plates: [
       {
@@ -669,7 +669,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       },
       {
         figure: 'FIG. 02',
-        title: '3-Way Alignment Reveal',
+        title: '6-Way Alignment Reveal',
         caption: 'Uniform 3.0mm spacing achieved between PVC soft-touch shaker doors and drawer fronts.',
         image: '/assets/guides/handbook/hb-drawer.webp',
         material: 'Cabinet Alignment',
@@ -677,7 +677,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       {
         figure: 'FIG. 03',
         title: 'Under-Mount Slide Locking Clip',
-        caption: 'Tool-free front locking clip allowing rapid drawer box height and tilt calibration.',
+        caption: 'Front release clip allowing rapid drawer box height and tilt calibration.',
         image: '/assets/dealers/hardware-scene.webp',
         material: 'Runner Mechanics',
       },
@@ -755,10 +755,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         description:
           'A luminous, non-yellowing neutral white engineered with UV inhibitors. Designed to pair seamlessly with marble slabs, quartz surfaces, and black or brass hardware.',
         specs: [
-          { label: 'Color Code', value: 'VanStro White (SW 7005 Tone)' },
-          { label: 'Sheen Level', value: '5% Dead Flat Matte' },
-          { label: 'Core Material', value: '¾" Carb-2 Compliant MDF' },
-          { label: 'UV Stability', value: 'Delta-E < 0.5 after 5 years' },
+          { label: 'Colorway', value: 'VanStro Matte White' },
+          { label: 'Sheen Level', value: 'Matte Soft-Touch' },
+          { label: 'Core Material', value: '¾" High-Density MDF Door' },
+          { label: 'Surface Finish', value: 'UV-Protected PVC Membrane' },
         ],
         primaryNote: {
           label: 'Design Harmony',
@@ -776,10 +776,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         description:
           'A tranquil, stone-inspired light grey that grounds the cabinetry without darkening the room. Offers exceptional forgivingness against kitchen residue.',
         specs: [
-          { label: 'Color Code', value: 'VanStro Light Grey (Cool Stone)' },
-          { label: 'Sheen Level', value: '5% Matte Soft-Touch' },
-          { label: 'Core Material', value: '¾" Carb-2 Compliant MDF' },
-          { label: 'Stain Resistance', value: 'Tested 24h against coffee/wine' },
+          { label: 'Colorway', value: 'VanStro Light Grey' },
+          { label: 'Sheen Level', value: 'Matte Soft-Touch' },
+          { label: 'Core Material', value: '¾" High-Density MDF Door' },
+          { label: 'Surface Finish', value: 'Stain-Resistant PVC Membrane' },
         ],
         primaryNote: {
           label: 'Design Harmony',
@@ -787,7 +787,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         },
         techniqueNote: {
           label: 'Uniform Consistency',
-          text: 'Factory-controlled thermofoil membrane guarantees 100% color consistency across all cabinet batches.',
+          text: 'Factory-controlled membrane pressing provides uniform color consistency across all cabinet orders.',
         },
       },
       {
@@ -819,7 +819,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         'Examine a physical door sample in your room’s actual lighting morning and evening.',
         'Pair door samples against your chosen quartz countertop slab and flooring plank.',
         'Use paint-ready trims (CM3 crown, TK8 toe kick) if custom color matching is desired.',
-        'Rely on factory heat-sealed thermofoil for superior moisture protection in humid zones.',
+        'Rely on factory heat-sealed thermofoil for dependable moisture protection in humid zones.',
       ],
       doFooter: 'Physical samples are available for review at all authorized VanStro dealer showrooms.',
       doImage: '/assets/guides/handbook/hb-swatches.webp',
@@ -892,7 +892,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         { id: 'f4', period: 'Pre-Order', task: 'Checked toe kick fascia (TK8) linear footage for all base runs and islands.' },
         { id: 'f5', period: 'Pre-Order', task: 'Confirmed glass-door wall cabinet locations (if selected in kitchen design).' },
       ],
-      note: 'All finish samples reflect factory production runs. Batch-to-batch color variance is strictly controlled within Delta-E 0.5.',
+      note: 'All finish samples reflect factory production runs and standard production tolerances.',
     },
   },
 
@@ -1014,7 +1014,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         'Use a corner clamping square to verify the box is 90° square before tightening cam locks.',
         'Assemble all boxes first, then gang and level the entire run together along the wall.',
       ],
-      doFooter: 'A square box guarantees your doors will hang with perfect reveal lines.',
+      doFooter: 'A square box ensures your doors will hang with consistent reveal lines.',
       doImage: '/assets/dealers/kitchen-life.jpg',
       doBadge: 'DO',
       dontTitle: 'Common Assembly Mistakes',
@@ -1031,20 +1031,20 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     },
     technicalSection: {
       num: '04',
-      title: 'Assembly Time & Tool Matrix',
-      subtitle: 'Expected Assembly Times per Module Type',
+      title: 'Assembly Workflow & Tools',
+      subtitle: 'Assembly Sequence by Cabinet Type',
       description:
-        'Assembly times based on a standard 1-person assembly using handheld screwdrivers and PVA wood glue.',
-      tableHeaders: ['Cabinet Type', 'Average Assembly Time', 'Tools Required', 'Weight Rating'],
+        'Standard assembly recommendations using handheld manual screwdrivers and wood glue.',
+      tableHeaders: ['Cabinet Module', 'Assembly Sequence', 'Recommended Tools', 'Key Verification'],
       tableRows: [
-        { col1: 'Single Door Base (B15-B21)', col2: '12–15 Minutes', col3: '#2 Screwdriver, Wood Glue, Rubber Mallet', col4: '300 lbs Static' },
-        { col1: 'Double Door Base (B24-B36)', col2: '15–20 Minutes', col3: '#2 Screwdriver, Wood Glue, Mallet', col4: '500 lbs Static' },
-        { col1: '3-Drawer Base (DB18-DB36)', col2: '25–30 Minutes', col3: '#2 Screwdriver, Glue, Clamp', col4: '100 lbs per Drawer' },
-        { col1: 'Tall Pantry Tower (TP18-TP30)', col2: '35–45 Minutes', col3: '2-Person Lift, Screwdriver, Level', col4: '600 lbs Static' },
+        { col1: 'Single Door Base (B15-B21)', col2: 'Dowel & cam box assembly', col3: '#2 Manual Screwdriver, Rubber Mallet', col4: 'Check box diagonal squareness' },
+        { col1: 'Double Door Base (B24-B36)', col2: 'Box assembly & shelf staging', col3: '#2 Screwdriver, Wood Glue, Mallet', col4: 'Verify bottom panel flushness' },
+        { col1: '3-Drawer Base (DB18-DB36)', col2: 'Runner clips & drawer boxes', col3: '#2 Screwdriver, Wood Glue', col4: 'Test slide engagement before alignment' },
+        { col1: 'Tall Pantry Tower (TP18-TP30)', col2: '2-Person assembly & cleats', col3: 'Level, 2-Person Lift, Screwdriver', col4: 'Anchor to wall studs securely' },
       ],
-      calloutTitle: 'Canadian Warehouse Advantage:',
+      calloutTitle: 'Local Dealer Coordination:',
       calloutText:
-        'VanStro maintains deep inventory in Canadian warehouses (Winnipeg, Waterloo, Pointe-Claire, Saskatoon), allowing fast dealer pickup or direct regional freight delivery without overseas customs delays.',
+        'VanStro products are stocked in Winnipeg and distributed through independent local dealers who coordinate pickup and order fulfillment.',
     },
     plates: [
       {
@@ -1103,7 +1103,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       { id: 'two-sheet-materials', num: '01', title: 'Cross-Ply vs Particle Board' },
       { id: 'moisture-resilience', num: '02', title: 'Material Performance Comparison' },
       { id: 'dos-donts', num: '03', title: 'Cabinet Box Material Rules' },
-      { id: 'shelf-deflection', num: '04', title: 'ASTM Engineering Benchmarks' },
+      { id: 'shelf-deflection', num: '04', title: 'Box Construction Standards' },
       { id: 'plywood-checklist', num: '05', title: 'Plywood Specification Sheet' },
     ],
     quickRules: [
@@ -1203,20 +1203,20 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     },
     technicalSection: {
       num: '04',
-      title: 'Material Engineering Benchmarks',
-      subtitle: 'ASTM Standard Testing Comparison: Plywood vs Particle Board',
+      title: 'Box Construction Standards',
+      subtitle: 'Plywood vs Particle Board Construction Characteristics',
       description:
-        'Laboratory test comparisons demonstrating mechanical resilience under simulated residential loading and moisture exposure.',
-      tableHeaders: ['Performance Metric', 'VanStro ¾" Plywood', 'Standard Particle Board', 'Advantage'],
+        'Material performance differences between cross-laminated cabinet plywood and standard particle board.',
+      tableHeaders: ['Construction Feature', '¾" Cabinet Plywood', 'Particle Board', 'Performance Impact'],
       tableRows: [
-        { col1: 'Thickness Swell (24h Water Soak)', col2: '< 2.5% Swell', col3: '> 18.0% Permanent Swell', col4: 'Plywood 7x Better' },
-        { col1: 'Screw Pull-Out Strength (Face)', col2: '380 lbs Force', col3: '175 lbs Force', col4: 'Plywood 2.2x Stronger' },
-        { col1: 'Shelf Sag over 36" Span (100 lbs)', col2: '0.04" (Imperceptible)', col3: '0.28" (Noticeable Sag)', col4: 'Plywood 7x Stiffer' },
-        { col1: 'Weight per 4x8 Sheet', col2: '58 lbs (Lighter on walls)', col3: '85 lbs (Heavy on framing)', col4: 'Plywood Easier to Install' },
+        { col1: 'Core Composition', col2: 'Cross-laminated wood veneers', col3: 'Compressed sawdust & resin', col4: 'Plywood resists sagging and warping' },
+        { col1: 'Moisture Tolerance', col2: 'Resistant to occasional water', col3: 'Swells permanently with water', col4: 'Plywood critical near sinks & vanities' },
+        { col1: 'Fastener Retention', col2: 'Screws bite into continuous grain', col3: 'Fasteners can chip and strip', col4: 'Keeps hinges and slides securely anchored' },
+        { col1: 'Structural Support', col2: 'Supports heavy stone countertops', col3: 'Requires added perimeter bracing', col4: 'Rigid box maintains door alignment' },
       ],
-      calloutTitle: 'VanStro Quality Standard:',
+      calloutTitle: 'VanStro Box Standard:',
       calloutText:
-        'VanStro never compromises on box construction. While doors use high-density MDF for flawless Shaker contouring, every cabinet box and shelf is crafted from true ¾" plywood.',
+        'Every VanStro cabinet box and shelf is manufactured from ¾" multi-ply plywood with factory-applied interior melamine for durable, wipeable everyday use.',
     },
     plates: [
       {
@@ -1236,15 +1236,15 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       {
         figure: 'FIG. 03',
         title: 'Countertop Load Distribution',
-        caption: 'Rigid plywood side panels supporting heavy 3cm quartz waterfall islands without racking.',
+        caption: 'Rigid plywood side panels supporting heavy stone vanity and kitchen countertops.',
         image: '/assets/products/kitchen-cabinets/sink-base-sb36-011970130-sb36-pwms-wh-primary.jpg',
-        material: 'Structural Island',
+        material: 'Structural Box',
       },
     ],
     banner: {
-      kicker: 'Material Engineering Guide',
+      kicker: 'Material Guide',
       title: 'Download the Plywood Box Specification Sheet',
-      body: 'Detailed ASTM test results, thickness specs, and structural joinery diagrams for architectural review.',
+      body: 'Review thickness specifications, box construction details, and hardware compatibility.',
       cta: 'Download Plywood Spec Sheet PDF',
     },
     checklist: {
@@ -1257,7 +1257,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         { id: 'p4', period: 'Spec 4', task: 'Verified European frameless construction for maximum storage clearance.' },
         { id: 'p5', period: 'Spec 5', task: 'Confirmed back panels feature integrated solid hanging cleats.' },
       ],
-      note: 'VanStro cabinetry uses certified low-emission Carb-2 compliant plywood cores meeting Canadian indoor air quality standards.',
+      note: 'VanStro cabinet boxes are constructed from multi-ply plywood with wipeable interior melamine.',
     },
   },
 
@@ -1324,7 +1324,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         },
         techniqueNote: {
           label: 'Countertop Option',
-          text: 'Sold as cabinet only or with integrated porcelain / quartz countertop and undermount sink.',
+          text: 'Available as cabinet only or cabinet with vanity countertop.',
         },
       },
       {
@@ -1495,9 +1495,9 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       },
       {
         id: 'inspect-promptly',
-        title: 'Inspect Within 48 Hours',
+        title: 'Prompt Inspection',
         label: 'Damage Protocol',
-        body: 'Note any exterior carton damage on the carrier delivery receipt before signing. Report damage within 48 hours for immediate replacement.',
+        body: 'Note any exterior carton damage on the delivery receipt before signing. Report issues promptly to your dealer for resolution.',
         note: 'Keep original packaging for claims.',
         icon: '🔍',
       },
@@ -1549,41 +1549,39 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     ],
     dosAndDonts: {
       doTitle: 'Receiving & Inspection Best Practices',
-      doIntro: 'Follow these steps to guarantee warranty replacement eligibility:',
+      doIntro: 'Recommended inspection steps upon shipment arrival:',
       dos: [
-        'Count all carton boxes against the packing slip manifest before the driver departs.',
-        'Photograph any crushed carton corners or punctured cardboard while still on the pallet.',
-        'Note "Damaged Carton" clearly on the carrier bill of lading (BOL) before signing.',
-        'Store flat-pack boxes indoors in a climate-controlled room (40%–50% RH).',
+        'Count all carton boxes against the packing slip manifest before signing.',
+        'Photograph any crushed carton corners or punctured cardboard while on the pallet.',
+        'Note "Damaged Carton" clearly on the delivery receipt if any packaging is compromised.',
+        'Store flat-pack boxes indoors in a climate-controlled room.',
       ],
-      doFooter: 'Documented transit damage is replaced with high priority by your VanStro dealer.',
+      doFooter: 'Documented transit damage is handled through your local VanStro dealer.',
       doImage: '/assets/dealers/kitchen-life.jpg',
       doBadge: 'DO',
       dontTitle: 'Logistics Mistakes to Avoid',
-      dontIntro: 'Avoid these critical freight errors:',
+      dontIntro: 'Avoid these critical receiving errors:',
       donts: [
         'Never sign delivery receipts as "Clean and Intact" before inspecting box counts.',
         'Do not transport unboxed cabinet doors loose in open pickup beds where wind can scratch faces.',
-        'Never store flat-pack cabinet boxes outdoors on damp ground or in unheated garages.',
-        'Do not discard damaged cartons before photographing serial labels for warranty claims.',
+        'Never store flat-pack cabinet boxes outdoors on damp ground or in unheated spaces.',
+        'Do not discard damaged cartons before photographing serial labels for warranty records.',
       ],
-      dontFooter: 'Unreported damage reported after 48 hours cannot be claimed against transit carriers.',
+      dontFooter: 'Transit damage must be noted on the delivery receipt to support freight claims.',
       dontImage: '/assets/guides/handbook/hb-dont-water.webp',
       dontBadge: 'DON’T',
     },
     technicalSection: {
       num: '04',
-      title: 'Canadian Distribution Network',
-      subtitle: 'Regional Warehouses and Pickup Hubs across Canada',
+      title: 'Order Fulfillment & Distribution',
+      subtitle: 'Winnipeg Central Facility & Independent Dealer Network',
       description:
-        'VanStro distribution centers maintain regional stock to minimize customer wait times across major Canadian provinces.',
-      tableHeaders: ['Hub Code', 'Location', 'Service Region', 'Pickup Hours'],
+        'VanStro maintains central inventory in Winnipeg, Manitoba. Orders are fulfilled through authorized independent dealers.',
+      tableHeaders: ['Facility / Location', 'City / Province', 'Role', 'Access'],
       tableRows: [
-        { col1: 'MB01 (HQ)', col2: 'Winnipeg, Manitoba (Century St)', col3: 'Manitoba & Western Ontario', col4: 'Mon–Fri 8:00–16:30' },
-        { col1: 'MB02', col2: 'Brandon, Manitoba (Park Ave E)', col3: 'Western Manitoba & Parkland', col4: 'Mon–Fri 8:30–17:00' },
-        { col1: 'ON10', col2: 'Waterloo, Ontario (Regina St S)', col3: 'Greater Toronto Area & SW Ontario', col4: 'Mon–Fri 8:00–16:30' },
-        { col1: 'QC10', col2: 'Pointe-Claire, Quebec (St-Jean Blvd)', col3: 'Greater Montreal & Quebec', col4: 'Mon–Fri 8:00–16:30' },
-        { col1: 'SK10', col2: 'Saskatoon, Saskatchewan (3rd Ave N)', col3: 'Saskatchewan & Eastern Alberta', col4: 'Mon–Fri 8:30–17:00' },
+        { col1: 'VanStro Global Supply HQ', col2: 'Winnipeg, MB (856 Century St)', col3: 'Central Inventory & Orders', col4: 'Mon–Fri 8:00–16:30' },
+        { col1: 'Contractor\'s Corner', col2: 'Brandon, MB (Park Ave E)', col3: 'Independent Dealer Location', col4: 'Mon–Fri 8:30–17:00' },
+        { col1: 'Dealer Partner Network', col2: 'Expansion Canadian Markets', col3: 'Dealer Opportunities Open', col4: 'Applications Open' },
       ],
       calloutTitle: 'Need Delivery Scheduling Assistance?',
       calloutText:
@@ -1615,20 +1613,20 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     banner: {
       kicker: 'Logistics Worksheet',
       title: 'Download the Job-Site Delivery & Receiving Inspection Checklist',
-      body: 'Print this receiving sheet for your job-site foreman to verify box counts and inspect cartons upon carrier arrival.',
+      body: 'Print this receiving sheet for your job-site foreman to verify box counts and inspect cartons upon arrival.',
       cta: 'Download Receiving Checklist PDF',
     },
     checklist: {
       title: 'Freight Receiving & Inspection Sheet',
       docRef: 'VS-LOG-2026',
       tasks: [
-        { id: 'l1', period: 'Pre-Arrival', task: 'Cleared driveway access path for 5-ton commercial delivery truck.' },
-        { id: 'l2', period: 'Arrival', task: 'Verified carrier bill of lading (BOL) matches VanStro order number.' },
+        { id: 'l1', period: 'Pre-Arrival', task: 'Cleared access path for commercial delivery truck.' },
+        { id: 'l2', period: 'Arrival', task: 'Verified bill of lading (BOL) matches VanStro order number.' },
         { id: 'l3', period: 'Inspection', task: 'Counted all carton boxes against packing slip; noted any crushed corners.' },
         { id: 'l4', period: 'Receiving', task: 'Signed delivery receipt with specific damage notes if cartons were breached.' },
         { id: 'l5', period: 'Staging', task: 'Carried cartons indoors immediately into heated, dry staging area.' },
       ],
-      note: 'Transit damage must be documented on the bill of lading upon arrival and reported to your dealer within 48 hours.',
+      note: 'Transit damage should be documented on the bill of lading upon arrival and reported to your dealer promptly.',
     },
   },
 };

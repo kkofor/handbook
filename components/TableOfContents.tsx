@@ -56,12 +56,12 @@ export default function TableOfContents({
         </div>
 
         {/* Minimal metadata footnote */}
-        <div className="pt-8 border-t border-[#E7E5E0] space-y-2">
-          <p className="text-[11px] uppercase tracking-wider text-[#9E9B94]">
-            Archival Document
+        <div className="pt-8 border-t border-[#d9e1df] space-y-2">
+          <p className="text-[11px] uppercase tracking-wider text-[#5f7376] font-mono">
+            Care Protocol
           </p>
-          <p className="text-xs text-[#73706B] leading-relaxed">
-            VanStro Architectural Joinery Standard §4.2
+          <p className="text-xs text-[#5f7376] leading-relaxed">
+            VanStro Cabinetry Reference Standard
           </p>
         </div>
       </div>

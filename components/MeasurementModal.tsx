@@ -44,12 +44,12 @@ export default function MeasurementModal({ isOpen, onClose }: MeasurementModalPr
         {/* Header */}
         <div className="px-6 py-5 border-b border-[#E7E5E0] bg-[#FFFFFF] flex items-center justify-between no-print">
           <div>
-            <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#9B7A4F]">
-              <span>VANSTRO PLANNING ARCHIVE</span>
+            <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#003f3f]">
+              <span>VANSTRO MEASUREMENT WORKSHEET</span>
               <span>·</span>
               <span>DOC REF: VS-PL-2026</span>
             </div>
-            <h2 id="measure-modal-title" className="font-serif-luxury text-xl sm:text-2xl font-medium text-[#1C1A17] mt-0.5">
+            <h2 id="measure-modal-title" className="text-xl sm:text-2xl font-bold text-[#003f3f] mt-0.5">
               Kitchen Cabinet Measurement Grid &amp; Worksheet
             </h2>
           </div>
@@ -86,7 +86,7 @@ export default function MeasurementModal({ isOpen, onClose }: MeasurementModalPr
                 <div className="h-6 border-b border-dashed border-[#C4C0B6]" />
               </div>
               <div>
-                <span className="text-[10px] font-mono uppercase text-[#8C8880] block">Certified Dealer / Date:</span>
+                <span className="text-[10px] font-mono uppercase text-[#8C8880] block">Dealer / Date:</span>
                 <div className="h-6 border-b border-dashed border-[#C4C0B6]" />
               </div>
             </div>
@@ -156,12 +156,12 @@ export default function MeasurementModal({ isOpen, onClose }: MeasurementModalPr
             </div>
           </div>
 
-          {/* VanStro Engineering Note */}
-          <div className="p-4 bg-[#FFFFFF] border-l-2 border-[#9B7A4F] text-[11px] text-[#73706B] leading-relaxed">
-            <strong className="text-[#1C1A17] font-semibold block mb-0.5">
+          {/* VanStro Sizing Note */}
+          <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] leading-relaxed">
+            <strong className="text-[#003f3f] font-semibold block mb-0.5">
               VanStro Sizing Notice:
             </strong>
-            VanStro modular cabinetry is manufactured in fixed nominal widths (e.g., 24&quot;, 27&quot;, 30&quot;, 36&quot;, 42&quot;, 48&quot;). No custom-width cabinets are fabricated. All remaining wall space is resolved via standard 3&quot; (WF330/WF342) or 6&quot; (WF630/WF642) fluted or flat fillers scribed on-site.
+            VanStro modular cabinetry is manufactured in standard nominal widths (e.g., 24&quot;, 27&quot;, 30&quot;, 36&quot;, 42&quot;, 48&quot;). All remaining wall space is resolved via standard 3&quot; (WF330/WF342) or 6&quot; (WF630/WF642) fillers scribed on-site.
           </div>
         </div>
 

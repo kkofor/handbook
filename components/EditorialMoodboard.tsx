@@ -26,11 +26,11 @@ const MOODBOARD_ITEMS: MoodboardItem[] = [
   {
     id: 'dtc-hinge',
     figure: 'FIG. 02',
-    title: 'DTC 6-Way Cam Hinge',
-    caption: 'Cold-rolled nickel-plated steel hinge with integrated hydraulic deceleration damper and 3D spiral cam adjustment.',
+    title: 'DTC 6-Way Adjustable Hinge',
+    caption: 'Cold-rolled steel hinge with integrated soft-close damper and 6-way cam adjustment.',
     src: '/assets/guides/handbook/hb-hinge.webp',
-    alt: 'VanStro DTC 6-way spiral cam soft-close concealed hinge',
-    material: 'Precision Hardware',
+    alt: 'VanStro DTC 6-way adjustable soft-close concealed hinge',
+    material: 'Cabinet Hardware',
   },
   {
     id: 'microfiber-cloth',
@@ -54,7 +54,7 @@ export default function EditorialMoodboard() {
           Material Study
         </span>
         <span className="text-[11px] font-mono text-[#A09D96]">
-          Archive 03/03
+          Detail 03/03
         </span>
       </div>
 
@@ -114,7 +114,7 @@ export default function EditorialMoodboard() {
           Editorial Specimen Note
         </span>
         <p className="text-[11px] text-[#A09D96] leading-relaxed font-sans">
-          Specimens harvested and machined according to VanStro Architectural Joinery standards. Natural batch grain variances and micro-pores are authentic characteristics of European Baltic birch and rift-cut oak.
+          Specimens machined according to VanStro cabinetry standards. Natural batch grain variances and subtle micro-textures are authentic characteristics of wood and finish materials.
         </p>
       </div>
 
@@ -135,7 +135,7 @@ export default function EditorialMoodboard() {
                 <span className="text-[10px] font-mono text-[#9B7A4F] uppercase tracking-wider block">
                   {selectedPhoto.figure} · High-Resolution Detail
                 </span>
-                <h3 className="font-serif-luxury text-xl font-medium text-[#1C1A17]">
+                <h3 className="text-xl font-bold text-[#1C1A17]">
                   {selectedPhoto.title}
                 </h3>
               </div>
@@ -166,7 +166,7 @@ export default function EditorialMoodboard() {
               </p>
               <div className="flex items-center justify-between pt-2 border-t border-[#F0EFEA] text-[11px] text-[#8C8880] font-mono">
                 <span>Material: {selectedPhoto.material}</span>
-                <span>VanStro Architectural Digest Standard</span>
+                <span>VanStro Specification Standard</span>
               </div>
             </div>
           </div>

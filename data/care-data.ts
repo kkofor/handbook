@@ -49,7 +49,7 @@ export const FINISH_DETAILS: Record<string, FinishDetail> = {
     name: 'Cabinet Box',
     subtitle: '¾" Premium Multi-Ply Box with Double-Sided Sealed Melamine',
     description:
-      'Rigid ¾" European multi-ply cabinet box architecture finished with double-sided factory-sealed melamine interiors for superior scratch and water-resistance.',
+      'Rigid ¾" European multi-ply cabinet box architecture finished with double-sided factory-sealed melamine interiors for durable scratch and water-resistance.',
     recommendedSolution: 'A soft, barely damp cloth with gentle plant-based soap',
     spongeType: 'Clean microfiber towel followed by dry buffing cloth',
     phRange: 'pH 7.0 (Neutral)',
@@ -87,7 +87,7 @@ export const FINISH_DETAILS: Record<string, FinishDetail> = {
     moistureLimit: 'Dry immediately within 30 seconds of surface contact',
     specNotes: [
       { label: 'Surface Sheen', value: '5% Ultra-Matte Dead Flat' },
-      { label: 'Core Base', value: 'FSC-Certified Euro Multi-Ply' },
+      { label: 'Core Base', value: 'Plywood Box Construction' },
       { label: 'Heat Tolerance', value: 'Max 55°C (131°F) ambient' },
       { label: 'Relative Humidity', value: 'Target 40% – 50% interior RH' },
     ],
@@ -163,7 +163,7 @@ export const FINISH_DETAILS: Record<string, FinishDetail> = {
     name: 'Hardware',
     subtitle: 'Solid Satin Brass, Bronze Pulls & Concealed Soft-Close Hinges',
     description:
-      'Precision machined architectural hardware including solid unlacquered living brass, blackened bronze, and German-engineered soft-close hinges with integrated hydraulic dampers.',
+      'Precision architectural hardware including solid brass, blackened bronze, and DTC soft-close hinges with integrated hydraulic dampers.',
     recommendedSolution: 'Warm damp microfiber followed immediately by dry polishing cloth',
     spongeType: 'Optical-grade microfiber cloth or soft jeweler chamois',
     phRange: 'pH 7.0 (Pure water only)',
@@ -171,9 +171,9 @@ export const FINISH_DETAILS: Record<string, FinishDetail> = {
     moistureLimit: 'Immediate dry wiping — zero liquid intrusion into moving hinge parts',
     specNotes: [
       { label: 'Pull Material', value: 'Solid Machined Forged Brass' },
-      { label: 'Hinge Mechanism', value: 'Clip-top 110° Blumotion Integrated' },
+      { label: 'Hinge Mechanism', value: 'DTC 110° Clip-On Soft-Close Integrated' },
       { label: 'Living Finish', value: 'Develops authentic antique patina over time' },
-      { label: 'Adjustment', value: '3-Way cam eccentric screw leveling' },
+      { label: 'Adjustment', value: '6-Way cam adjustment (height, depth, lateral)' },
     ],
     tailoredDos: [
       'Dust pulls regularly with a dry plush microfiber cloth to remove skin acidity.',
@@ -221,7 +221,7 @@ export const CHECKLIST_ITEMS = [
   { id: '3', period: 'Weekly', task: 'Inspect lower kickboards and base cabinet edges for unnoticed standing moisture' },
   { id: '4', period: 'Weekly', task: 'Dust cabinet crown moldings and open shelving with an electro-static microfiber duster' },
   { id: '5', period: 'Monthly', task: 'Gently buff cabinet hardware pulls with a dry microfiber cloth to remove finger oils' },
-  { id: '6', period: 'Quarterly', task: 'Verify Blum soft-close hinges are closing smoothly; re-align drawer fronts with cam screws' },
+  { id: '6', period: 'Quarterly', task: 'Verify DTC soft-close hinges are closing smoothly; re-align drawer fronts with cam screws' },
   { id: '7', period: 'Seasonal', task: 'Check indoor relative humidity gauge (aim for stable 40%–50% to prevent wood movement)' },
   { id: '8', period: 'Annual', task: 'Hand-tighten handle fasteners using a manual screwdriver (never use power drills)' },
 ];

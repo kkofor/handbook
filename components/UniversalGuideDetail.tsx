@@ -60,7 +60,7 @@ export default function UniversalGuideDetail({
   } | null>(null);
 
   // Guide-Specific Interactive States
-  // 1. For cabinet-adjustment: 3-way cam direction simulator
+  // 1. For cabinet-adjustment: 6-way cam adjustment simulator
   const [camMode, setCamMode] = useState<'lateral' | 'depth' | 'vertical'>('lateral');
 
   // 2. For bathroom-vanity-sizes: alcove width calculator
@@ -220,17 +220,17 @@ export default function UniversalGuideDetail({
               </div>
 
               {/* Minimalist Footnote */}
-              <div className="pt-6 border-t border-[#E7E5E0] space-y-2">
-                <p className="text-[10px] uppercase tracking-wider text-[#9E9B94] font-mono">
-                  Archival Document
+              <div className="pt-6 border-t border-[#d9e1df] space-y-2">
+                <p className="text-[10px] uppercase tracking-wider text-[#5f7376] font-mono">
+                  Technical Guide
                 </p>
-                <p className="text-xs text-[#73706B] leading-relaxed">
-                  {guide.standardRef} — VanStro Technical Library
+                <p className="text-xs text-[#5f7376] leading-relaxed">
+                  {guide.standardRef} — VanStro Reference Library
                 </p>
                 <div className="pt-2">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#9B7A4F]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9B7A4F]" />
-                    Factory Verified
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#003f3f]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#003f3f]" />
+                    Product Documentation
                   </span>
                 </div>
               </div>
@@ -263,33 +263,34 @@ export default function UniversalGuideDetail({
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-1">
                 {guide.quickRules.map((card, idx) => (
                   <Card
                     key={card.id}
-                    className="border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between"
+                    className="border-[#d9e1df] bg-white hover:border-[#003f3f] hover:shadow-xs transition-all duration-300 rounded-lg flex flex-col justify-between"
                   >
-                    <CardHeader className="p-5 pb-3 space-y-2">
-                      <div className="flex items-center justify-between">
-                        <Badge variant="copper" className="text-[9px] font-mono">
-                          Rule 0{idx + 1}
-                        </Badge>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C8880]">
+                    <CardHeader className="p-6 pb-4 space-y-2.5">
+                      {/* Clean Unboxed Editorial Kicker */}
+                      <div className="flex items-center gap-2 text-xs font-mono text-[#5f7376]">
+                        <span className="font-bold text-[#003f3f]">0{idx + 1}</span>
+                        <span aria-hidden="true" className="text-[#d9e1df]">/</span>
+                        <span className="uppercase tracking-wider font-semibold text-[#5f7376]">
                           {card.label}
                         </span>
                       </div>
 
-                      <CardTitle className="text-base font-serif-luxury font-medium text-[#1C1A17] leading-snug">
+                      <CardTitle className="text-xl font-bold text-[#003f3f] leading-snug">
                         {card.title}
                       </CardTitle>
 
-                      <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-1">
+                      <CardDescription className="text-xs sm:text-sm text-[#315b60] leading-relaxed pt-1">
                         {card.body}
                       </CardDescription>
                     </CardHeader>
 
-                    <CardFooter className="px-5 py-2.5 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[10px] text-[#8C8880] font-mono">
-                      {card.note}
+                    <CardFooter className="px-6 py-3 bg-[#f5f8f7] border-t border-[#d9e1df] text-xs text-[#5f7376]">
+                      <span className="font-semibold text-[#10201d] mr-1.5">Note:</span>
+                      <span>{card.note}</span>
                     </CardFooter>
                   </Card>
                 ))}
@@ -337,34 +338,32 @@ export default function UniversalGuideDetail({
 
                   {/* Active Tab Detail Card */}
                   {activeTab && (
-                    <Card className="border-[#E7E5E0] bg-white shadow-xs rounded-lg">
-                      <CardHeader className="p-6 sm:p-7 space-y-1.5 pb-4">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="copper" className="text-[9px] font-mono">
+                    <Card className="border-[#d9e1df] bg-white shadow-xs rounded-lg">
+                      <CardHeader className="p-6 sm:p-7 space-y-2 pb-4">
+                        <div className="flex items-center gap-2 text-xs font-mono text-[#5f7376]">
+                          <span className="font-bold text-[#003f3f] uppercase tracking-wider">
                             Specification
-                          </Badge>
-                          <span className="text-[#C4C0B6]">/</span>
-                          <span className="text-xs font-mono text-[#73706B]">
-                            {activeTab.name}
                           </span>
+                          <span className="text-[#d9e1df]">/</span>
+                          <span>{activeTab.name}</span>
                         </div>
-                        <CardTitle className="text-xl sm:text-2xl font-serif-luxury text-[#1C1A17]">
+                        <CardTitle className="text-xl sm:text-2xl font-bold text-[#003f3f]">
                           {activeTab.subtitle}
                         </CardTitle>
-                        <CardDescription className="text-xs text-[#5E5A54] leading-relaxed pt-0.5">
+                        <CardDescription className="text-xs sm:text-sm text-[#315b60] leading-relaxed pt-0.5">
                           {activeTab.description}
                         </CardDescription>
                       </CardHeader>
 
                       <CardContent className="p-6 sm:p-7 pt-0 space-y-6">
                         {/* Spec Grid */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-[#F0EFEA] bg-[#FAF9F6]/60 rounded-sm p-3">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-[#d9e1df] bg-[#f5f8f7] rounded-md p-3">
                           {activeTab.specs.map((spec, i) => (
                             <div key={i} className="space-y-0.5">
-                              <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C8880] block">
+                              <span className="text-[10px] font-mono uppercase tracking-wider text-[#5f7376] block">
                                 {spec.label}
                               </span>
-                              <span className="text-xs font-semibold text-[#1C1A17] block leading-snug">
+                              <span className="text-xs font-semibold text-[#10201d] block leading-snug">
                                 {spec.value}
                               </span>
                             </div>
@@ -373,20 +372,20 @@ export default function UniversalGuideDetail({
 
                         {/* Notes Callouts */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                          <div className="p-4 bg-white border border-[#E7E5E0] rounded-sm space-y-1 shadow-2xs border-l-2 border-l-[#9B7A4F]">
-                            <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B7A4F] font-semibold block">
+                          <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                            <span className="font-mono text-[10px] uppercase tracking-wider text-[#f28a0b] font-bold block">
                               {activeTab.primaryNote.label}
                             </span>
-                            <p className="text-[#1C1A17] text-xs leading-relaxed">
+                            <p className="text-[#10201d] text-xs leading-relaxed">
                               {activeTab.primaryNote.text}
                             </p>
                           </div>
 
-                          <div className="p-4 bg-white border border-[#E7E5E0] rounded-sm space-y-1 shadow-2xs border-l-2 border-l-[#181715]">
-                            <span className="font-mono text-[10px] uppercase tracking-wider text-[#1C1A17] font-semibold block">
+                          <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-1">
+                            <span className="font-mono text-[10px] uppercase tracking-wider text-[#003f3f] font-bold block">
                               {activeTab.techniqueNote.label}
                             </span>
-                            <p className="text-[#1C1A17] text-xs leading-relaxed">
+                            <p className="text-[#10201d] text-xs leading-relaxed">
                               {activeTab.techniqueNote.text}
                             </p>
                           </div>
@@ -395,15 +394,15 @@ export default function UniversalGuideDetail({
                         {/* GUIDE-SPECIFIC INTERACTIVE FEATURE SLICES */}
                         {/* Case A: cabinet-adjustment -> 3-Way Cam Directional Guide */}
                         {guide.slug === 'cabinet-adjustment' && (
-                          <div className="p-5 bg-[#FAF9F6] border border-[#E7E5E0] rounded-sm space-y-3">
+                          <div className="p-5 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-3">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-mono uppercase tracking-wider text-[#1C1A17] font-semibold flex items-center gap-1.5">
-                                <RotateCw className="w-3.5 h-3.5 text-[#9B7A4F]" />
+                              <span className="text-xs font-mono uppercase tracking-wider text-[#003f3f] font-bold flex items-center gap-1.5">
+                                <RotateCw className="w-3.5 h-3.5 text-[#f28a0b]" />
                                 <span>Interactive DTC Cam Direction Selector:</span>
                               </span>
-                              <Badge variant="secondary" className="font-mono text-[10px]">
+                              <span className="font-mono text-xs text-[#5f7376]">
                                 Manual #2 Driver Only
-                              </Badge>
+                              </span>
                             </div>
 
                             <div className="flex flex-wrap gap-2">
@@ -474,15 +473,15 @@ export default function UniversalGuideDetail({
 
                         {/* Case B: bathroom-vanity-sizes -> Alcove Width Estimator */}
                         {guide.slug === 'bathroom-vanity-sizes' && (
-                          <div className="p-5 bg-[#FAF9F6] border border-[#E7E5E0] rounded-sm space-y-3">
+                          <div className="p-5 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-3">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-mono uppercase tracking-wider text-[#1C1A17] font-semibold flex items-center gap-1.5">
-                                <Sliders className="w-3.5 h-3.5 text-[#9B7A4F]" />
+                              <span className="text-xs font-mono uppercase tracking-wider text-[#003f3f] font-bold flex items-center gap-1.5">
+                                <Sliders className="w-3.5 h-3.5 text-[#f28a0b]" />
                                 <span>Alcove Width Sizing Estimator:</span>
                               </span>
-                              <Badge variant="secondary" className="font-mono text-xs font-semibold text-[#9B7A4F]">
+                              <span className="font-mono text-xs font-bold text-[#003f3f]">
                                 Room Space: {alcoveWidth}&quot;
-                              </Badge>
+                              </span>
                             </div>
 
                             <div className="flex items-center gap-3">
@@ -493,43 +492,43 @@ export default function UniversalGuideDetail({
                                 step="1"
                                 value={alcoveWidth}
                                 onChange={(e) => setAlcoveWidth(Number(e.target.value))}
-                                className="w-full accent-[#181715] cursor-pointer"
+                                className="w-full accent-[#003f3f] cursor-pointer"
                               />
-                              <span className="font-mono text-xs font-semibold w-14 text-right">{alcoveWidth}&quot;</span>
+                              <span className="font-mono text-xs font-semibold w-14 text-right text-[#003f3f]">{alcoveWidth}&quot;</span>
                             </div>
 
-                            <div className="p-3.5 bg-white border border-[#E7E5E0] rounded-xs text-xs space-y-1">
+                            <div className="p-3.5 bg-white border border-[#d9e1df] rounded-xs text-xs space-y-1">
                               {alcoveWidth < 24 && (
-                                <p className="text-[#8B2627]">Narrower than minimum 24&quot; VanStro vanity size.</p>
+                                <p className="text-[#a33125]">Narrower than minimum 24&quot; VanStro vanity size.</p>
                               )}
                               {alcoveWidth >= 24 && alcoveWidth < 30 && (
-                                <p className="text-[#1C1A17]">
-                                  Best Fit: <strong>VS24 (24&quot; W)</strong> or <strong>VS27 (27&quot; W)</strong>. Remaining gap: {(alcoveWidth - (alcoveWidth >= 27 ? 27 : 24)).toFixed(1)}&quot; for side filler strips.
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>VS24 (24&quot; W)</strong> or <strong>VS27 (27&quot; W)</strong>. Remaining gap: {(alcoveWidth - (alcoveWidth >= 27 ? 27 : 24)).toFixed(1)}&quot; for side filler strips.
                                 </p>
                               )}
                               {alcoveWidth >= 30 && alcoveWidth < 36 && (
-                                <p className="text-[#1C1A17]">
-                                  Best Fit: <strong>VS30 (30&quot; W)</strong> or <strong>V3021STDR/L</strong> drawer models. Remaining gap: {(alcoveWidth - 30).toFixed(1)}&quot;.
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>VS30 (30&quot; W)</strong> or <strong>V3021STDR/L</strong> drawer models. Remaining gap: {(alcoveWidth - 30).toFixed(1)}&quot;.
                                 </p>
                               )}
                               {alcoveWidth >= 36 && alcoveWidth < 42 && (
-                                <p className="text-[#1C1A17]">
-                                  Best Fit: <strong>VS36 (36&quot; W)</strong> or <strong>V3621TDR/L</strong> drawer models. Remaining gap: {(alcoveWidth - 36).toFixed(1)}&quot;.
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>VS36 (36&quot; W)</strong> or <strong>V3621TDR/L</strong> drawer models. Remaining gap: {(alcoveWidth - 36).toFixed(1)}&quot;.
                                 </p>
                               )}
                               {alcoveWidth >= 42 && alcoveWidth < 48 && (
-                                <p className="text-[#1C1A17]">
-                                  Best Fit: <strong>VS42 (42&quot; W)</strong> with 6 deep drawers. Remaining gap: {(alcoveWidth - 42).toFixed(1)}&quot;.
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>VS42 (42&quot; W)</strong> with deep drawers. Remaining gap: {(alcoveWidth - 42).toFixed(1)}&quot;.
                                 </p>
                               )}
                               {alcoveWidth >= 48 && alcoveWidth < 66 && (
-                                <p className="text-[#1C1A17]">
-                                  Best Fit: <strong>VS48 (48&quot; W)</strong> single-sink luxury vanity. Remaining gap: {(alcoveWidth - 48).toFixed(1)}&quot;.
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>VS48 (48&quot; W)</strong> vanity. Remaining gap: {(alcoveWidth - 48).toFixed(1)}&quot;.
                                 </p>
                               )}
                               {alcoveWidth >= 66 && (
-                                <p className="text-[#1C1A17]">
-                                  Best Fit: <strong>VS66 (66&quot; W)</strong> dual-sink master suite vanity. Remaining gap: {(alcoveWidth - 66).toFixed(1)}&quot;.
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>VS66 (66&quot; W)</strong> dual-sink vanity. Remaining gap: {(alcoveWidth - 66).toFixed(1)}&quot;.
                                 </p>
                               )}
                             </div>
@@ -538,24 +537,22 @@ export default function UniversalGuideDetail({
 
                         {/* Case C: pickup-and-delivery-options -> Canadian Regional Hubs */}
                         {guide.slug === 'pickup-and-delivery-options' && (
-                          <div className="p-5 bg-[#FAF9F6] border border-[#E7E5E0] rounded-sm space-y-3">
+                          <div className="p-5 bg-[#f5f8f7] border border-[#d9e1df] rounded-md space-y-3">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-mono uppercase tracking-wider text-[#1C1A17] font-semibold flex items-center gap-1.5">
-                                <Building className="w-3.5 h-3.5 text-[#9B7A4F]" />
+                              <span className="text-xs font-mono uppercase tracking-wider text-[#003f3f] font-bold flex items-center gap-1.5">
+                                <Building className="w-3.5 h-3.5 text-[#f28a0b]" />
                                 <span>Canadian Distribution Hub Staging:</span>
                               </span>
-                              <Badge variant="secondary" className="font-mono text-[10px]">
-                                5 Regional Hubs
-                              </Badge>
+                              <span className="font-mono text-xs text-[#5f7376]">
+                                Distribution &amp; Dealers
+                              </span>
                             </div>
 
                             <div className="flex flex-wrap gap-2">
                               {[
                                 { id: 'MB01', city: 'Winnipeg MB (HQ)' },
-                                { id: 'MB02', city: 'Brandon MB' },
-                                { id: 'ON10', city: 'Waterloo ON' },
-                                { id: 'QC10', city: 'Pointe-Claire QC' },
-                                { id: 'SK10', city: 'Saskatoon SK' },
+                                { id: 'MB02', city: 'Brandon MB (Dealer)' },
+                                { id: 'EXP', city: 'Dealer Expansion Cities' },
                               ].map((hub) => (
                                 <button
                                   key={hub.id}
@@ -563,8 +560,8 @@ export default function UniversalGuideDetail({
                                   onClick={() => setActiveHub(hub.id)}
                                   className={`px-3 py-1.5 text-xs font-mono rounded-xs cursor-pointer transition-colors ${
                                     activeHub === hub.id
-                                      ? 'bg-[#181715] text-white font-medium'
-                                      : 'bg-white border border-[#E7E5E0] text-[#73706B] hover:text-[#1C1A17]'
+                                      ? 'bg-[#003f3f] text-white font-medium'
+                                      : 'bg-white border border-[#d9e1df] text-[#5f7376] hover:text-[#003f3f]'
                                   }`}
                                 >
                                   {hub.city}
@@ -572,30 +569,20 @@ export default function UniversalGuideDetail({
                               ))}
                             </div>
 
-                            <div className="p-3.5 bg-white border border-[#E7E5E0] rounded-xs text-xs space-y-1">
+                            <div className="p-3.5 bg-white border border-[#d9e1df] rounded-xs text-xs space-y-1">
                               {activeHub === 'MB01' && (
-                                <p className="text-[#5E5A54]">
-                                  <strong className="text-[#1C1A17]">MB01 (Winnipeg Central HQ):</strong> Century St Distribution Center. Serving Manitoba and Western Ontario. Warehouse dock open Mon–Fri 8:00 AM – 4:30 PM CST.
+                                <p className="text-[#315b60]">
+                                  <strong className="text-[#003f3f]">VanStro Headquarters (Winnipeg, MB):</strong> 856 Century Street. Central inventory and order processing. Open Mon–Fri 8:00 AM – 4:30 PM CST.
                                 </p>
                               )}
                               {activeHub === 'MB02' && (
-                                <p className="text-[#5E5A54]">
-                                  <strong className="text-[#1C1A17]">MB02 (Brandon Regional):</strong> Park Ave E Warehouse. Serving Parkland &amp; Western Manitoba. Dock open Mon–Fri 8:30 AM – 5:00 PM CST.
+                                <p className="text-[#315b60]">
+                                  <strong className="text-[#003f3f]">Contractor&apos;s Corner (Brandon, MB):</strong> 408 Park Ave E. Independent authorized dealer serving Western Manitoba and Parkland.
                                 </p>
                               )}
-                              {activeHub === 'ON10' && (
-                                <p className="text-[#5E5A54]">
-                                  <strong className="text-[#1C1A17]">ON10 (Waterloo Regional):</strong> Regina St S Hub. Serving Greater Toronto Area (GTA) &amp; Southwestern Ontario. Dock open Mon–Fri 8:00 AM – 4:30 PM EST.
-                                </p>
-                              )}
-                              {activeHub === 'QC10' && (
-                                <p className="text-[#5E5A54]">
-                                  <strong className="text-[#1C1A17]">QC10 (Pointe-Claire Regional):</strong> Boul. Saint-Jean Hub. Serving Greater Montreal &amp; Quebec. Dock open Mon–Fri 8:00 AM – 4:30 PM EST.
-                                </p>
-                              )}
-                              {activeHub === 'SK10' && (
-                                <p className="text-[#5E5A54]">
-                                  <strong className="text-[#1C1A17]">SK10 (Saskatoon Regional):</strong> 3rd Ave N Hub. Serving Saskatchewan &amp; Eastern Alberta. Dock open Mon–Fri 8:30 AM – 5:00 PM CST.
+                              {(activeHub === 'EXP' || activeHub === 'ON10' || activeHub === 'QC10' || activeHub === 'SK10') && (
+                                <p className="text-[#315b60]">
+                                  <strong className="text-[#003f3f]">Independent Dealer Network:</strong> VanStro products are distributed through participating local dealers. Applications for new dealer territories are currently open across Canada.
                                 </p>
                               )}
                             </div>
@@ -629,51 +616,47 @@ export default function UniversalGuideDetail({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* DO Card */}
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden flex flex-col justify-between">
+                <div className="bg-white border border-[#d9e1df] rounded-lg overflow-hidden flex flex-col justify-between">
                   <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="success" className="text-[10px] font-mono uppercase tracking-wider font-semibold">
-                        {guide.dosAndDonts.doBadge} — RECOMMENDED PRACTICES
-                      </Badge>
-                      <Check className="w-4 h-4 text-[#244A29]" />
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#0b7a4b] uppercase tracking-wider">
+                      <Check className="w-4 h-4 text-[#0b7a4b] shrink-0" />
+                      <span>{guide.dosAndDonts.doBadge} — Recommended Practices</span>
                     </div>
 
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17]">
+                    <h3 className="text-lg font-bold text-[#003f3f]">
                       {guide.dosAndDonts.doTitle}
                     </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#5f7376] leading-relaxed">
                       {guide.dosAndDonts.doIntro}
                     </p>
 
-                    <ul className="space-y-2.5 text-xs text-[#5E5A54]">
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-[#10201d]">
                       {guide.dosAndDonts.dos.map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <span className="text-[#244A29] font-bold mt-0.5">✓</span>
+                          <span className="text-[#0b7a4b] font-bold mt-0.5">✓</span>
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="p-4 bg-[#FAF9F6] border-t border-[#F0EFEA] text-[11px] text-[#244A29] font-mono">
+                  <div className="p-4 bg-[#f5f8f7] border-t border-[#d9e1df] text-xs text-[#0b7a4b] font-mono">
                     {guide.dosAndDonts.doFooter}
                   </div>
                 </div>
 
                 {/* DON'T Card */}
-                <div className="bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden flex flex-col justify-between">
+                <div className="bg-white border border-[#d9e1df] rounded-lg overflow-hidden flex flex-col justify-between">
                   <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="destructive" className="text-[10px] font-mono uppercase tracking-wider font-semibold">
-                        {guide.dosAndDonts.dontBadge} — COMMON MISTAKES
-                      </Badge>
-                      <X className="w-4 h-4 text-[#8B2627]" />
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#a33125] uppercase tracking-wider">
+                      <X className="w-4 h-4 text-[#a33125] shrink-0" />
+                      <span>{guide.dosAndDonts.dontBadge} — Common Mistakes</span>
                     </div>
 
-                    <h3 className="font-serif-luxury text-lg font-medium text-[#1C1A17]">
+                    <h3 className="text-lg font-bold text-[#003f3f]">
                       {guide.dosAndDonts.dontTitle}
                     </h3>
-                    <p className="text-xs text-[#73706B] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#5f7376] leading-relaxed">
                       {guide.dosAndDonts.dontIntro}
                     </p>
 
@@ -820,8 +803,8 @@ export default function UniversalGuideDetail({
                         onClick={() => toggleTask(task.id)}
                         className={`flex items-start gap-3 p-3 rounded-xs border cursor-pointer transition-colors ${
                           isChecked
-                            ? 'bg-[#FAF8F5] border-[#9B7A4F]/40 text-[#1C1A17]'
-                            : 'bg-white border-[#E7E5E0] text-[#5E5A54] hover:border-[#1C1A17]/30'
+                            ? 'bg-[#f5f8f7] border-[#003f3f]/40 text-[#10201d]'
+                            : 'bg-white border-[#d9e1df] text-[#5f7376] hover:border-[#003f3f]/30'
                         }`}
                       >
                         <button
@@ -848,12 +831,12 @@ export default function UniversalGuideDetail({
                   })}
                 </div>
 
-                <div className="p-3 bg-[#FAF9F6] border-l-2 border-[#9B7A4F] text-[11px] text-[#73706B] flex items-center justify-between">
+                <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] flex items-center justify-between">
                   <span>{guide.checklist.note}</span>
                   <button
                     type="button"
                     onClick={() => setIsChecklistOpen(true)}
-                    className="text-[#9B7A4F] font-mono text-[10px] uppercase font-semibold hover:underline shrink-0 ml-3"
+                    className="text-[#003f3f] font-mono text-[10px] uppercase font-bold hover:underline shrink-0 ml-3"
                   >
                     Open Printable Worksheet →
                   </button>
@@ -967,12 +950,12 @@ export default function UniversalGuideDetail({
             {/* Header */}
             <div className="px-6 py-5 border-b border-[#E7E5E0] bg-[#FFFFFF] flex items-center justify-between no-print">
               <div>
-                <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#9B7A4F]">
-                  <span>VANSTRO ARCHITECTURAL ARCHIVE</span>
+                <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#003f3f]">
+                  <span>VANSTRO TECHNICAL DOCUMENTATION</span>
                   <span>·</span>
                   <span>DOC REF: {guide.checklist.docRef}</span>
                 </div>
-                <h2 className="font-serif-luxury text-xl sm:text-2xl font-medium text-[#1C1A17] mt-0.5">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#003f3f] mt-0.5">
                   {guide.checklist.title}
                 </h2>
               </div>
@@ -1056,9 +1039,9 @@ export default function UniversalGuideDetail({
               </div>
 
               {/* Note */}
-              <div className="p-4 bg-[#FFFFFF] border-l-2 border-[#9B7A4F] text-[11px] text-[#73706B] leading-relaxed">
-                <strong className="text-[#1C1A17] font-semibold block mb-0.5">
-                  VanStro Engineering Directive:
+              <div className="p-4 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] leading-relaxed">
+                <strong className="text-[#003f3f] font-semibold block mb-0.5">
+                  VanStro Technical Directive:
                 </strong>
                 {guide.checklist.note}
               </div>

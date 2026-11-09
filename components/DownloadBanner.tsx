@@ -29,7 +29,7 @@ export default function DownloadBanner({ onOpenChecklist }: DownloadBannerProps)
               Download the Printable Care Checklist PDF
             </h2>
             <p className="text-xs sm:text-sm text-[#A09D96] leading-relaxed max-w-xl">
-              An architectural single-page maintenance reference designed to mount inside your pantry or service cabinet. Complete with cleaner dilution ratios, humidity tolerances, and Blumotion hinge maintenance.
+              An architectural single-page maintenance reference designed to mount inside your pantry or service cabinet. Complete with cleaner dilution ratios, humidity tolerances, and DTC soft-close hinge maintenance.
             </p>
           </div>
 
@@ -42,7 +42,7 @@ export default function DownloadBanner({ onOpenChecklist }: DownloadBannerProps)
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-              <span>[ Download Free Guide ]</span>
+              <span>[ Download Printable Guide ]</span>
             </button>
           </div>
         </div>
@@ -50,18 +50,18 @@ export default function DownloadBanner({ onOpenChecklist }: DownloadBannerProps)
         {/* Minimal Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-[#292621] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#73706B]">
           <div className="flex items-center gap-6">
-            <span className="font-serif-luxury text-base tracking-widest text-[#F9F8F6]">
+            <span className="text-base font-bold tracking-widest text-[#F9F8F6]">
               VANSTRO
             </span>
             <span className="text-[11px] text-[#A09D96]">
-              Bespoke Cabinetry &amp; Architectural Joinery
+              Building Materials &amp; Cabinetry Supply
             </span>
           </div>
 
           <div className="flex items-center gap-6 text-[11px]">
-            <span>© 2026 VanStro Atelier</span>
+            <span>© 2026 VanStro Global Supply Inc.</span>
             <span>·</span>
-            <span>Architectural Digest Certified Specification</span>
+            <span>Winnipeg, Manitoba, Canada</span>
           </div>
         </div>
       </div>
