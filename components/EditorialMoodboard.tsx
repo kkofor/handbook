@@ -63,7 +63,7 @@ export default function EditorialMoodboard() {
         {MOODBOARD_ITEMS.map((item) => (
           <article
             key={item.id}
-            className="group bg-[#FFFFFF] border border-[#E7E5E0] rounded-sm overflow-hidden hover:border-[#1C1A17]/30 transition-all duration-300"
+            className="group bg-gradient-to-b from-white to-[#FAF7F2] border border-[#DFD7C7] rounded-xl overflow-hidden hover:border-[#9B7A4F] shadow-sm transition-all duration-300"
           >
             {/* Interactive Image Frame */}
             <div
@@ -79,11 +79,11 @@ export default function EditorialMoodboard() {
                 className="object-cover transition-transform duration-700 group-hover:scale-104"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute top-3 left-3 px-2 py-0.5 bg-black/60 backdrop-blur-xs text-[10px] font-mono text-white/90 tracking-widest uppercase">
+              <div className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/70 backdrop-blur-xs text-[10px] font-mono text-[#E8C78E] font-bold tracking-widest uppercase rounded-sm border border-[#C5A069]/30">
                 {item.figure}
               </div>
-              <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-2.5 py-1 bg-[#1C1A17]/85 backdrop-blur-xs text-[10px] text-white tracking-wider uppercase font-mono rounded-xs flex items-center gap-1.5">
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-2.5 py-1 bg-[#181715]/90 backdrop-blur-xs text-[10px] text-white tracking-wider uppercase font-mono rounded-md flex items-center gap-1.5 shadow-md">
+                <svg className="w-3 h-3 text-[#C5A069]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
                 </svg>
                 Inspect Detail
@@ -91,16 +91,16 @@ export default function EditorialMoodboard() {
             </div>
 
             {/* Editorial Caption */}
-            <div className="p-4 space-y-1.5">
+            <div className="p-4 space-y-1.5 bg-white/90 border-t border-[#EDE6D8]">
               <div className="flex items-center justify-between text-[11px]">
-                <h4 className="font-serif-luxury text-base font-medium text-[#1C1A17]">
+                <h4 className="font-serif-luxury text-base font-medium text-[#181715]">
                   {item.title}
                 </h4>
-                <span className="font-mono text-[10px] text-[#9B7A4F] uppercase tracking-wider">
+                <span className="font-mono text-[10px] text-[#9B7A4F] font-bold uppercase tracking-wider">
                   {item.material}
                 </span>
               </div>
-              <p className="text-xs text-[#73706B] leading-relaxed">
+              <p className="text-xs text-[#5A564F] leading-relaxed">
                 {item.caption}
               </p>
             </div>
@@ -108,13 +108,13 @@ export default function EditorialMoodboard() {
         ))}
       </div>
 
-      {/* Editorial Footnote */}
-      <div className="p-4 bg-[#F4F2ED] border border-[#EBE7DF] rounded-sm space-y-1">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#73706B] font-semibold block">
+      {/* Editorial Footnote with Rich Obsidian Contrast */}
+      <div className="p-4 bg-[#181715] text-[#F9F8F6] border border-[#2E2B26] rounded-xl space-y-1.5 shadow-md">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A069] font-bold block">
           Editorial Specimen Note
         </span>
-        <p className="text-[11px] text-[#5E5A54] leading-relaxed">
-          Samples sourced from VanStro Custom Millwork Atelier in Copenhagen. Natural batch grain variances are authentic characteristics of sustainably harvested European timber.
+        <p className="text-[11px] text-[#A09D96] leading-relaxed font-sans">
+          Specimens harvested and machined according to VanStro Architectural Joinery standards. Natural batch grain variances and micro-pores are authentic characteristics of European Baltic birch and rift-cut oak.
         </p>
       </div>
 

@@ -114,7 +114,8 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       { id: 'daily-rules', num: '01', title: 'Daily & Weekly Cleaning' },
       { id: 'material-care', num: '02', title: 'Material Care Specifications' },
       { id: 'dos-donts', num: '03', title: "What to Avoid (Do's & Don'ts)" },
-      { id: 'hardware-care', num: '04', title: 'Hardware & Soft-Close Action' },
+      { id: 'hardware-care', num: '04', title: 'Hardware & Mechanical Standards' },
+      { id: 'care-checklist', num: '05', title: 'On-Site Care Checklist' },
     ],
     quickRules: [
       {
@@ -521,8 +522,9 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     toc: [
       { id: 'first-check', num: '01', title: 'What to Check Before Adjusting' },
       { id: 'hinge-cams', num: '02', title: 'DTC 3-Way Spiral Cam Hinge Tuning' },
-      { id: 'drawer-slides', num: '03', title: 'Under-Mount Drawer Slide Leveling' },
-      { id: 'dos-donts', num: '04', title: "Adjustment Do's & Don'ts" },
+      { id: 'dos-donts', num: '03', title: "Adjustment Do's & Don'ts" },
+      { id: 'drawer-slides', num: '04', title: 'Under-Mount Drawer Slide Leveling' },
+      { id: 'adjust-checklist', num: '05', title: 'Alignment Verification Checklist' },
     ],
     quickRules: [
       {
@@ -714,8 +716,9 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     toc: [
       { id: 'two-colours', num: '01', title: 'The Two Architectural Colourways' },
       { id: 'door-construction', num: '02', title: 'Door Face: PVC Matte Soft-Touch' },
-      { id: 'box-interior', num: '03', title: 'Box & Drawer Interiors: Melamine' },
-      { id: 'trim-mouldings', num: '04', title: 'Paint-Ready Trim & Scribing Panels' },
+      { id: 'dos-donts', num: '03', title: 'Finish Selection Guidelines & Care' },
+      { id: 'trim-mouldings', num: '04', title: 'Paint-Ready Trim & Mouldings' },
+      { id: 'finish-checklist', num: '05', title: 'Finish Verification Checklist' },
     ],
     quickRules: [
       {
@@ -904,10 +907,11 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       'What ready-to-assemble (RTA) kitchen cabinets are, how VanStro RTA cabinets are built, and how to plan, order and pick them up in Canada.',
     heroImage: '/assets/guides/guide-rta.webp',
     toc: [
-      { id: 'what-rta-means', num: '01', title: 'What RTA Means: Flat-Packed Efficiency' },
-      { id: 'parts-of-cabinet', num: '02', title: 'Parts of the Cabinet: Box, Door, Hardware' },
-      { id: 'assembly-process', num: '03', title: 'Assembly Before Installation' },
-      { id: 'freight-logistics', num: '04', title: 'Logistics: Shipping & Dealer Pickup' },
+      { id: 'what-rta-means', num: '01', title: 'What RTA Means: Flat-Packed' },
+      { id: 'parts-of-cabinet', num: '02', title: 'RTA Component Architecture' },
+      { id: 'dos-donts', num: '03', title: 'RTA Assembly Best Practices' },
+      { id: 'assembly-matrix', num: '04', title: 'Assembly Time & Tool Matrix' },
+      { id: 'rta-checklist', num: '05', title: 'RTA Cabinet Assembly Checklist' },
     ],
     quickRules: [
       {
@@ -1096,10 +1100,11 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       'How plywood and particle board cabinet boxes differ in moisture resistance, screw holding and weight, and what VanStro cabinets use.',
     heroImage: '/assets/guides/guide-plywood.webp',
     toc: [
-      { id: 'two-sheet-materials', num: '01', title: 'Two Sheet Materials: Cross-Ply vs Pressed Chip' },
-      { id: 'moisture-resilience', num: '02', title: 'Moisture Resistance & Water Spills' },
-      { id: 'screw-holding', num: '03', title: 'Screw-Holding Power & Hinge Anchoring' },
-      { id: 'shelf-deflection', num: '04', title: 'Weight Capacity & Shelf Span Deflection' },
+      { id: 'two-sheet-materials', num: '01', title: 'Cross-Ply vs Particle Board' },
+      { id: 'moisture-resilience', num: '02', title: 'Material Performance Comparison' },
+      { id: 'dos-donts', num: '03', title: 'Cabinet Box Material Rules' },
+      { id: 'shelf-deflection', num: '04', title: 'ASTM Engineering Benchmarks' },
+      { id: 'plywood-checklist', num: '05', title: 'Plywood Specification Sheet' },
     ],
     quickRules: [
       {
@@ -1268,9 +1273,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     heroImage: '/assets/guides/guide-vanity.webp',
     toc: [
       { id: 'standard-widths', num: '01', title: 'Modular Widths: 24" to 66"' },
-      { id: 'height-comfort', num: '02', title: '34" Comfort Height Standard' },
-      { id: 'depth-clearance', num: '03', title: '21" Depth & Traffic Clearance' },
-      { id: 'plumbing-channel', num: '04', title: 'Plumbing Recesses & Drawer Offsets' },
+      { id: 'height-comfort', num: '02', title: 'VanStro Vanity Models by Size' },
+      { id: 'dos-donts', num: '03', title: 'Vanity Sizing & Clearance Rules' },
+      { id: 'plumbing-channel', num: '04', title: 'Complete Vanity Specification Matrix' },
+      { id: 'vanity-checklist', num: '05', title: 'Bathroom Vanity Pre-Order Sheet' },
     ],
     quickRules: [
       {
@@ -1464,10 +1470,11 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       'Availability, warehouse pickup and regional freight delivery depend on your dealer location and postal code. Step-by-step VanStro guidance across Canada.',
     heroImage: '/assets/guides/guide-pickup.webp',
     toc: [
-      { id: 'warehouse-pickup', num: '01', title: 'Local Dealer Warehouse Pickup' },
-      { id: 'freight-delivery', num: '02', title: 'Curbside Job-Site Delivery' },
-      { id: 'receiving-inspection', num: '03', title: 'Dock Inspection & Claim Protocol' },
-      { id: 'dealer-locations', num: '04', title: 'Canadian Distribution Hubs' },
+      { id: 'warehouse-pickup', num: '01', title: 'Pickup & Delivery Protocol' },
+      { id: 'freight-delivery', num: '02', title: 'Fulfillment Options & Logistics' },
+      { id: 'dos-donts', num: '03', title: 'Receiving & Inspection Best Practices' },
+      { id: 'dealer-locations', num: '04', title: 'Canadian Distribution Network' },
+      { id: 'delivery-checklist', num: '05', title: 'Receiving Inspection Sheet' },
     ],
     quickRules: [
       {

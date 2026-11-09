@@ -281,7 +281,7 @@ export default function VanityFinderApp({
   const selectedProductsForCompare = PRODUCTS.filter((p) => selectedForCompare.includes(p.id));
 
   return (
-    <div className="min-h-screen bg-[#F9F8F6] text-[#1C1A17] font-sans antialiased selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#1C1A17] font-sans antialiased selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
       <Navbar
         currentView="vanity-finder"
         onNavigate={onNavigate}
@@ -650,25 +650,25 @@ export default function VanityFinderApp({
                   return (
                     <article
                       key={item.id}
-                      className={`border p-5 sm:p-6 rounded-xl shadow-xs transition-all duration-200 ${
+                      className={`p-5 sm:p-6 rounded-xl transition-all duration-300 ${
                         isSelected
-                          ? 'bg-[#FAF8F4] border-[#9B7A4F] shadow-sm ring-1 ring-[#9B7A4F]/20'
-                          : 'bg-white border-[#E7E5E0] hover:border-[#1C1A17]/40'
+                          ? 'bg-gradient-to-b from-[#FFFDF9] to-[#FAF4E8] border-2 border-[#9B7A4F] shadow-md ring-2 ring-[#9B7A4F]/20'
+                          : 'bg-gradient-to-b from-white to-[#FAF8F5] border border-[#DFD6C5] hover:border-[#9B7A4F] shadow-sm hover:shadow-[0_6px_24px_-4px_rgba(155,122,79,0.12)]'
                       }`}
                     >
                       {/* Top Row: Model & Actions Slice */}
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3.5">
-                        <div className="space-y-0.5">
+                        <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-[11px] font-bold text-[#9B7A4F] tracking-widest uppercase">
+                            <span className="px-2 py-0.5 rounded bg-[#181715] text-[#E8C78E] font-mono text-[11px] font-bold tracking-widest uppercase border border-[#C5A069]/30">
                               {item.id}
                             </span>
                             <span className="text-[#C4C0B6]">·</span>
-                            <span className="font-mono text-[11px] text-[#73706B]">
+                            <span className="font-mono text-xs text-[#9B7A4F] font-semibold">
                               {formatLength(item.w, unit, lang)} {lang === 'fr' ? 'Largeur' : 'Width'}
                             </span>
                           </div>
-                          <h4 className="font-serif-luxury text-xl sm:text-2xl font-normal text-[#1C1A17] leading-snug">
+                          <h4 className="font-serif-luxury text-xl sm:text-2xl font-medium text-[#181715] leading-snug">
                             {lang === 'fr' ? item.nameFr : item.nameEn}
                           </h4>
                         </div>
@@ -681,15 +681,15 @@ export default function VanityFinderApp({
                             onClick={() => toggleCompareItem(item.id)}
                             className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${
                               isSelected
-                                ? 'bg-[#1C1A17] text-white border-[#1C1A17] shadow-xs font-semibold'
+                                ? 'bg-[#9B7A4F] text-white border-[#9B7A4F] shadow-xs font-bold'
                                 : isMaxSelected
                                 ? 'bg-[#FAF9F6] text-[#A09D96] border-[#E7E5E0] opacity-50 cursor-not-allowed'
-                                : 'bg-white text-[#5E5A54] border-[#DCD8CF] hover:border-[#1C1A17] hover:text-[#1C1A17]'
+                                : 'bg-white text-[#5E5A54] border-[#DCD8CF] hover:border-[#9B7A4F] hover:text-[#9B7A4F]'
                             }`}
                             title={isMaxSelected ? (lang === 'fr' ? 'Maximum de 3 meubles' : 'Maximum 3 items') : ''}
                           >
                             <span className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[10px] ${
-                              isSelected ? 'border-white bg-[#9B7A4F] text-white font-bold' : 'border-[#B8B3A8] bg-white'
+                              isSelected ? 'border-white bg-[#181715] text-white font-bold' : 'border-[#B8B3A8] bg-white'
                             }`}>
                               {isSelected && '✓'}
                             </span>
@@ -702,10 +702,10 @@ export default function VanityFinderApp({
 
                           {/* Room Fit Badge */}
                           <span
-                            className={`font-mono text-xs px-3 py-1.5 rounded-lg shrink-0 tracking-wide border ${
+                            className={`font-mono text-xs px-3 py-1.5 rounded-lg shrink-0 tracking-wide border shadow-2xs ${
                               isFlush
-                                ? 'bg-[#EDF4EE] text-[#244A29] border-[#D3E4D5] font-semibold'
-                                : 'bg-[#F4F2EE] text-[#55524C] border-[#E5E1D8]'
+                                ? 'bg-[#EAF3EB] text-[#244A29] border-[#B8D7C0] font-bold'
+                                : 'bg-[#FAF6EE] text-[#6B6355] border-[#DFD6C5] font-medium'
                             }`}
                           >
                             {spareFormatted} {dict.toSpare}
@@ -714,26 +714,26 @@ export default function VanityFinderApp({
                       </div>
 
                       {/* Middle Row: Specs, Pricing, and Action Button */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-3.5 border-t border-[#F2EFE9] text-xs sm:text-sm">
-                        <div className="flex flex-wrap items-center gap-4 text-[#73706B]">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-[#EDE6D8] text-xs sm:text-sm">
+                        <div className="flex flex-wrap items-center gap-4 text-[#6B665F]">
                           <span className="flex items-center gap-1.5">
-                            <span className="font-mono text-[11px] uppercase tracking-wider text-[#8C8880]">Dim:</span>
-                            <span className="font-medium text-[#1C1A17]">{dimensionsFormatted}</span>
+                            <span className="font-mono text-[11px] uppercase tracking-wider text-[#9B7A4F] font-bold">Dimensions:</span>
+                            <span className="font-mono font-medium text-[#181715]">{dimensionsFormatted}</span>
                           </span>
                         </div>
 
-                        {/* Pricing Blocks */}
+                        {/* Pricing Blocks with Rich Contrast */}
                         <div className="flex flex-wrap items-center gap-5">
                           {(configuration === 'cabinet' || configuration === 'both') && (
                             <div className="flex items-baseline gap-1.5">
-                              <span className="text-xs text-[#73706B]">{lang === 'fr' ? 'Meuble:' : 'Cabinet:'}</span>
-                              <span className="font-mono font-semibold text-[#1C1A17] text-sm sm:text-base">{priceCabFormatted}</span>
+                              <span className="text-xs text-[#6B665F]">{lang === 'fr' ? 'Meuble:' : 'Cabinet:'}</span>
+                              <span className="font-mono font-bold text-[#181715] text-base">{priceCabFormatted}</span>
                             </div>
                           )}
                           {(configuration === 'cabinet_top' || configuration === 'both') && (
                             <div className="flex items-baseline gap-1.5">
-                              <span className="text-xs text-[#73706B]">{lang === 'fr' ? 'Avec comptoir:' : 'With Top:'}</span>
-                              <span className="font-mono font-semibold text-[#1C1A17] text-sm sm:text-base">{priceTopFormatted}</span>
+                              <span className="text-xs text-[#6B665F]">{lang === 'fr' ? 'Avec comptoir:' : 'With Top:'}</span>
+                              <span className="font-mono font-bold text-[#9B7A4F] text-base">{priceTopFormatted}</span>
                             </div>
                           )}
                         </div>
@@ -744,7 +744,7 @@ export default function VanityFinderApp({
                             href={itemUrl}
                             target="_blank"
                             rel="noopener"
-                            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs uppercase font-mono tracking-wider font-semibold border border-[#1C1A17] text-[#1C1A17] hover:bg-[#1C1A17] hover:text-white rounded-md transition-colors whitespace-nowrap"
+                            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs uppercase font-mono tracking-wider font-semibold bg-[#181715] text-white hover:bg-[#9B7A4F] rounded-md transition-colors whitespace-nowrap shadow-xs"
                           >
                             <span>{linkText}</span>
                             <span>→</span>

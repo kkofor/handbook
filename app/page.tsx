@@ -2,12 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import GuidesHub from '@/components/GuidesHub';
-import CabinetCareHandbook from '@/components/CabinetCareHandbook';
 import HowToMeasureGuide from '@/components/HowToMeasureGuide';
 import UniversalGuideDetail from '@/components/UniversalGuideDetail';
 import VanityFinderApp from '@/components/VanityFinderApp';
 import PrintableChecklistModal from '@/components/PrintableChecklistModal';
 import ContactUsPage from '@/components/ContactUsPage';
+import WarrantyPage from '@/components/WarrantyPage';
+import AboutUsPage from '@/components/AboutUsPage';
+import DealerProgramPage from '@/components/DealerProgramPage';
+import DealersMapPage from '@/components/DealersMapPage';
+import CareersPage from '@/components/CareersPage';
 import { VANSTRO_GUIDES } from '@/data/all-vanstro-guides';
 
 export default function Page() {
@@ -21,6 +25,16 @@ export default function Page() {
       const hash = window.location.hash.toLowerCase().replace(/^#/, '');
       if (hash.includes('vanity-finder') || hash.includes('size-finder')) {
         setCurrentView('vanity-finder');
+      } else if (hash === 'dealer-program' || hash.includes('dealer-program')) {
+        setCurrentView('dealer-program');
+      } else if (hash.includes('dealers') || hash.includes('map')) {
+        setCurrentView('dealers-map');
+      } else if (hash === 'careers' || hash.includes('career') || hash.includes('jobs')) {
+        setCurrentView('careers');
+      } else if (hash === 'warranty' || hash.includes('warrant')) {
+        setCurrentView('warranty');
+      } else if (hash === 'about' || hash.includes('about')) {
+        setCurrentView('about');
       } else if (hash === 'contact' || hash.includes('contact-us')) {
         setCurrentView('contact');
       } else if (hash === 'guides' || hash === 'hub') {
@@ -49,12 +63,12 @@ export default function Page() {
   const activeGuideData = VANSTRO_GUIDES[currentView];
 
   return (
-    <div className="relative min-h-screen bg-[#F9F8F6]">
-      {/* 1. Dedicated Interactive Cabinet Care Handbook (Primary Showcase) */}
+    <div className="relative min-h-screen bg-[#FFFFFF]">
+      {/* 1. Dedicated Interactive Cabinet Care Handbook */}
       {currentView === 'cabinet-care' && (
-        <CabinetCareHandbook
+        <UniversalGuideDetail
+          guide={VANSTRO_GUIDES['cabinet-care']}
           onBackToGuides={() => navigateToView('guides')}
-          onOpenChecklistModal={() => setIsChecklistOpen(true)}
           onNavigate={(view) => navigateToView(view)}
         />
       )}
@@ -105,6 +119,51 @@ export default function Page() {
         <VanityFinderApp
           onNavigate={(view) => navigateToView(view)}
           onBackToGuides={() => navigateToView('guides')}
+        />
+      )}
+
+      {/* 7. Dedicated Warranty Page (vanstro.ca/warranty Rebuild) */}
+      {currentView === 'warranty' && (
+        <WarrantyPage
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
+        />
+      )}
+
+      {/* 8. Dedicated About Us Page (vanstro.ca/about Rebuild) */}
+      {currentView === 'about' && (
+        <AboutUsPage
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
+        />
+      )}
+
+      {/* 9. Dedicated Dealer Program (vanstro.ca/dealer-program Rebuild - High-Conversion B2B Commercial) */}
+      {currentView === 'dealer-program' && (
+        <DealerProgramPage
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
+        />
+      )}
+
+      {/* 10. Dedicated Dealers Map (vanstro.ca/dealers/map Rebuild - Interactive Canada Locator) */}
+      {currentView === 'dealers-map' && (
+        <DealersMapPage
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
+        />
+      )}
+
+      {/* 11. Dedicated Careers Page (vanstro.ca/careers Rebuild) */}
+      {currentView === 'careers' && (
+        <CareersPage
+          onBackToGuides={() => navigateToView('guides')}
+          onOpenChecklistModal={() => setIsChecklistOpen(true)}
+          onNavigate={(view) => navigateToView(view)}
         />
       )}
 

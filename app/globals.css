@@ -6,7 +6,7 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   
   /* VanStro Official Guide Tokens */
-  --hb-paper: #f9f8f6;
+  --hb-paper: #ffffff;
   --hb-surface: #ffffff;
   --hb-line: #e7e5e0;
   --hb-ink: #1c1a17;
@@ -51,7 +51,7 @@ html {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #F9F8F6;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
   background: #D8D4CC;

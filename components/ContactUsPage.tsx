@@ -238,7 +238,7 @@ export default function ContactUsPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F8F6] text-[#1C1A17] font-sans antialiased selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#1C1A17] font-sans antialiased selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
       {/* Authentic VanStro Clean Navigation */}
       <Navbar
         currentView="contact"
@@ -251,7 +251,7 @@ export default function ContactUsPage({
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className="border-b border-[#E7E5E0] bg-[#F9F8F6] pt-12 pb-14 sm:pb-20"
+        className="border-b border-[#EAE6DF] bg-gradient-to-b from-[#FAF8F5] via-[#FFFFFF] to-[#FFFFFF] pt-12 pb-14 sm:pb-20"
       >
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12">
           {/* Breadcrumb */}

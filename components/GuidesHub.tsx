@@ -170,7 +170,7 @@ export default function GuidesHub({
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F8F6] text-[#1F1F1F] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1F1F1F]">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#1F1F1F] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1F1F1F]">
       {/* 1. Top Navigation Bar */}
       <Navbar
         currentView="guides"
@@ -188,25 +188,25 @@ export default function GuidesHub({
 
       {/* Main Content Area */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-10 lg:py-16 space-y-16 lg:space-y-24">
-        {/* 2. Centered Hero Header */}
+        {/* 2. Centered Hero Header with Warm Luxury Wash */}
         <section className="text-center max-w-3xl mx-auto space-y-6 pt-4">
-          <div className="space-y-3">
-            <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#9B7A4F] font-semibold">
-              VanStro Knowledge Hub
-            </span>
-            <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1F1F1F] tracking-tight uppercase">
-              Guides &amp; Insights
+          <div className="space-y-3.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#181715] text-[#E8C78E] border border-[#C5A069]/30 text-[11px] font-mono uppercase tracking-[0.2em] font-bold shadow-2xs">
+              <span>VanStro Knowledge Hub</span>
+            </div>
+            <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#181715] tracking-tight uppercase">
+              Guides &amp; <span className="italic font-light text-[#9B7A4F] font-serif lowercase">Insights</span>
             </h1>
-            <p className="text-sm sm:text-base text-[#73706B] leading-relaxed max-w-xl mx-auto font-normal">
-              Expert advice, maintenance manuals, and bespoke kitchen planning.
+            <p className="text-sm sm:text-base text-[#5A564F] leading-relaxed max-w-xl mx-auto font-normal">
+              Expert joinery advice, factory maintenance manuals, and bespoke modular kitchen planning.
             </p>
           </div>
 
-          {/* Clean Centered Rounded Search Bar */}
+          {/* Clean Centered Rounded Search Bar with Warm Border */}
           <div className="relative max-w-xl mx-auto pt-2">
             <div className="relative flex items-center">
               <svg
-                className="w-4 h-4 text-[#8C8880] absolute left-4.5 pointer-events-none stroke-[1.75]"
+                className="w-4 h-4 text-[#9B7A4F] absolute left-4.5 pointer-events-none stroke-[2]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -222,13 +222,13 @@ export default function GuidesHub({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search guides, materials, care tips..."
-                className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#E7E5E0] rounded-full text-xs text-[#1F1F1F] placeholder:text-[#9E9B94] focus:outline-none focus:border-[#1F1F1F] shadow-xs transition-colors"
+                className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#DFD6C5] rounded-full text-xs text-[#181715] placeholder:text-[#9E9B94] focus:outline-none focus:border-[#9B7A4F] shadow-xs transition-colors"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-4 text-xs text-[#9E9B94] hover:text-[#1F1F1F] cursor-pointer"
+                  className="absolute right-4 text-xs text-[#9E9B94] hover:text-[#181715] cursor-pointer"
                 >
                   ✕
                 </button>
@@ -245,10 +245,10 @@ export default function GuidesHub({
                   key={tag.value}
                   type="button"
                   onClick={() => setActiveFilter(tag.value)}
-                  className={`px-5 py-2 text-xs font-medium tracking-wide rounded-full transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
+                  className={`px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 rounded-full ${
                     isActive
-                      ? 'bg-[#1F1F1F] text-[#F9F8F6] shadow-xs font-semibold'
-                      : 'bg-white text-[#73706B] border border-[#E7E5E0] hover:text-[#1F1F1F] hover:border-[#1F1F1F]/40'
+                      ? 'bg-[#181715] text-[#F9F8F6] border border-[#181715] shadow-xs font-bold'
+                      : 'bg-white text-[#6B665F] border border-[#DFD7C7] hover:text-[#181715] hover:border-[#9B7A4F]'
                   }`}
                 >
                   {tag.label}
@@ -296,15 +296,17 @@ export default function GuidesHub({
 
                 {/* Description */}
                 <p className="text-xs sm:text-sm text-[#A09D96] leading-relaxed max-w-lg">
-                  An architectural guide to preserving custom bespoke cabinetry, natural wood grain depth, hand-applied lacquer, and precision German mechanical hardware. Divided into material care specifications, daily wiping rules, and comparative Do&apos;s &amp; Don&apos;ts.
+                  How to clean PVC soft-touch doors, melamine-faced cabinet boxes, and paint-ready trim without treating them like wood furniture. Divided into material care specifications, daily wiping rules, and comparative Do&apos;s &amp; Don&apos;ts.
                 </p>
 
                 {/* Micro Meta Specs */}
-                <div className="pt-2 flex flex-wrap items-center gap-4 text-[11px] text-[#73706B] font-mono">
-                  <span>Quarter-Sawn Oak</span>
-                  <span>·</span>
-                  <span>Blumotion Mechanics</span>
-                  <span>·</span>
+                <div className="pt-2 flex flex-wrap items-center gap-4 text-[11px] text-[#C5A069] font-mono">
+                  <span>PVC Soft-Touch</span>
+                  <span className="text-[#595349]">·</span>
+                  <span>¾&quot; Plywood Box</span>
+                  <span className="text-[#595349]">·</span>
+                  <span>DTC 3-Way Hardware</span>
+                  <span className="text-[#595349]">·</span>
                   <span>Printable Checklist</span>
                 </div>
               </div>
@@ -374,11 +376,11 @@ export default function GuidesHub({
                       setActiveCardModal(guide);
                     }
                   }}
-                  className="group cursor-pointer border-[#E7E5E0] bg-white hover:border-[#1C1A17] hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden flex flex-col justify-between"
+                  className="group cursor-pointer border-[#DFD6C5] bg-gradient-to-b from-white to-[#FAF7F2] hover:border-[#9B7A4F] hover:shadow-[0_8px_30px_-6px_rgba(155,122,79,0.16)] transition-all duration-300 rounded-xl overflow-hidden flex flex-col justify-between"
                 >
                   <div>
                     {/* Media Slice */}
-                    <div className="relative aspect-[16/10] w-full bg-[#EAE7E0] overflow-hidden border-b border-[#E7E5E0]">
+                    <div className="relative aspect-[16/10] w-full bg-[#EAE7E0] overflow-hidden border-b border-[#EDE6D8]">
                       <Image
                         src={guide.image}
                         alt={guide.title}
@@ -388,13 +390,13 @@ export default function GuidesHub({
                         referrerPolicy="no-referrer"
                       />
                       <div className="absolute top-3 left-3">
-                        <Badge variant="copper" className="shadow-xs backdrop-blur-xs text-[9px] tracking-wider font-mono">
+                        <Badge variant="copper" className="shadow-xs backdrop-blur-xs text-[9px] tracking-wider font-mono font-bold">
                           {guide.label}
                         </Badge>
                       </div>
                       <div className="absolute top-3 right-3">
-                        <Badge variant="secondary" className="bg-white/90 backdrop-blur-xs text-[9px] font-mono border-white/50 text-[#1C1A17]">
-                          <Clock className="w-2.5 h-2.5 mr-1 text-[#9B7A4F]" />
+                        <Badge variant="secondary" className="bg-[#181715]/85 backdrop-blur-xs text-[9px] font-mono border-stone-700 text-[#E8C78E]">
+                          <Clock className="w-2.5 h-2.5 mr-1 text-[#C5A069]" />
                           {guide.readTime}
                         </Badge>
                       </div>
@@ -403,7 +405,7 @@ export default function GuidesHub({
                     {/* Content Slice */}
                     <CardHeader className="p-6 pb-2 space-y-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-[#9B7A4F] font-semibold">
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-[#9B7A4F] font-bold">
                           {guide.category}
                         </span>
                         <span className="text-[#C4C0B6]">·</span>
@@ -412,23 +414,23 @@ export default function GuidesHub({
                         </span>
                       </div>
 
-                      <CardTitle className="text-xl sm:text-2xl font-serif-luxury font-normal text-[#1C1A17] group-hover:text-[#9B7A4F] transition-colors leading-snug">
+                      <CardTitle className="text-xl sm:text-2xl font-serif-luxury font-medium text-[#181715] group-hover:text-[#9B7A4F] transition-colors leading-snug">
                         {guide.title}
                       </CardTitle>
 
-                      <CardDescription className="text-xs text-[#5E5A54] leading-relaxed line-clamp-2 pt-1 font-sans">
+                      <CardDescription className="text-xs text-[#5A564F] leading-relaxed line-clamp-2 pt-1 font-sans">
                         {guide.description}
                       </CardDescription>
                     </CardHeader>
                   </div>
 
                   {/* Sliced Footer */}
-                  <CardFooter className="px-6 py-3.5 bg-[#FAF9F6] border-t border-[#EFECE6] flex items-center justify-between text-xs font-mono">
-                    <span className="text-[#1C1A17] group-hover:text-[#9B7A4F] group-hover:translate-x-1 transition-all inline-flex items-center gap-1.5 font-semibold text-[11px] uppercase tracking-wider">
+                  <CardFooter className="px-6 py-3.5 bg-[#FAF7F0] border-t border-[#EAE3D5] flex items-center justify-between text-xs font-mono">
+                    <span className="text-[#181715] group-hover:text-[#9B7A4F] group-hover:translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-[11px] uppercase tracking-wider">
                       <span>Explore Guide</span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#9B7A4F]" />
                     </span>
-                    <span className="text-[10px] text-[#A09D96] font-mono uppercase tracking-wider">
+                    <span className="text-[10px] text-[#9B7A4F] font-mono uppercase tracking-wider font-semibold">
                       Verified Spec
                     </span>
                   </CardFooter>
@@ -497,8 +499,8 @@ export default function GuidesHub({
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-[#292621] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#73706B]">
-            <div className="flex items-center gap-4">
+          <div className="mt-12 pt-8 border-t border-[#292621] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#73706B]">
+            <div className="flex flex-wrap items-center gap-4">
               <span className="font-serif-luxury text-base tracking-widest text-[#F9F8F6]">
                 VANSTRO
               </span>
@@ -506,10 +508,47 @@ export default function GuidesHub({
                 Architectural Joinery Standard §2026
               </span>
             </div>
-            <div className="text-[11px] flex items-center gap-4">
-              <span>Winnipeg, Manitoba</span>
-              <span>·</span>
-              <span>Certified Canadian Dealer Distribution</span>
+
+            <div className="flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-wider text-stone-400">
+              <button
+                type="button"
+                onClick={() => onNavigate?.('cabinet-care')}
+                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
+              >
+                Care Handbook
+              </button>
+              <span className="text-stone-600">·</span>
+              <button
+                type="button"
+                onClick={() => onNavigate?.('how-to-measure-for-cabinets')}
+                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
+              >
+                Measuring
+              </button>
+              <span className="text-stone-600">·</span>
+              <button
+                type="button"
+                onClick={() => onNavigate?.('vanity-finder')}
+                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
+              >
+                Vanity Finder
+              </button>
+              <span className="text-stone-600">·</span>
+              <button
+                type="button"
+                onClick={() => onNavigate?.('warranty')}
+                className="text-[#C5A069] hover:text-white transition-colors cursor-pointer font-semibold"
+              >
+                Warranty
+              </button>
+              <span className="text-stone-600">·</span>
+              <button
+                type="button"
+                onClick={() => onNavigateToContact ? onNavigateToContact() : onNavigate?.('contact')}
+                className="hover:text-[#F9F8F6] transition-colors cursor-pointer"
+              >
+                Contact
+              </button>
             </div>
           </div>
         </div>

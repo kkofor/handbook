@@ -56,7 +56,7 @@ export default function CabinetCareHandbook({
   };
 
   return (
-    <div className="guides-hb min-h-screen bg-[#F9F8F6] text-[#1C1A17] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
+    <div className="guides-hb min-h-screen bg-[#FFFFFF] text-[#1C1A17] flex flex-col font-sans selection:bg-[#9B7A4F]/20 selection:text-[#1C1A17]">
       {/* Top Navbar with Clean Navigation */}
       <Navbar
         currentView="cabinet-care"
@@ -70,14 +70,14 @@ export default function CabinetCareHandbook({
 
       {/* Main Container */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 py-8 lg:py-12">
-        {/* Top Header Section */}
-        <section className="mb-12 lg:mb-16 border-b border-[#E7E5E0] pb-10">
+        {/* Top Header Section with Clean White & Subtle Architectural Wash */}
+        <section className="mb-12 lg:mb-16 -mx-6 sm:-mx-10 lg:-mx-14 px-6 sm:px-10 lg:px-14 pt-4 pb-10 border-b border-[#EAE6DF] bg-gradient-to-b from-[#FAF8F5] via-[#FFFFFF] to-[#FFFFFF]">
           {/* Subtle Back to Guides link */}
           <div className="mb-6">
             <button
               type="button"
               onClick={onBackToGuides}
-              className="group inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#73706B] hover:text-[#1C1A17] transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#7A756D] hover:text-[#181715] transition-colors cursor-pointer"
             >
               <span className="transition-transform group-hover:-translate-x-1">
                 ←
@@ -87,24 +87,26 @@ export default function CabinetCareHandbook({
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <div className="space-y-3 max-w-3xl">
+            <div className="space-y-3.5 max-w-3xl">
               {/* Care Guide Tag / Metadata */}
-              <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono uppercase tracking-[0.16em] text-[#9B7A4F]">
-                <span>CARE GUIDE</span>
+              <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono uppercase tracking-[0.18em]">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#181715] text-[#E8C78E] text-[10px] font-bold border border-[#C5A069]/30 shadow-2xs">
+                  CARE PROTOCOL
+                </span>
                 <span className="text-[#C4C0B6]">·</span>
-                <span>4 MIN READ</span>
+                <span className="text-[#9B7A4F] font-semibold">4 MIN READ</span>
                 <span className="text-[#C4C0B6]">·</span>
-                <span>KITCHEN CABINETS &amp; BATHROOM VANITIES</span>
+                <span className="text-[#7A756D]">KITCHEN CABINETS &amp; BATHROOM VANITIES</span>
               </div>
 
-              {/* Large Serif Title */}
-              <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1C1A17] tracking-tight leading-[1.08]">
-                Cabinet Care Handbook
+              {/* Large Serif Title with Dual-Tone Architectural Richness */}
+              <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#181715] tracking-tight leading-[1.08]">
+                Cabinet Care <span className="italic font-light text-[#9B7A4F] font-serif">Handbook</span>
               </h1>
 
               {/* Elegant Subtitle */}
-              <p className="text-sm sm:text-base text-[#73706B] leading-relaxed max-w-2xl font-normal">
-                How to clean PVC soft-touch doors, melamine-faced cabinet boxes and paint-ready trim without treating them like wood furniture.
+              <p className="text-sm sm:text-base text-[#5A564F] leading-relaxed max-w-2xl font-normal">
+                Professional engineering protocols for PVC soft-touch doors, moisture-resistant melamine cabinet boxes, and solid architectural trim. Designed to preserve pristine factory finishes for decades.
               </p>
             </div>
 
@@ -116,11 +118,38 @@ export default function CabinetCareHandbook({
                   if (onOpenChecklistModal) onOpenChecklistModal();
                   else setIsChecklistOpen(true);
                 }}
-                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#1C1A17] border-b border-[#1C1A17] pb-1 hover:text-[#9B7A4F] hover:border-[#9B7A4F] transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#181715] bg-white border border-[#D5D0C5] hover:border-[#181715] hover:bg-[#181715] hover:text-[#FAF8F5] px-4 py-2.5 rounded-lg shadow-xs transition-all duration-200 cursor-pointer"
               >
                 <span>View Printable Checklist</span>
-                <span>→</span>
+                <span className="text-[#9B7A4F]">→</span>
               </button>
+            </div>
+          </div>
+
+          {/* Architectural Joinery Specification Bar */}
+          <div className="mt-8 pt-6 border-t border-[#E5DFD3] grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="p-3 bg-white/80 border border-[#E0D9CC] rounded-lg space-y-0.5 shadow-2xs">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B7A4F] font-semibold block">Climate Baseline</span>
+              <span className="text-sm font-mono font-bold text-[#181715] block">35% – 55% RH</span>
+              <span className="text-[10px] text-[#7A756D] block">Controlled Residential Range</span>
+            </div>
+
+            <div className="p-3 bg-white/80 border border-[#E0D9CC] rounded-lg space-y-0.5 shadow-2xs">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#9B7A4F] font-semibold block">Allowed Chemistry</span>
+              <span className="text-sm font-mono font-bold text-[#181715] block">Neutral pH 7.0</span>
+              <span className="text-[10px] text-[#7A756D] block">Mild Diluted Dish Soap Only</span>
+            </div>
+
+            <div className="p-3 bg-white/80 border border-[#E0D9CC] rounded-lg space-y-0.5 shadow-2xs">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#8B2627] font-semibold block">Prohibited Reagent</span>
+              <span className="text-sm font-mono font-bold text-[#8B2627] block">Zero Solvent</span>
+              <span className="text-[10px] text-[#7A756D] block">No Acetone, Bleach or Abrasives</span>
+            </div>
+
+            <div className="p-3 bg-white/80 border border-[#E0D9CC] rounded-lg space-y-0.5 shadow-2xs">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#244A29] font-semibold block">Warranty Status</span>
+              <span className="text-sm font-mono font-bold text-[#244A29] block">12 Months</span>
+              <span className="text-[10px] text-[#7A756D] block">Full Factory Joinery Guarantee</span>
             </div>
           </div>
         </section>
