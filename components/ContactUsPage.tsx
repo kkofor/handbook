@@ -32,7 +32,7 @@ export default function ContactUsPage({
     topic: 'Product question',
     phone: '',
     cityProvince: '',
-    preferredDealer: 'Not sure / route by location',
+    preferredDealer: 'Not sure / Contact VanStro HQ',
     orderNumber: '',
     message: '',
   });
@@ -217,14 +217,10 @@ export default function ContactUsPage({
                         onChange={(e) => setFormData({ ...formData, preferredDealer: e.target.value })}
                         className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
                       >
-                        <option value="Not sure / route by location">Not sure / route by location</option>
-                        <option value="Calgary, AB">Calgary, AB</option>
-                        <option value="Saanich, BC">Saanich, BC</option>
-                        <option value="Brandon, MB">Brandon, MB</option>
-                        <option value="Waterloo, ON">Waterloo, ON</option>
-                        <option value="Pointe-Claire, QC">Pointe-Claire, QC</option>
-                        <option value="Saskatoon, SK">Saskatoon, SK</option>
-                        <option value="Winnipeg, MB">Winnipeg, MB</option>
+                        <option value="Not sure / Contact VanStro HQ">Not sure / Contact VanStro HQ</option>
+                        <option value="Winnipeg HQ (Manitoba)">Winnipeg, MB (VanStro HQ Warehouse)</option>
+                        <option value="Brandon Dealer (Manitoba)">Brandon, MB (Independent Dealer)</option>
+                        <option value="Other / Territory Expansion">Other / Expansion Territory</option>
                       </select>
                     </div>
                     <div className="space-y-1">

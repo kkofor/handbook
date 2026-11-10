@@ -472,11 +472,11 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                       Crown Moulding &amp; Light Rails
                     </h3>
                     <p className="text-xs text-[#315b60] leading-relaxed">
-                      Leave a minimum <strong>2&quot; to 3&quot; gap</strong> between upper wall cabinets and the ceiling if you intend to install VanStro crown moulding (CM3). Under-cabinet LED light rails (LR3) require <strong>1¼&quot;</strong> bottom clearance.
+                      Leave an appropriate margin between upper wall cabinets and the ceiling if you intend to install crown moulding. Under-cabinet lighting rails also require adequate bottom clearance.
                     </p>
                   </div>
                   <div className="p-3 bg-[#f5f8f7] border border-[#d9e1df] rounded-md text-[11px] text-[#5f7376] mt-2">
-                    <strong className="text-[#003f3f]">Standard Height:</strong> Standard base cabinet height is 34½&quot; without countertop, reaching 36&quot; with 1½&quot; stone countertop installed.
+                    <strong className="text-[#003f3f]">Standard Height:</strong> Standard base cabinet box height is 34½&quot; without countertop, reaching 36&quot; with standard countertop installed.
                   </div>
                 </div>
               </div>

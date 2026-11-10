@@ -61,12 +61,12 @@ export default function DealerProgramPage({
     city: '',
     province: 'MB',
     postalCode: '',
-    yearsInBusiness: '3-5 years',
-    hasShowroom: 'Yes',
-    hasWarehousePickup: 'Yes',
-    hasInstallationTeam: 'Independent team',
+    yearsInBusiness: '',
+    hasShowroom: '',
+    hasWarehousePickup: '',
+    hasInstallationTeam: '',
     proposedServiceArea: '',
-    currentMonthlyVolume: '$50,000 - $100,000',
+    currentMonthlyVolume: '',
     notes: '',
   });
 
@@ -668,7 +668,7 @@ export default function DealerProgramPage({
                 <h3 className="text-xl font-bold text-[#003f3f]">Application Submitted</h3>
                 <p className="text-xs sm:text-sm text-[#5f7376] max-w-md mx-auto">
                   Thank you for your interest in the VanStro Dealer Program. Your submission reference is{' '}
-                  <strong className="text-[#003f3f] font-mono">{submissionRef}</strong>. Our business development team reviews applications case by case and will contact you within 2 business days.
+                  <strong className="text-[#003f3f] font-mono">{submissionRef}</strong>. Our business development team reviews applications case by case and will contact you within one business day.
                 </p>
                 <Button
                   onClick={() => setFormSubmitted(false)}
@@ -797,6 +797,39 @@ export default function DealerProgramPage({
                       placeholder="R7A 7A8"
                       className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
                     />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Years in Business</label>
+                    <select
+                      name="yearsInBusiness"
+                      value={formData.yearsInBusiness}
+                      onChange={handleInputChange}
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    >
+                      <option value="">Select years in business...</option>
+                      <option value="Under 1 year">Under 1 year</option>
+                      <option value="1-2 years">1-2 years</option>
+                      <option value="3-5 years">3-5 years</option>
+                      <option value="5+ years">5+ years</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-[#10201d]">Estimated Monthly Cabinet Volume</label>
+                    <select
+                      name="currentMonthlyVolume"
+                      value={formData.currentMonthlyVolume}
+                      onChange={handleInputChange}
+                      className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
+                    >
+                      <option value="">Select estimated volume...</option>
+                      <option value="Under $25,000">Under $25,000</option>
+                      <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+                      <option value="$50,000 - $100,000">$50,000 - $100,000</option>
+                      <option value="$100,000+">$100,000+</option>
+                    </select>
                   </div>
                 </div>
 

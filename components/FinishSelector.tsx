@@ -116,7 +116,7 @@ export default function FinishSelector({
             <div className="p-4 bg-white border border-[#DFD6C5] rounded-xl space-y-2 shadow-2xs hover:border-[#9B7A4F] transition-colors">
               <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-[#9B7A4F] font-bold">
                 <Droplets className="w-3.5 h-3.5 text-[#9B7A4F]" />
-                <span>Authorized Cleaning Solution</span>
+                <span>Recommended Cleaning Solution</span>
               </div>
               <p className="text-[#181715] font-medium leading-relaxed">
                 {current.recommendedSolution}

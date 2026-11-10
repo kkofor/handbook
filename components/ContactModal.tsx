@@ -43,7 +43,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         <div className="p-6 bg-white border-b border-[#E7E5E0] flex items-start justify-between">
           <div>
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#9B7A4F] block mb-1">
-              VanStro Client Concierge
+              VanStro Customer Support
             </span>
             <h3 className="font-serif-luxury text-2xl font-medium text-[#1C1A17]">
               Cabinetry Care &amp; Service Inquiries
@@ -137,7 +137,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   className="w-full px-3 py-2.5 text-xs bg-white border border-[#D5D1C7] rounded-none focus:outline-none focus:border-[#1C1A17]"
                 >
                   <option value="Care Kit Request">Complimentary Care Kit</option>
-                  <option value="Technical Inspection">Atelier Inspection</option>
+                  <option value="Technical Guidance">Technical Guidance</option>
                   <option value="Warranty Verification">Warranty Query</option>
                 </select>
               </div>

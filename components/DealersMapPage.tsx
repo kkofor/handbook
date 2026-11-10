@@ -299,9 +299,9 @@ export default function DealersMapPage({
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#f5f8f7]">
                 <MapPin className="w-10 h-10 text-[#f28a0b] mb-2" />
-                <p className="text-sm font-bold text-[#003f3f]">Interactive Canadian Footprints Map</p>
+                <p className="text-sm font-bold text-[#003f3f]">Interactive Location Map</p>
                 <p className="text-xs text-[#5f7376] max-w-sm mt-1">
-                  National dealer locations across Winnipeg, Brandon, Calgary, Saanich, Waterloo, Pointe-Claire, and Saskatoon.
+                  Operating warehouse in Winnipeg, independent dealer representation in Brandon, and expanding dealer territories across Canada.
                 </p>
               </div>
             )}

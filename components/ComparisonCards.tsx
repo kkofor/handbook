@@ -82,7 +82,7 @@ export default function ComparisonCards({ activeFinish }: ComparisonCardsProps) 
 
           <CardFooter className="px-6 py-3 bg-[#EAF3EB] border-t border-[#D5E6D8] text-[11px] text-[#244A29] font-semibold justify-between">
             <span>Result: Sustained surface integrity</span>
-            <span className="font-mono text-[10px] uppercase tracking-wider">VanStro Verified</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Recommended Practice</span>
           </CardFooter>
         </Card>
 
@@ -139,8 +139,8 @@ export default function ComparisonCards({ activeFinish }: ComparisonCardsProps) 
           </div>
 
           <CardFooter className="px-6 py-3 bg-[#FBEBEB] border-t border-[#F2D6D6] text-[11px] text-[#8B2627] font-semibold justify-between">
-            <span>Risk: Excluded from factory warranty</span>
-            <span className="font-mono text-[10px] uppercase tracking-wider">Warranty Void</span>
+            <span>Risk: Excluded from warranty coverage</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Subject to /warranty/</span>
           </CardFooter>
         </Card>
       </div>

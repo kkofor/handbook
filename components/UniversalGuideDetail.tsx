@@ -521,14 +521,9 @@ export default function UniversalGuideDetail({
                                   Fits: <strong>VS42 (42&quot; W)</strong> with deep drawers. Remaining gap: {(alcoveWidth - 42).toFixed(1)}&quot;.
                                 </p>
                               )}
-                              {alcoveWidth >= 48 && alcoveWidth < 66 && (
+                              {alcoveWidth >= 48 && (
                                 <p className="text-[#10201d]">
-                                  Fits: <strong>VS48 (48&quot; W)</strong> vanity. Remaining gap: {(alcoveWidth - 48).toFixed(1)}&quot;.
-                                </p>
-                              )}
-                              {alcoveWidth >= 66 && (
-                                <p className="text-[#10201d]">
-                                  Fits: <strong>VS66 (66&quot; W)</strong> dual-sink vanity. Remaining gap: {(alcoveWidth - 66).toFixed(1)}&quot;.
+                                  Fits: <strong>VS48 (48&quot; W)</strong> ensuite vanity. Remaining gap: {(alcoveWidth - 48).toFixed(1)}&quot;.
                                 </p>
                               )}
                             </div>

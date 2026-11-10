@@ -116,7 +116,7 @@ export const FINISH_DETAILS: Record<string, FinishDetail> = {
     specNotes: [
       { label: 'Coating Type', value: '2K Catalyzed Polyurethane' },
       { label: 'Pencil Hardness', value: '2H Scratch Resistance' },
-      { label: 'UV Resistance', value: 'Non-yellowing UV inhibitor primed' },
+      { label: 'UV Resistance', value: 'UV inhibitor primed' },
       { label: 'Stain Resistance', value: 'Coffee, wine, mustard tested 24h' },
     ],
     tailoredDos: [

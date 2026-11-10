@@ -150,7 +150,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         name: 'PVC Soft-Touch Door',
         subtitle: 'PVC Matte Soft-Touch over ¾" MDF Thermofoil in Shaker Style',
         description:
-          'Factory-sealed non-porous exterior membrane wrapped continuously around precision-profiled MDF. Immune to cooking oils and moisture, but sensitive to solvent abrasives.',
+          'Factory-sealed non-porous exterior membrane wrapped continuously around precision-profiled MDF. Resistant to daily cooking moisture, but sensitive to solvent abrasives.',
         specs: [
           { label: 'Surface Finish', value: 'PVC Matte Soft-Touch' },
           { label: 'Core Base', value: '¾" High-Density MDF' },
@@ -158,7 +158,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
           { label: 'Surface Seal', value: 'Factory Heat-Sealed' },
         ],
         primaryNote: {
-          label: 'Authorized Cleaning Agent',
+          label: 'Recommended Cleaning Solution',
           text: 'Lukewarm water with 2-3 drops mild neutral dish soap, applied to the cloth first.',
         },
         techniqueNote: {
@@ -243,12 +243,12 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       doImage: '/assets/guides/handbook/hb-do-wipe.webp',
       doBadge: 'DO',
       dontTitle: 'What to Avoid',
-      dontIntro: 'Avoid these abrasive practices that will void the factory warranty:',
+      dontIntro: 'Avoid these abrasive practices (refer to /warranty/ for coverage exclusions):',
       donts: [
         'Avoid abrasive scouring pads, magic erasers, and solvent-based chemical degreasers.',
         'Do not spray cleaner or water directly onto cabinet doors or joint seams.',
         'Avoid household cooking grease, aerosol cooking sprays, or degreasers on soft-close dampers.',
-        'Do not wipe paint-ready trim (CM3, LR3) with a wet cloth before paint or primer is applied.',
+        'Do not wipe unfinished or primed trim pieces with a wet cloth before paint or primer is applied.',
       ],
       dontFooter: 'Abrasive cleaning will micro-scratch the matte soft-touch finish and create shiny polished patches.',
       dontImage: '/assets/guides/handbook/hb-dont-water.webp',
@@ -259,7 +259,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       title: 'Hardware & Mechanical Specifications',
       subtitle: 'DTC Clip-On Concealed Mechanical Standards',
       description:
-        'VanStro cabinets use DTC hinges and drawer slides that feature 6-way adjustability (height, depth, and lateral reveal) to achieve uniform 3mm door spacing.',
+        'VanStro cabinets use DTC hinges and drawer slides that feature 6-way adjustability (height, depth, and lateral reveal) to achieve uniform door spacing.',
       tableHeaders: ['Component', 'Adjustment Range', 'Recommended Tool', 'Maintenance Cycle'],
       tableRows: [
         { col1: 'Hinge Cup Cam (Side-to-Side)', col2: '±2.5mm lateral', col3: '#2 Pozi / Phillips Manual', col4: 'Every 12 Months' },
@@ -582,7 +582,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         description:
           'Controls how close the door sits against the cabinet box face. Eliminates door rattle and ensures the soft-close bumper contacts cleanly.',
         specs: [
-          { label: 'Target Flushness', value: '1.5mm–2.0mm reveal' },
+          { label: 'Target Flushness', value: 'Flush reveal' },
           { label: 'Adjustment Range', value: '+3.0mm / -1.0mm' },
           { label: 'Cam Location', value: 'Rear eccentric screw' },
           { label: 'Bumper Contact', value: 'Light contact on felt pad' },
@@ -620,7 +620,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     ],
     dosAndDonts: {
       doTitle: 'Hinge Adjustment Rules',
-      doIntro: 'Follow these proven steps for razor-sharp cabinet reveal lines:',
+      doIntro: 'Follow these proven steps for aligned cabinet reveal lines:',
       dos: [
         'Check that the cabinet box is anchored plumb and level to wall studs before touching hinges.',
         'Use a manual handheld #2 Phillips or Pozidriv screwdriver with a clean, unstripped bit.',
@@ -652,7 +652,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       tableRows: [
         { col1: 'Front Height Wheel', col2: 'Underside of drawer clip', col3: '0 to +3.0mm vertical', col4: 'Aligns horizontal drawer face gap' },
         { col1: 'Rear Tilt Lever', col2: 'Back of runner slide rail', col3: '±2.0mm tilt', col4: 'Levels drawer box from front to back' },
-        { col1: 'Side Shift Lever', col2: 'Inside locking clip', col3: '±1.5mm lateral', col4: 'Centers drawer evenly in cabinet opening' },
+        { col1: 'Side Shift Lever', col2: 'Inside locking clip', col3: 'Lateral adjustment', col4: 'Centers drawer evenly in cabinet opening' },
         { col1: 'Quick Release Trigger', col2: 'Clips under box', col3: 'Instant release', col4: 'Pulls drawer completely off slides' },
       ],
       calloutTitle: 'Dealer Replacement Support:',
@@ -694,7 +694,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       tasks: [
         { id: 'a1', period: 'Step 1', task: 'Verified cabinet box is plumb, level, and securely fastened to studs.' },
         { id: 'a2', period: 'Step 2', task: 'Checked that adjoining cabinet face frames are screwed together tightly.' },
-        { id: 'a3', period: 'Step 3', task: 'Turned front lateral cam to create parallel 3mm margin between doors.' },
+        { id: 'a3', period: 'Step 3', task: 'Adjusted front lateral cam to create uniform parallel margin between doors.' },
         { id: 'a4', period: 'Step 4', task: 'Turned rear depth cam so door rests flush against bumpers when closed.' },
         { id: 'a5', period: 'Step 5', task: 'Adjusted drawer front height dials beneath drawer clips to level fronts.' },
         { id: 'a6', period: 'Step 6', task: 'Confirmed soft-close hydraulic dampers engage smoothly without slamming.' },
@@ -741,7 +741,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         id: 'sealed-melamine',
         title: 'Double-Sided Melamine',
         label: 'Box Interior',
-        body: '¾" plywood cabinet boxes feature factory-sealed melamine on both faces for unmatched durability and wipeability.',
+        body: '¾" plywood cabinet boxes feature factory-sealed melamine on both faces for durable surface wipeability.',
         note: 'Resists kitchen spices and spills.',
         icon: '📦',
       },
@@ -753,7 +753,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         name: 'Architectural White',
         subtitle: 'Pure Matte Soft-Touch PVC — Refined Modern Cleanliness',
         description:
-          'A luminous, non-yellowing neutral white engineered with UV inhibitors. Designed to pair seamlessly with marble slabs, quartz surfaces, and black or brass hardware.',
+          'A luminous neutral white engineered with UV inhibitors. Designed to pair seamlessly with residential countertops and popular hardware finishes.',
         specs: [
           { label: 'Colorway', value: 'VanStro Matte White' },
           { label: 'Sheen Level', value: 'Matte Soft-Touch' },
@@ -817,8 +817,8 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       doIntro: 'How to verify finish compatibility before placing your order:',
       dos: [
         'Examine a physical door sample in your room’s actual lighting morning and evening.',
-        'Pair door samples against your chosen quartz countertop slab and flooring plank.',
-        'Use paint-ready trims (CM3 crown, TK8 toe kick) if custom color matching is desired.',
+        'Pair door samples against your chosen countertop material and flooring.',
+        'Use matching trims and toe kicks to complete the installation.',
         'Rely on factory heat-sealed thermofoil for dependable moisture protection in humid zones.',
       ],
       doFooter: 'Physical samples are available for review at all authorized VanStro dealer showrooms.',
@@ -842,16 +842,16 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       subtitle: 'Matching Trim Profiles for Polished Crown-to-Floor Integration',
       description:
         'VanStro manufactures dedicated matching trim components in both White and Light Grey to complete your cabinet installation cleanly.',
-      tableHeaders: ['Profile Code', 'Nominal Dimensions', 'Standard Finish', 'Application'],
+      tableHeaders: ['Trim Component', 'Standard Length', 'Finish', 'Application'],
       tableRows: [
-        { col1: 'CM3 (Crown Moulding)', col2: '3" H × 96" L × ¾" D', col3: 'PVC Soft-Touch / Paint-Ready', col4: 'Upper cabinet top ceiling return' },
-        { col1: 'LR3 (Light Rail)', col2: '1¼" H × 96" L × ¾" D', col3: 'PVC Soft-Touch / Paint-Ready', col4: 'Under-cabinet LED strip concealment' },
-        { col1: 'TK8 (Toe Kick)', col2: '4½" H × 96" L × ⅝" D', col3: 'Matching Melamine / PVC', col4: 'Base cabinet floor recess fascia' },
-        { col1: 'WF330 / WF630', col2: '3" / 6" W × 30"–42" H', col3: 'Matching PVC Soft-Touch', col4: 'Wall filler scribing panels' },
+        { col1: 'Crown Moulding', col2: 'Standard 96" Length', col3: 'Matching Door Finish', col4: 'Upper cabinet top ceiling return' },
+        { col1: 'Light Rail', col2: 'Standard 96" Length', col3: 'Matching Door Finish', col4: 'Under-cabinet lighting concealment' },
+        { col1: 'Toe Kick', col2: 'Standard 96" Length', col3: 'Matching Melamine / PVC', col4: 'Base cabinet floor recess fascia' },
+        { col1: 'Wall Fillers', col2: 'Standard 3" / 6" Widths', col3: 'Matching Door Finish', col4: 'Wall filler scribing panels' },
       ],
-      calloutTitle: 'Paint-Ready Option:',
+      calloutTitle: 'Trim Installation Guidance:',
       calloutText:
-        'For designers wishing to match a specific Benjamin Moore or Sherwin-Williams paint code, paint-ready raw MDF trim pieces are available upon request.',
+        'Order matching moulding and filler accessories along with your cabinet boxes to ensure uniform color and finish continuity across all runs.',
     },
     plates: [
       {
@@ -886,10 +886,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       title: 'Finish Verification Checklist',
       docRef: 'VS-FINISH-2026',
       tasks: [
-        { id: 'f1', period: 'Pre-Order', task: 'Verified door color (White or Light Grey) against project countertop slab.' },
-        { id: 'f2', period: 'Pre-Order', task: 'Confirmed matching trim requirements: Crown Moulding (CM3) & Light Rail (LR3).' },
-        { id: 'f3', period: 'Pre-Order', task: 'Ordered sufficient 3" (WF330) and 6" (WF630) fillers in matching finish.' },
-        { id: 'f4', period: 'Pre-Order', task: 'Checked toe kick fascia (TK8) linear footage for all base runs and islands.' },
+        { id: 'f1', period: 'Pre-Order', task: 'Verified door color (White or Light Grey) against project countertop material.' },
+        { id: 'f2', period: 'Pre-Order', task: 'Confirmed matching trim requirements: Crown Moulding & Light Rail.' },
+        { id: 'f3', period: 'Pre-Order', task: 'Ordered sufficient fillers in matching finish.' },
+        { id: 'f4', period: 'Pre-Order', task: 'Checked toe kick fascia linear footage for all base runs and islands.' },
         { id: 'f5', period: 'Pre-Order', task: 'Confirmed glass-door wall cabinet locations (if selected in kitchen design).' },
       ],
       note: 'All finish samples reflect factory production runs and standard production tolerances.',
@@ -955,7 +955,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         ],
         primaryNote: {
           label: 'Strength Advantage',
-          text: 'Will not crack or sag under heavy granite, quartz, or porcelain countertop slabs.',
+          text: 'Engineered multi-ply box structure supports standard residential countertops reliably.',
         },
         techniqueNote: {
           label: 'Water Barrier',
@@ -1064,7 +1064,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       {
         figure: 'FIG. 03',
         title: 'Assembled Base Run Rigidity',
-        caption: 'Fully assembled modular run anchored to wall studs, ready to receive heavy quartz countertops.',
+        caption: 'Fully assembled modular run anchored to wall studs, ready for countertop templating.',
         image: '/assets/products/kitchen-cabinets/sink-base-sb36-011970130-sb36-pwms-wh-primary.jpg',
         material: 'Modular Strength',
       },
@@ -1139,20 +1139,20 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         name: '¾" Cabinet Plywood (VanStro)',
         subtitle: 'Multi-Ply Cross-Laminated Hardwood Core with Sealed Melamine',
         description:
-          'The gold standard of architectural millwork. Alternating veneer layers distribute stress evenly, preventing warping and providing unmatched screw pull-out strength.',
+          'Alternating veneer layers distribute stress evenly, reducing warping risk and providing reliable fastener retention.',
         specs: [
           { label: 'Substrate', value: 'Multi-Ply Cross-Grain Plywood' },
           { label: 'Thickness', value: '¾" True Nominal' },
           { label: 'Water Tolerance', value: 'High (Minimal thickness swell)' },
-          { label: 'Screw Pull-Out', value: '350+ lbs retention' },
+          { label: 'Fastener Holding', value: 'High screw holding capacity' },
         ],
         primaryNote: {
           label: 'Structural Life',
-          text: 'Built for 20+ years of heavy residential kitchen and bathroom service.',
+          text: 'Built for long-term residential kitchen and bathroom service.',
         },
         techniqueNote: {
           label: 'Weight Ratio',
-          text: 'Lighter than particle board yet significantly stronger, reducing strain on wall hanging studs.',
+          text: 'Lighter than particle board yet structurally rigid, reducing strain on wall hanging studs.',
         },
       },
       {
@@ -1165,7 +1165,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
           { label: 'Substrate', value: 'Compressed Sawdust & Resin' },
           { label: 'Thickness', value: '⅝" to ¾"' },
           { label: 'Water Tolerance', value: 'Low (Swells permanently)' },
-          { label: 'Screw Pull-Out', value: '180 lbs retention (Chips easily)' },
+          { label: 'Fastener Holding', value: 'Lower holding capacity (chips easily)' },
         ],
         primaryNote: {
           label: 'Vulnerability',
@@ -1192,7 +1192,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       dontTitle: 'Particle Board Risks',
       dontIntro: 'Hazards associated with budget particle board construction:',
       donts: [
-        'Do not install particle board cabinets beneath heavy solid granite or quartz countertops.',
+        'Particle board cores are more vulnerable to moisture exposure and sag under heavy static loads.',
         'Avoid particle board in high-humidity bathroom vanity alcoves where showers generate steam.',
         'Never re-tighten stripped screws in particle board without wood glue filler plugs.',
         'Do not allow dishwasher steam or sink pipe leaks to pool on bare particle board edges.',
@@ -1350,22 +1350,22 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       },
       {
         id: 'master-suite',
-        name: 'Master 42"–66" Vanities',
-        subtitle: 'VS42, VS48 & VS66 Double-Sink Master Suite Centerpieces',
+        name: 'Master 42"–48" Vanities',
+        subtitle: '42" & 48" Single-Sink Master Ensuite Configurations',
         description:
-          'Grand master ensuite cabinetry. VS66 features a generous 66" width with dual integrated sink bays and central drawer stack for shared morning routines.',
+          'Generous master ensuite cabinetry featuring deep drawer banks and center cabinet doors for organized storage and straightforward plumbing access.',
         specs: [
-          { label: 'Models', value: 'VS42 (42" W), VS48 (48" W), VS66 (66" W)' },
-          { label: 'Height / Depth', value: '34" H (VS42/48), 35" H (VS66) × 22" D' },
-          { label: 'Sink Layout', value: 'Single Sink (42/48) / Dual Sink (66)' },
+          { label: 'Models', value: '42" W and 48" W models' },
+          { label: 'Height / Depth', value: '34" H × 21" D' },
+          { label: 'Sink Layout', value: 'Single Sink Center Layout' },
           { label: 'Storage Layout', value: 'Multiple Deep Drawers & Double Doors' },
         ],
         primaryNote: {
-          label: 'Double Sink Standard',
-          text: 'VS66 requires dual plumbing rough-ins spaced 30" apart on center.',
+          label: 'Plumbing Standard',
+          text: 'Ensure existing supply valves and drain trap fall within the central double-door bay.',
         },
         techniqueNote: {
-          label: 'Master Presence',
+          label: 'Ensuite Presence',
           text: 'Delivers full architectural furniture presence with soft-close DTC drawer runners.',
         },
       },
@@ -1410,7 +1410,6 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         { col1: 'VS36 / V3621TDR/L', col2: '36" W × 34" H × 21" D', col3: '2 Doors / Side Drawers', col4: 'Center 18" / Offset' },
         { col1: 'VS42', col2: '42" W × 34" H × 21" D', col3: '2 Doors + 6 Drawers', col4: 'Center 21"' },
         { col1: 'VS48', col2: '48" W × 34" H × 21" D', col3: '2 Doors + 6 Drawers', col4: 'Center 24"' },
-        { col1: 'VS66', col2: '66" W × 35" H × 22" D', col3: '4 Doors + 3 Central Drawers', col4: 'Dual Sinks @ 30" Spacing' },
       ],
       calloutTitle: 'Vanity Finder Interactive Tool:',
       calloutText:
@@ -1419,10 +1418,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     plates: [
       {
         figure: 'FIG. 01',
-        title: 'Master Double Vanity Elevation',
-        caption: 'VS66 master suite vanity with dual undermount sinks and central drawer organization bank.',
+        title: 'Master Ensuite Vanity Elevation',
+        caption: 'Ensuite vanity layout with drawer bank and center door access for plumbing.',
         image: '/assets/products/bathroom-vanities/vanity-cabinet-v3621tdr-023621411-white-lifestyle-front.jpg',
-        material: '66" Double Vanity',
+        material: 'Ensuite Vanity',
       },
       {
         figure: 'FIG. 02',

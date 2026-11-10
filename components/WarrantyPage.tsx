@@ -190,7 +190,7 @@ export default function WarrantyPage({
             <ul className="space-y-2 text-sm text-[#315b60] pl-5 list-disc">
               <li>Normal wear and tear</li>
               <li>Damage caused by misuse, abuse, or improper installation</li>
-              <li>Environmental conditions, including but not limited to humidity, temperature, and light exposure</li>
+              <li>Environmental conditions (humidity, temperature, and light exposure)</li>
               <li>Improper handling or storage</li>
               <li>Force majeure events</li>
               <li>Any labour costs, including removal and reinstallation</li>
@@ -233,7 +233,7 @@ export default function WarrantyPage({
               Statutory Rights
             </h2>
             <p className="text-sm sm:text-base text-[#10201d] leading-relaxed">
-              Nothing in this warranty shall affect or limit the customer’s statutory rights under any applicable Canadian provincial consumer protection laws, including but not limited to provincial Consumer Protection Acts, Sale of Goods Acts, and other mandatory consumer protection statutes. In particular, for customers in the Province of Québec, this includes (where applicable) the Consumer Protection Act of Québec and the hidden defect (vices cachés) provisions of the Civil Code of Québec. Where applicable law provides longer warranty periods or non-excludable rights, those rights shall prevail.
+              Nothing in this warranty shall affect or limit the customer’s statutory rights under applicable Canadian provincial consumer protection laws, provincial Consumer Protection Acts, Sale of Goods Acts, and other mandatory consumer protection statutes. For customers in the Province of Québec, this includes the Consumer Protection Act of Québec and the hidden defect (vices cachés) provisions of the Civil Code of Québec where applicable. Where applicable law provides longer warranty periods or non-excludable rights, those rights shall prevail.
             </p>
           </div>
 
