@@ -262,10 +262,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         'VanStro cabinets use DTC hinges and drawer slides that feature 6-way adjustability (height, depth, and lateral reveal) to achieve uniform door spacing.',
       tableHeaders: ['Component', 'Adjustment Range', 'Recommended Tool', 'Maintenance Cycle'],
       tableRows: [
-        { col1: 'Hinge Cup Cam (Side-to-Side)', col2: '±2.5mm lateral', col3: '#2 Pozi / Phillips Manual', col4: 'Every 12 Months' },
-        { col1: 'Base Plate Screw (Vertical)', col2: '±2.0mm height', col3: '#2 Phillips Hand Driver', col4: 'At Final Installation' },
-        { col1: 'Depth Cam (In/Out Reveal)', col2: '+3.0mm / -1.0mm', col3: '#2 Phillips Hand Driver', col4: 'As Settling Occurs' },
-        { col1: 'Drawer Front Tilt & Level', col2: '±2.0mm upward', col3: 'Under-Mount Lever Wheel', col4: 'Quarterly Check' },
+        { col1: 'Hinge Cup Cam (Side-to-Side)', col2: 'Lateral reveal alignment', col3: '#2 Pozi / Phillips Manual', col4: 'Every 12 Months' },
+        { col1: 'Base Plate Screw (Vertical)', col2: 'Vertical height positioning', col3: '#2 Phillips Hand Driver', col4: 'At Final Installation' },
+        { col1: 'Depth Cam (In/Out Reveal)', col2: 'In/out depth adjustment', col3: '#2 Phillips Hand Driver', col4: 'As Settling Occurs' },
+        { col1: 'Drawer Front Tilt & Level', col2: 'Tilt and level adjustment', col3: 'Under-Mount Lever Wheel', col4: 'Quarterly Check' },
       ],
       calloutTitle: 'Why Proper Hinge Cleaning Matters:',
       calloutText:
@@ -561,8 +561,8 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         description:
           'Adjusts the horizontal reveal gap between two adjoining doors. Turning clockwise shifts the door inward; counter-clockwise shifts it outward.',
         specs: [
-          { label: 'Target Reveal', value: '3.0mm uniform margin' },
-          { label: 'Adjustment Range', value: '±2.5mm lateral travel' },
+          { label: 'Target Reveal', value: 'Uniform door margin' },
+          { label: 'Adjustment Feature', value: 'Lateral travel adjustment' },
           { label: 'Cam Location', value: 'Front screw on hinge arm' },
           { label: 'Screw Profile', value: '#2 Phillips / Pozidriv' },
         ],
@@ -583,7 +583,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
           'Controls how close the door sits against the cabinet box face. Eliminates door rattle and ensures the soft-close bumper contacts cleanly.',
         specs: [
           { label: 'Target Flushness', value: 'Flush reveal' },
-          { label: 'Adjustment Range', value: '+3.0mm / -1.0mm' },
+          { label: 'Adjustment Feature', value: 'Depth in/out adjustment' },
           { label: 'Cam Location', value: 'Rear eccentric screw' },
           { label: 'Bumper Contact', value: 'Light contact on felt pad' },
         ],
@@ -603,7 +603,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         description:
           'Loosen the two mounting plate screws slightly to slide the door vertically, aligning its top and bottom rails with adjacent cabinets.',
         specs: [
-          { label: 'Vertical Range', value: '±2.0mm vertical shift' },
+          { label: 'Vertical Feature', value: 'Vertical height adjustment' },
           { label: 'Screw Type', value: 'Top/bottom plate fasteners' },
           { label: 'Datum Alignment', value: 'Match horizontal shaker rail' },
           { label: 'Tightening', value: 'Firm hand torque' },
@@ -650,8 +650,8 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         'VanStro drawer bases use concealed under-mount slides equipped with front locking clips beneath the front corners of each drawer box.',
       tableHeaders: ['Adjustment Feature', 'Mechanism Location', 'Adjustment Range', 'Function'],
       tableRows: [
-        { col1: 'Front Height Wheel', col2: 'Underside of drawer clip', col3: '0 to +3.0mm vertical', col4: 'Aligns horizontal drawer face gap' },
-        { col1: 'Rear Tilt Lever', col2: 'Back of runner slide rail', col3: '±2.0mm tilt', col4: 'Levels drawer box from front to back' },
+        { col1: 'Front Height Wheel', col2: 'Underside of drawer clip', col3: 'Vertical height adjustment', col4: 'Aligns horizontal drawer face gap' },
+        { col1: 'Rear Tilt Lever', col2: 'Back of runner slide rail', col3: 'Tilt angle adjustment', col4: 'Levels drawer box from front to back' },
         { col1: 'Side Shift Lever', col2: 'Inside locking clip', col3: 'Lateral adjustment', col4: 'Centers drawer evenly in cabinet opening' },
         { col1: 'Quick Release Trigger', col2: 'Clips under box', col3: 'Instant release', col4: 'Pulls drawer completely off slides' },
       ],
@@ -670,7 +670,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       {
         figure: 'FIG. 02',
         title: '6-Way Alignment Reveal',
-        caption: 'Uniform 3.0mm spacing achieved between PVC soft-touch shaker doors and drawer fronts.',
+        caption: 'Uniform reveal spacing achieved between PVC soft-touch shaker doors and drawer fronts.',
         image: '/assets/guides/handbook/hb-drawer.webp',
         material: 'Cabinet Alignment',
       },
@@ -1350,22 +1350,22 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       },
       {
         id: 'master-suite',
-        name: 'Master 42"–48" Vanities',
-        subtitle: '42" & 48" Single-Sink Master Ensuite Configurations',
+        name: 'Master 42"–66" Vanities',
+        subtitle: '42", 48" Single-Sink & V663522 (66") Double-Sink Master Ensuite Models',
         description:
-          'Generous master ensuite cabinetry featuring deep drawer banks and center cabinet doors for organized storage and straightforward plumbing access.',
+          'Grand master ensuite cabinetry. The V663522 features a generous 66" width, 35" height, and 22" depth with dual sink capacity and central drawer organization for shared morning routines.',
         specs: [
-          { label: 'Models', value: '42" W and 48" W models' },
-          { label: 'Height / Depth', value: '34" H × 21" D' },
-          { label: 'Sink Layout', value: 'Single Sink Center Layout' },
+          { label: 'Models', value: 'VS42 (42" W), VS48 (48" W), V663522 (66" W)' },
+          { label: 'Height / Depth', value: '34" H × 21" D (VS42/48), 35" H × 22" D (V663522)' },
+          { label: 'Sink Layout', value: 'Single Sink (42/48) / Dual Sink (V663522)' },
           { label: 'Storage Layout', value: 'Multiple Deep Drawers & Double Doors' },
         ],
         primaryNote: {
-          label: 'Plumbing Standard',
-          text: 'Ensure existing supply valves and drain trap fall within the central double-door bay.',
+          label: 'Double Sink Standard',
+          text: 'V663522 accommodates dual sink basins with plumbing rough-in bays spaced for double vanities.',
         },
         techniqueNote: {
-          label: 'Ensuite Presence',
+          label: 'Master Presence',
           text: 'Delivers full architectural furniture presence with soft-close DTC drawer runners.',
         },
       },
@@ -1377,7 +1377,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         'Measure the clear wall space between adjacent walls, shower glass panels, and door casings.',
         'Verify the location of wall water shutoffs to ensure they fall within the cabinet door bay, not drawers.',
         'Maintain at least 30" of open clearance in front of the vanity for comfortable standing room.',
-        'Check toilet bowl clearance — Canadian code requires at least 15" from center of toilet to vanity side.',
+        'Check toilet bowl clearance — National Plumbing Code of Canada (NPC 2.4.3) requires at least 15" clearance from center of toilet to vanity side panel.',
       ],
       doFooter: 'Correct vanity sizing preserves natural bathroom traffic flow and code compliance.',
       doImage: '/assets/dealers/vanity-scene.jpg',
@@ -1410,6 +1410,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         { col1: 'VS36 / V3621TDR/L', col2: '36" W × 34" H × 21" D', col3: '2 Doors / Side Drawers', col4: 'Center 18" / Offset' },
         { col1: 'VS42', col2: '42" W × 34" H × 21" D', col3: '2 Doors + 6 Drawers', col4: 'Center 21"' },
         { col1: 'VS48', col2: '48" W × 34" H × 21" D', col3: '2 Doors + 6 Drawers', col4: 'Center 24"' },
+        { col1: 'V663522', col2: '66" W × 35" H × 22" D', col3: '4 Doors + Central Drawers', col4: 'Dual Sink Rough-In' },
       ],
       calloutTitle: 'Vanity Finder Interactive Tool:',
       calloutText:
@@ -1418,10 +1419,10 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
     plates: [
       {
         figure: 'FIG. 01',
-        title: 'Master Ensuite Vanity Elevation',
-        caption: 'Ensuite vanity layout with drawer bank and center door access for plumbing.',
-        image: '/assets/products/bathroom-vanities/vanity-cabinet-v3621tdr-023621411-white-lifestyle-front.jpg',
-        material: 'Ensuite Vanity',
+        title: 'V663522 Master Double Vanity Elevation',
+        caption: 'V663522 master suite vanity (66" W × 35" H × 22" D) with dual sink configuration and central drawer organization.',
+        image: '/assets/products/bathroom-vanities/vanity-cabinet-v663522-026621712-v663522-pwms-wh-primary.jpg',
+        material: '66" Double Vanity',
       },
       {
         figure: 'FIG. 02',
@@ -1434,7 +1435,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
         figure: 'FIG. 03',
         title: 'Powder Room Space Optimization',
         caption: 'VS24 compact vanity delivering full storage while maintaining code-compliant toilet clearance.',
-        image: '/assets/products/bathroom-vanities/vanity-cabinet-v663522-026621712-v663522-pwms-wh-primary.jpg',
+        image: '/assets/products/bathroom-vanities/vanity-cabinet-v2421-022421011-white-with-top-lifestyle-front-primary.jpg',
         material: 'Compact Footprint',
       },
     ],
@@ -1450,7 +1451,7 @@ export const VANSTRO_GUIDES: Record<string, VanStroGuideData> = {
       tasks: [
         { id: 'v1', period: 'Dimension', task: 'Measured exact wall-to-wall width at base and 34" vanity height.' },
         { id: 'v2', period: 'Clearance', task: 'Confirmed at least 30" standing aisle clearance in front of vanity.' },
-        { id: 'v3', period: 'Toilet Code', task: 'Verified at least 15" from toilet centerline to vanity side panel.' },
+        { id: 'v3', period: 'National Plumbing Code (NPC 2.4.3)', task: 'Verified at least 15" from toilet centerline to vanity side panel per Canadian plumbing standard.' },
         { id: 'v4', period: 'Plumbing', task: 'Checked hot/cold water pipe and drain outlet height (16"–18" above floor).' },
         { id: 'v5', period: 'Countertop', task: 'Confirmed countertop selection: sold as cabinet only or with integrated top.' },
       ],

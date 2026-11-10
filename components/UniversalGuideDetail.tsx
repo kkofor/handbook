@@ -451,7 +451,7 @@ export default function UniversalGuideDetail({
                                     <br />
                                     • <strong>Counter-Clockwise:</strong> Pushes the door outward to clear protruding adjacent drawers.
                                     <br />
-                                    • <em>Target:</em> Consistent 1.5mm–2.0mm reveal gap around all face perimeters.
+                                    • <em>Target:</em> Consistent reveal gap around all face perimeters.
                                   </p>
                                 </>
                               )}
@@ -461,7 +461,7 @@ export default function UniversalGuideDetail({
                                     Loosen Top &amp; Bottom Mounting Plate Screws:
                                   </div>
                                   <p className="text-[#5E5A54] leading-relaxed">
-                                    • Loosen both plate screws ½ turn, support the door weight by hand, and slide vertically within slotted holes (±2mm travel).
+                                    • Loosen both plate screws ½ turn, support the door weight by hand, and slide vertically within slotted holes.
                                     <br />
                                     • Re-tighten firmly with hand torque once the horizontal shaker rail aligns with neighboring doors.
                                   </p>
@@ -521,9 +521,14 @@ export default function UniversalGuideDetail({
                                   Fits: <strong>VS42 (42&quot; W)</strong> with deep drawers. Remaining gap: {(alcoveWidth - 42).toFixed(1)}&quot;.
                                 </p>
                               )}
-                              {alcoveWidth >= 48 && (
+                              {alcoveWidth >= 48 && alcoveWidth < 66 && (
                                 <p className="text-[#10201d]">
                                   Fits: <strong>VS48 (48&quot; W)</strong> ensuite vanity. Remaining gap: {(alcoveWidth - 48).toFixed(1)}&quot;.
+                                </p>
+                              )}
+                              {alcoveWidth >= 66 && (
+                                <p className="text-[#10201d]">
+                                  Fits: <strong>V663522 (66&quot; W)</strong> master double-sink vanity. Remaining gap: {(alcoveWidth - 66).toFixed(1)}&quot;.
                                 </p>
                               )}
                             </div>

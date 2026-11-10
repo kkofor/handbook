@@ -246,8 +246,8 @@ export default function HowToMeasureGuide({ onBackToGuides, onNavigate }: HowToM
                 </p>
                 <div className="pt-2">
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#9B7A4F]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9B7A4F]" />
-                    Field Verified
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#003f3f]" />
+                    Checklist
                   </span>
                 </div>
               </div>

@@ -177,7 +177,7 @@ export default function WarrantyPage({
               Coverage
             </h2>
             <p className="text-sm sm:text-base text-[#10201d] leading-relaxed">
-              VanStro warrants to the original end-customer purchaser that kitchen cabinets, bathroom vanities, hinges, and drawer slides shall be free from defects in materials and workmanship under normal residential use for a period of twelve (12) months from the date of original end-customer purchase. Proof of purchase is required.
+              VanStro warrants to the original end-customer purchaser that kitchen cabinets, bathroom vanities, hinges, and drawer slides shall be free from defects in materials and workmanship under normal residential use for a period of twelve (12) months from the date of original end-customer purchase. The warranty is non-transferable to the maximum extent permitted by applicable law, and proof of purchase is required.
             </p>
           </div>
 
@@ -190,7 +190,7 @@ export default function WarrantyPage({
             <ul className="space-y-2 text-sm text-[#315b60] pl-5 list-disc">
               <li>Normal wear and tear</li>
               <li>Damage caused by misuse, abuse, or improper installation</li>
-              <li>Environmental conditions (humidity, temperature, and light exposure)</li>
+              <li>Environmental conditions, including but not limited to humidity, temperature, and light exposure</li>
               <li>Improper handling or storage</li>
               <li>Force majeure events</li>
               <li>Any labour costs, including removal and reinstallation</li>
@@ -213,7 +213,7 @@ export default function WarrantyPage({
               Warranty Remedy
             </h2>
             <p className="text-sm sm:text-base text-[#10201d] leading-relaxed">
-              VanStro reserves the right to repair or replace defective products with functionally equivalent products. Replacement parts may differ from the original. VanStro covers the cost of replacement parts only; all other costs, including installation, removal, and transportation costs, shall be the responsibility of the selling dealer or the customer, as separately allocated. Repair or replacement under this warranty shall not extend or renew the warranty period. VanStro reserves the right to require inspection or verification of any claimed defective product prior to approving replacement.
+              VanStro reserves the right, at its sole and absolute discretion, to repair or replace defective products with functionally equivalent products of equal or better quality. Replacement parts may differ from the original. VanStro covers the cost of replacement parts only; all other costs, including installation, removal, and transportation costs, shall be the responsibility of the selling dealer or the customer, as separately allocated. Repair or replacement under this warranty shall not extend or renew the warranty period. VanStro reserves the right to require inspection or verification of any claimed defective product prior to approving replacement.
             </p>
           </div>
 
@@ -233,7 +233,7 @@ export default function WarrantyPage({
               Statutory Rights
             </h2>
             <p className="text-sm sm:text-base text-[#10201d] leading-relaxed">
-              Nothing in this warranty shall affect or limit the customer’s statutory rights under applicable Canadian provincial consumer protection laws, provincial Consumer Protection Acts, Sale of Goods Acts, and other mandatory consumer protection statutes. For customers in the Province of Québec, this includes the Consumer Protection Act of Québec and the hidden defect (vices cachés) provisions of the Civil Code of Québec where applicable. Where applicable law provides longer warranty periods or non-excludable rights, those rights shall prevail.
+              Nothing in this warranty shall affect or limit the customer’s statutory rights under any applicable Canadian provincial consumer protection laws, including but not limited to provincial Consumer Protection Acts, Sale of Goods Acts, and other mandatory consumer protection statutes. In particular, for customers in the Province of Québec, this includes (where applicable) the Consumer Protection Act of Québec and the hidden defect (vices cachés) provisions of the Civil Code of Québec. Where applicable law provides longer warranty periods or non-excludable rights, those rights shall prevail.
             </p>
           </div>
 

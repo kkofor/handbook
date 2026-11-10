@@ -48,7 +48,7 @@ export default function ComparisonCards({ activeFinish }: ComparisonCardsProps) 
                 </span>
               </div>
               <div className="absolute bottom-2 right-3 px-2 py-0.5 bg-black/65 backdrop-blur-xs text-[10px] text-white font-mono tracking-wider rounded-sm">
-                Verified Technique
+                Recommended
               </div>
             </div>
 

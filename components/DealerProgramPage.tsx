@@ -55,7 +55,7 @@ export default function DealerProgramPage({
     companyName: '',
     operatingName: '',
     contactName: '',
-    businessType: 'Kitchen & Bath Showroom',
+    businessType: '',
     email: '',
     phone: '',
     city: '',
@@ -718,11 +718,13 @@ export default function DealerProgramPage({
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-[#10201d]">Business Type *</label>
                     <select
+                      required
                       name="businessType"
                       value={formData.businessType}
                       onChange={handleInputChange}
                       className="w-full h-10 px-3 text-sm bg-white border border-[#d9e1df] rounded-md focus:outline-none focus:border-[#003f3f]"
                     >
+                      <option value="">Select business type...</option>
                       <option value="Kitchen & Bath Showroom">Kitchen &amp; Bath Showroom</option>
                       <option value="General Contractor / Builder">General Contractor / Builder</option>
                       <option value="Millwork / Cabinet Shop">Millwork / Cabinet Shop</option>
